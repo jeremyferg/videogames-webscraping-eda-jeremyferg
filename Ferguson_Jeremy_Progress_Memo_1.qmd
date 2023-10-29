@@ -43,7 +43,18 @@ GitHub (free account) cannot store large files. If you try to commit and push a 
 **We may need to do that for files in your final project!**
 :::
 
+## Project Purpose
+
+In my project, I will analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. Events in this analysis are any media occurrences that contribute to the popularity of the game (ex: game review, game awards, etc.). I will examine the effect a publisher’s own events have on their stock and the effects events related to the publisher have on their stock (ex: a game release from an other publisher specialized in the same game genre). I will analyze these correlations by creating a time series dataset that records stocks and events per day. 
+
 ## Data source
+
+```{r}
+
+
+
+```
+
 
 Blah blah blah^[where blah blah came from, an example of footnote]
 
