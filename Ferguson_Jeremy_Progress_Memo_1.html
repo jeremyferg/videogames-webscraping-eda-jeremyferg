@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -2973,7 +3007,8 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#project-purpose" id="toc-project-purpose" class="nav-link active" data-scroll-target="#project-purpose">Project Purpose</a></li>
+  <li><a href="#datasets-used" id="toc-datasets-used" class="nav-link active" data-scroll-target="#datasets-used">Datasets Used</a></li>
+  <li><a href="#project-purpose" id="toc-project-purpose" class="nav-link" data-scroll-target="#project-purpose">Project Purpose</a></li>
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data source</a></li>
   <li><a href="#why-this-data" id="toc-why-this-data" class="nav-link" data-scroll-target="#why-this-data">Why this data</a></li>
   <li><a href="#data-quality-complexity-check" id="toc-data-quality-complexity-check" class="nav-link" data-scroll-target="#data-quality-complexity-check">Data quality &amp; complexity check</a></li>
@@ -3057,6 +3092,9 @@ Warning
 <p><strong>We may need to do that for files in your final project!</strong></p>
 </div>
 </div>
+<section id="datasets-used" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-used">Datasets Used</h2>
+</section>
 <section id="project-purpose" class="level2">
 <h2 class="anchored" data-anchor-id="project-purpose">Project Purpose</h2>
 <p>In my project, I will analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. Events in this analysis are any media occurrences that contribute to the popularity of the game (ex: game review, game awards, etc.). I will examine the effect a publisher’s own events have on their stock and the effects events related to the publisher have on their stock (ex: a game release from an other publisher specialized in the same game genre). I will analyze these correlations by creating a time series dataset that records stocks and events per day.</p>
@@ -3069,15 +3107,137 @@ Warning
 <p>I found the same dataset issue when looking at data for game awards and game reviews. Concerning game awards, I will be scraping Wikipedia pages for <a href="https://en.wikipedia.org/wiki/The_Game_Awards_2022">The Game Awards results</a>. The Game Awards is the annual, most acclaimed awards ceremony in the video game industry. I am currently planning to have the date of the award, game name, award category, publisher, and win (whether or not the nominee won) as the collected data. Each observation in this dataset will be a nominee, so there is no need for a nominee column. The number of nominees and wins a game/publisher receives will also prove to be useful in the analysis.</p>
 <p>I will be web-scraping video game review information from <a href="https://www.metacritic.com/">Metacritic</a>, which hosts an aggregate set of game reviews similar to Rotten Tomatoes. My intended columns are game reviewed, review date, critic or user (TRUE if the review was done by a critic), score, average critic score yesterday ( average score of all critics before the observation’s review date), and average user score yesterday (similar meaning).</p>
 <p>Finally, I was able to find an extensive, up-to-date dataset of <a href="https://www.kaggle.com/datasets/rankirsh/esports-earnings">esports-related games and earnings from tournaments</a>. Observations are recorded every month (instead of daily like my other data). Along with the monthly date, the dataset’s columns are game, monthly earnings, number of players getting a share of the earnings, and the number of tournaments that month. I may web scrape the data’s <a href="https://www.esportsearnings.com/">original site</a> to get daily records, as exact tournament dates and earnings are made public. However, I believe I can produce good information concerning esports with monthly records and currently do not intend on scraping this site.</p>
-<p>Blah blah blah<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 <section id="why-this-data" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-data">Why this data</h2>
-<p>Blah blah blah<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>My main goal with choosing this dataset is to become better at tidying data and learning how to web scrape. I thought it would be a nice challenge to go beyond what we have done in lecture and improve these skills independently. I chose the video game industry to achieve these goals because I have some familiarity with many of the companies in the data. This initial familiarity makes identifying potential variables worth analyzing much easier. Moreover, I want to explore what components of the industry most affect a company’s success (more so out of curiosity).</p>
 </section>
 <section id="data-quality-complexity-check" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-complexity-check">Data quality &amp; complexity check</h2>
-<p>Blah blah blah</p>
+<p>The complexity of my data comes from the web scraping and merging I will do to create my final time-series data. Here is an example of me reading in stock data and esports data:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22,649 × 7
+   Date        Open  High   Low Close `Adj Close`  Volume
+   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 2013-06-03  2.48  2.50  2.46  2.48        2.48  282500
+ 2 2013-06-04  2.49  2.51  2.49  2.50        2.50  160000
+ 3 2013-06-05  2.44  2.44  2.40  2.41        2.41  284000
+ 4 2013-06-06  2.35  2.38  2.33  2.37        2.37 1280000
+ 5 2013-06-07  2.39  2.46  2.39  2.45        2.45  255000
+ 6 2013-06-10  2.52  2.53  2.51  2.52        2.52  190000
+ 7 2013-06-11  2.45  2.49  2.45  2.45        2.45  157500
+ 8 2013-06-12  2.46  2.46  2.41  2.42        2.42  100500
+ 9 2013-06-13  2.46  2.53  2.46  2.53        2.53  227500
+10 2013-06-14  2.53  2.53  2.49  2.49        2.49  188000
+# ℹ 22,639 more rows</code></pre>
+</div>
+</div>
+<p>The stock data has one column of type date and six columns of type dbl. Dates are treated as numerical variables in this analysis. Stocks are not perfectly recorded every day (an observation I will have to look into further), but I end up with 22,649 observations when combining all stock datasets.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9,244 × 5
+   Date       Game                         Earnings Players Tournaments
+   &lt;date&gt;     &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
+ 1 1998-01-01 Command &amp; Conquer: Red Alert    15000       8           1
+ 2 1998-01-01 QuakeWorld                      15000       8           1
+ 3 1998-05-01 Quake II                        15000       4           1
+ 4 1998-05-01 Total Annihilation              15000       2           1
+ 5 1998-05-01 QuakeWorld                        300       3           1
+ 6 1998-07-01 Quake II                         6500       4           1
+ 7 1998-11-01 Quake II                        35000      13           2
+ 8 1998-11-01 QuakeWorld                      30000      17           1
+ 9 1998-11-01 StarCraft: Brood War            20000       8           1
+10 1998-12-01 Age of Empires                   2000       1           1
+# ℹ 9,234 more rows</code></pre>
+</div>
+</div>
+<p>The esports data has one column of type date, three columns of type double, and one column of type character. The dataset has 9,244 observations.</p>
+<p>Here is an example of web scraping data for game-release information. :</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up EA Sports FC 2024 ----</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>html_ea_sports_fc_24 <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/EA_Sports_FC_24&#39;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  html_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;EA_Sports_FC_24&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up Alan Wake II ----</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#trying another game, code from previous read-in is nearly identical </span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/Alan_Wake_II&#39;</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Alan_Wake_II&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(reading_ea_sports_fc_24, reading_alan_wake_ii)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  name            publisher_s           series       release    genre_s   mode_s
+  &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;        &lt;date&gt;     &lt;chr&gt;     &lt;chr&gt; 
+1 EA_Sports_FC_24 EA Sports             EA Sports FC 2023-09-29 Sports    Singl…
+2 EA_Sports_FC_24 EA Sports             EA Sports FC 2023-09-29 Sports    multi…
+3 Alan_Wake_II    Epic Games Publishing &lt;NA&gt;         2023-10-27 Survival… Singl…</code></pre>
+</div>
+</div>
+<p>The tibble has one column of type date and five columns of type character. Based on game entries in Wikipedia, I expect to create around 5,500 observations.</p>
+<p>The Game Awards dataset will have one column of type date (the date), one column of type boolean (won the award or not), and three columns of type character (game name, award category, publisher). Only a small group of games are nominated for awards, so I expect this dataset to have an observation length in the 100s. The game reviews dataset will have one column of type date (the date), three columns of type double (score, average critic/user score yesterday), one column of type boolean (critic or user), and one column of type character (game name). I estimate this dataset to have observations in the 1,000s or 10,000s.</p>
+<p>Many of these datasets share similar columns like game names and dates. Even so, I believe my collection of columns and observations meets the complexity requirements when considering how I collected my data.</p>
 </section>
 <section id="potential-data-issues" class="level2">
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
@@ -3088,14 +3248,7 @@ Warning
 <p>Blah Blah</p>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>where blah blah came from, an example of footnote<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>another footnote<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

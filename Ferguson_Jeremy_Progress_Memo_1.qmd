@@ -9,6 +9,7 @@ date: today
 format:
   html:
     toc: true
+    code-fold: true
     embed-resources: true
     
 execute:
@@ -43,6 +44,16 @@ GitHub (free account) cannot store large files. If you try to commit and push a 
 **We may need to do that for files in your final project!**
 :::
 
+## Datasets Used
+
+```{r}
+#| label: loading libraries
+
+library(tidyverse)
+library(rvest)
+```
+
+
 ## Project Purpose
 
 In my project, I will analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. Events in this analysis are any media occurrences that contribute to the popularity of the game (ex: game review, game awards, etc.). I will examine the effect a publisher’s own events have on their stock and the effects events related to the publisher have on their stock (ex: a game release from an other publisher specialized in the same game genre). I will analyze these correlations by creating a time series dataset that records stocks and events per day. 
@@ -61,15 +72,137 @@ I will be web-scraping video game review information from [Metacritic](https://w
 
 Finally, I was able to find an extensive, up-to-date dataset of [esports-related games and earnings from tournaments](https://www.kaggle.com/datasets/rankirsh/esports-earnings). Observations are recorded every month (instead of daily like my other data). Along with the monthly date, the dataset’s columns are game, monthly earnings, number of players getting a share of the earnings, and the number of tournaments that month. I may web scrape the data’s [original site](https://www.esportsearnings.com/) to get daily records, as exact tournament dates and earnings are made public. However, I believe I can produce good information concerning esports with monthly records and currently do not intend on scraping this site. 
 
-Blah blah blah^[where blah blah came from, an example of footnote]
-
 ## Why this data
 
-Blah blah blah^[another footnote]
+My main goal with choosing this dataset is to become better at tidying data and learning how to web scrape. I thought it would be a nice challenge to go beyond what we have done in lecture and improve these skills independently. I chose the video game industry to achieve these goals because I have some familiarity with many of the companies in the data. This initial familiarity makes identifying potential variables worth analyzing much easier. Moreover, I want to explore what components of the industry most affect a company’s success (more so out of curiosity). 
 
 ## Data quality & complexity check
 
-Blah blah blah
+The complexity of my data comes from the web scraping and merging I will do to create my final time-series data. Here is an example of me reading in stock data and esports data:
+
+```{r}
+#| label: stock-readin
+
+#reading in each company's data
+ntdoy <- read_csv('data/publisher_stocks/NTDOY.csv')
+ea <- read_csv('data/publisher_stocks/EA.csv')
+atvi <- read_csv('data/publisher_stocks/ATVI.csv')
+ubi <- read_csv('data/publisher_stocks/UBI.PA.csv')
+sqenix <- read_csv('data/publisher_stocks/SQENIX.T.csv')
+sega <- read_csv('data/publisher_stocks/SEGA.T.csv')
+ttwo <- read_csv('data/publisher_stocks/TTWO.csv')
+bandai <- read_csv('data/publisher_stocks/BANNAM.T.csv')
+capcom <- read_csv('data/publisher_stocks/CAPCOM.T.csv')
+konami <- read_csv('data/publisher_stocks/KONA.T.csv')
+
+#ubi data had differing column types
+#need same colum types for bind_rows()
+ubi <- ubi |> 
+  mutate(Open = as.numeric(Open),
+         High = as.numeric(High),
+         Low = as.numeric(Low),
+         Close = as.numeric(Close),
+         `Adj Close` = as.numeric(`Adj Close`),
+         Volume = as.numeric(Volume))
+
+#stacking observations on top of each other
+bind_rows(ntdoy, ea, atvi, ubi, sqenix, sega, ttwo, bandai, capcom, konami)
+
+```
+
+The stock data has one column of type date and six columns of type dbl. Dates are treated as numerical variables in this analysis. Stocks are not perfectly recorded every day (an observation I will have to look into further), but I end up with 22,649 observations when combining all stock datasets.
+
+```{r}
+#| label: esport-readin
+
+historical_esport_data <- read_csv('data/HistoricalEsportData.csv')
+
+historical_esport_data
+```
+
+The esports data has one column of type date, three columns of type double, and one column of type character. The dataset has 9,244 observations.
+
+Here is an example of web scraping data for game-release information. :
+
+```{r}
+#| label: webscrape-ex
+#| echo: True
+
+#### cleaning up EA Sports FC 2024 ----
+
+html_ea_sports_fc_24 <- read_html('https://en.wikipedia.org/wiki/EA_Sports_FC_24')
+
+##getting the table and the desired columns
+new_column_names <- c('x', 'y')
+
+reading_ea_sports_fc_24 <- 
+  html_ea_sports_fc_24 |> 
+  html_element('.infobox') |> 
+  html_table() |> 
+  janitor::clean_names() |> 
+  rename_all(~new_column_names) |> 
+  filter(x == 'Publisher(s)' | 
+           x == 'Series' | 
+           x == 'Release' |  
+           x == 'Genre(s)' |
+           x == 'Mode(s)') |> 
+  add_row(x = 'Name', y = 'EA_Sports_FC_24', .before = 1)
+
+##using pivot_wider to get each row its own column
+reading_ea_sports_fc_24 <- reading_ea_sports_fc_24 |> 
+  pivot_wider(
+    names_from = 'x',
+    values_from = 'y') |> 
+  janitor::clean_names() |> 
+  mutate(release = as.Date(release, '%d %B %Y'))
+
+##there were two values in mode_s, expanding to two rows with this code
+reading_ea_sports_fc_24 <- reading_ea_sports_fc_24 |> 
+  separate_rows(mode_s, sep = ", ")
+
+#### cleaning up Alan Wake II ----
+
+#trying another game, code from previous read-in is nearly identical 
+reading_alan_wake_ii <- read_html('https://en.wikipedia.org/wiki/Alan_Wake_II')
+
+##getting the table and the desired columns
+new_column_names <- c('x', 'y')
+
+reading_alan_wake_ii <- 
+  reading_alan_wake_ii |> 
+  html_element('.infobox') |> 
+  html_table() |> 
+  janitor::clean_names() |> 
+  rename_all(~new_column_names) |> 
+  filter(x == 'Publisher(s)' | 
+           x == 'Series' | 
+           x == 'Release' |  
+           x == 'Genre(s)' |
+           x == 'Mode(s)') |> 
+  add_row(x = 'Name', y = 'Alan_Wake_II', .before = 1)
+
+##using pivot_wider to get each row its own column
+reading_alan_wake_ii <- reading_alan_wake_ii |> 
+  pivot_wider(
+    names_from = 'x',
+    values_from = 'y'
+  ) |> 
+  janitor::clean_names() |> 
+  mutate(release = as.Date(release, '%d %B %Y'))
+
+##there were two values in mode_s, expanding to two rows with this code
+reading_alan_wake_ii <- reading_alan_wake_ii |> 
+  separate_rows(mode_s, sep = ", "
+  )
+
+bind_rows(reading_ea_sports_fc_24, reading_alan_wake_ii)
+```
+
+The tibble has one column of type date and five columns of type character. Based on game entries in Wikipedia, I expect to create around 5,500 observations.
+
+The Game Awards dataset will have one column of type date (the date), one column of type boolean (won the award or not), and three columns of type character (game name, award category, publisher). Only a small group of games are nominated for awards, so I expect this dataset to have an observation length in the 100s. The game reviews dataset will have one column of type date (the date), three columns of type double (score, average critic/user score yesterday), one column of type boolean (critic or user), and one column of type character (game name). I estimate this dataset to have observations in the 1,000s or 10,000s.
+
+Many of these datasets share similar columns like game names and dates. Even so, I believe my collection of columns and observations meets the complexity requirements when considering how I collected my data.
 
 ## Potential data issues
 
