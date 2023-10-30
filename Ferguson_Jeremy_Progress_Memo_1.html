@@ -3065,17 +3065,25 @@ Github Repo Link
 </div>
 <section id="datasets-used" class="level2">
 <h2 class="anchored" data-anchor-id="datasets-used">Datasets Used</h2>
+<div class="cell">
+<details open>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#loading packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="project-purpose" class="level2">
 <h2 class="anchored" data-anchor-id="project-purpose">Project Purpose</h2>
-<p>In my project, I will analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. Events in this analysis are any media occurrences that contribute to the popularity of the game (ex: game review, game awards, etc.). I will examine the effect a publisher’s own events have on their stock and the effects events related to the publisher have on their stock (ex: a game release from an other publisher specialized in the same game genre). I will analyze these correlations by creating a time series dataset that records stocks and events per day.</p>
+<p>In my project, I will analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. Events in this analysis are defined as any media occurrences that contribute to the popularity of a publisher’s game (ex: game review, game awards, etc.). I will examine the effect a publisher’s own events have on their stock and the effects events related to the publisher have on their stock (ex: a game release from an other publisher specialized in the same game genre). I will analyze these correlations by creating a time series dataset that records stocks and events per day.</p>
 </section>
 <section id="data-source" class="level2">
 <h2 class="anchored" data-anchor-id="data-source">Data source</h2>
 <p>My data source will consist of a mixture of existing datasets and data I gather through web scraping. I ultimately plan to create a time series data set, where between Jun. 2013 and Jun. 2023, I record the stock of the video game publisher and any events I’ve identified occurring on that date that could alter stocks. The events I intend to focus on are game release dates, reviews, esports earnings/tournaments, and game awards.</p>
-<p>I will retrieve stock data on Yahoo Finance. These datasets will have 6 columns excluding the date column. I plan to compare 10 different publisher’s stocks: <a href="https://finance.yahoo.com/quote/NTDOY/">Nintendo</a>, <a href="https://finance.yahoo.com/quote/EA/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">EA</a>, <a href="https://finance.yahoo.com/quote/ATVI/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Activision Blizzard</a>, <a href="https://finance.yahoo.com/quote/UBI.PA/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Ubisoft</a>, <a href="https://finance.yahoo.com/quote/9684.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Square Enix</a>, <a href="https://finance.yahoo.com/quote/7832.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Bandai Namco</a>, <a href="https://finance.yahoo.com/quote/6460.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Sega</a>, <a href="https://finance.yahoo.com/quote/TTWO/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Take-Two</a>, <a href="https://finance.yahoo.com/quote/9697.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Capcom</a>, and <a href="https://finance.yahoo.com/quote/9766.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Konami</a>.</p>
+<p>I will retrieve stock data on <a href="https://finance.yahoo.com/">Yahoo Finance</a>. These datasets will have 6 columns excluding the date column. I plan to compare 10 different publisher’s stocks: <a href="https://finance.yahoo.com/quote/NTDOY/">Nintendo</a>, <a href="https://finance.yahoo.com/quote/EA/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">EA</a>, <a href="https://finance.yahoo.com/quote/ATVI/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Activision Blizzard</a>, <a href="https://finance.yahoo.com/quote/UBI.PA/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Ubisoft</a>, <a href="https://finance.yahoo.com/quote/9684.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Square Enix</a>, <a href="https://finance.yahoo.com/quote/7832.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Bandai Namco</a>, <a href="https://finance.yahoo.com/quote/6460.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Sega</a>, <a href="https://finance.yahoo.com/quote/TTWO/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Take-Two</a>, <a href="https://finance.yahoo.com/quote/9697.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Capcom</a>, and <a href="https://finance.yahoo.com/quote/9766.T/history?period1=1370044800&amp;period2=1685577600&amp;interval=1d&amp;filter=history&amp;frequency=1d&amp;includeAdjustedClose=true">Konami</a>.</p>
 <p>I found a few datasets that recorded video game release dates, but these datasets were either missing games or were published years ago. So, I will scrape this information from <a href="https://en.wikipedia.org/wiki/Category:Video_games_by_year">Wikipedia</a>. I plan to web scrape game names, game series, publishers, release dates, genre of game, and game modes. I’ve created a small example of what this dataset would look like using web scraping (shown in the data quality section). The goal, of course, is to create a function that can make this dataset at once.</p>
-<p>I found the same dataset issue when looking at data for game awards and game reviews. Concerning game awards, I will be scraping Wikipedia pages for <a href="https://en.wikipedia.org/wiki/The_Game_Awards_2022">The Game Awards results</a>. The Game Awards is the annual, most acclaimed awards ceremony in the video game industry. I am currently planning to have the date of the award, game name, award category, publisher, and win (whether or not the nominee won) as the collected data. Each observation in this dataset will be a nominee, so there is no need for a nominee column. The number of nominees and wins a game/publisher receives will also prove to be useful in the analysis.</p>
+<p>I found the same dataset issue when looking at data for game awards and game reviews. Concerning game awards, I will be scraping Wikipedia pages for <a href="https://en.wikipedia.org/wiki/The_Game_Awards">The Game Awards results</a>. The Game Awards is the annual, most acclaimed awards ceremony in the video game industry. I am currently planning to have the date of the award, game name, award category, publisher, and win (whether or not the nominee won) as the collected data. Each observation in this dataset will be a nominee, so there is no need for a nominee column. The number of nominees and wins a game/publisher receives will also prove to be useful in the analysis.</p>
 <p>I will be web-scraping video game review information from <a href="https://www.metacritic.com/">Metacritic</a>, which hosts an aggregate set of game reviews similar to Rotten Tomatoes. My intended columns are game reviewed, review date, critic or user (TRUE if the review was done by a critic), score, average critic score yesterday ( average score of all critics before the observation’s review date), and average user score yesterday (similar meaning).</p>
 <p>Finally, I was able to find an extensive, up-to-date dataset of <a href="https://www.kaggle.com/datasets/rankirsh/esports-earnings">esports-related games and earnings from tournaments</a>. Observations are recorded every month (instead of daily like my other data). Along with the monthly date, the dataset’s columns are game, monthly earnings, number of players getting a share of the earnings, and the number of tournaments that month. I may web scrape the data’s <a href="https://www.esportsearnings.com/">original site</a> to get daily records, as exact tournament dates and earnings are made public. However, I believe I can produce good information concerning esports with monthly records and currently do not intend on scraping this site.</p>
 </section>
@@ -3124,78 +3132,78 @@ Github Repo Link
 </div>
 </div>
 <p>The esports data has one column of type date, three columns of type double, and one column of type character. The dataset has 9,244 observations.</p>
-<p>Here is an example of web scraping data for game-release information. :</p>
+<p>Here is an example of web scraping data for game-release information:</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up EA Sports FC 2024 ----</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>html_ea_sports_fc_24 <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/EA_Sports_FC_24&#39;</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  html_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;EA_Sports_FC_24&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up Alan Wake II ----</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#trying another game, code from previous read-in is nearly identical </span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/Alan_Wake_II&#39;</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> </span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Alan_Wake_II&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(reading_ea_sports_fc_24, reading_alan_wake_ii)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up EA Sports FC 2024 ----</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>html_ea_sports_fc_24 <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/EA_Sports_FC_24&#39;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  html_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;EA_Sports_FC_24&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>reading_ea_sports_fc_24 <span class="ot">&lt;-</span> reading_ea_sports_fc_24 <span class="sc">|&gt;</span> </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="do">#### cleaning up Alan Wake II ----</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#trying another game, code from previous read-in is nearly identical </span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&#39;https://en.wikipedia.org/wiki/Alan_Wake_II&#39;</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="do">##getting the table and the desired columns</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>new_column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> </span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="st">&#39;.infobox&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(<span class="sc">~</span>new_column_names) <span class="sc">|&gt;</span> </span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(x <span class="sc">==</span> <span class="st">&#39;Publisher(s)&#39;</span> <span class="sc">|</span> </span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Series&#39;</span> <span class="sc">|</span> </span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Release&#39;</span> <span class="sc">|</span>  </span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Genre(s)&#39;</span> <span class="sc">|</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">==</span> <span class="st">&#39;Mode(s)&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> <span class="st">&#39;Name&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Alan_Wake_II&#39;</span>, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="do">##using pivot_wider to get each row its own column</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&#39;x&#39;</span>,</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&#39;y&#39;</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">release =</span> <span class="fu">as.Date</span>(release, <span class="st">&#39;%d %B %Y&#39;</span>))</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="do">##there were two values in mode_s, expanding to two rows with this code</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>reading_alan_wake_ii <span class="ot">&lt;-</span> reading_alan_wake_ii <span class="sc">|&gt;</span> </span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(mode_s, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(reading_ea_sports_fc_24, reading_alan_wake_ii)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
