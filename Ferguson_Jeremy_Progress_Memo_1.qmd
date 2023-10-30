@@ -19,29 +19,12 @@ execute:
 from: markdown+emoji 
 ---
 
-::: {.callout-important}
-## Memo format
-
-Like all other submissions for this course, we expect the memo to be neat and well organized.
-
-You should make this document your own. This is a template. To help with this we have added a date to the yaml above (good whenever writing memos). You should remove this block when making this document your own.
-
-:::
-
 ::: {.callout-tip icon=false}
 
 ## Github Repo Link
 
-To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
-
 [https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git](https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git)
 
-:::
-
-::: {.callout-warning}
-GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
-
-**We may need to do that for files in your final project!**
 :::
 
 ## Datasets Used
@@ -206,8 +189,8 @@ Many of these datasets share similar columns like game names and dates. Even so,
 
 ## Potential data issues
 
-Blah blah blah
+Concerning potential data issues, web scraping and merging datasets could create the most problems. Again, I am learning how to web scrape for this project, meaning there is potential of me getting stuck on how to scrape specific information from sites. Creating a well-organized merged table may also prove to be a bit difficult. I may still have missing data after web scraping (ex: there may be games with no reviews, making the review score variable N/A) I will mostly have to create a publisher index/primary key to accomplish the merging. 
 
 ## Misc
 
-Blah Blah
+While I’m challenging myself through the methods I retrieve data, the main task of the assignment is to create an EDA. The EDA part of my project may be more leniently graded compared to others, but I should make sure to still create sufficient time to perform a thorough analysis of my data.
