@@ -27,6 +27,8 @@ get_games_info <- function(link){
   new_column_names <- c('x', 'y')
   ##getting the table and the desired columns
 
+#some of the links arent even video games, so we're doing a tryCatch to resolve
+  #that
 result <- tryCatch({
   
   html |> 
@@ -47,7 +49,8 @@ result <- tryCatch({
     rename(publishers = publisher_s,
            genres = genre_s,
            modes = mode_s) |> 
-    separate_rows(modes, sep = ", ")
+    separate_rows(modes, sep = ", ") |> 
+    separate_rows(genres, sep = ", ")
 
 },
 
@@ -68,67 +71,77 @@ error = function(e) { NULL })
 
 release_extractor <- function(df, var = release){
   df |> 
-    mutate(release = str_extract({{var}},
-                                     
-                                    '(?<=\\b[^\\d])January\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sJanuary,?\\s\\d{4}(?=\\D|$)|
-                                    |January\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sJanuary,?\\s\\d{4}(?=\\D|$)|
-                                    
-                                    |(?<=\\b[^\\d])February\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sFebruary,?\\s\\d{4}(?=\\D|$)|
-                                    |February\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sFebruary,?\\s\\d{4}(?=\\D|$)|             
-                                   
-                                    |(?<=\\b[^\\d])March\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sMarch,?\\s\\d{4}(?=\\D|$)|
-                                    |March\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|              
-                                    |\\d{1,2}\\sMarch,?\\s\\d{4}(?=\\D|$)|             
-                                     
-                                    |(?<=\\b[^\\d])April\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sApril,?\\s\\d{4}(?=\\D|$)|
-                                    |April\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|              
-                                    |\\d{1,2}\\sApril,?\\s\\d{4}(?=\\D|$)|              
-                                     
-                                    |(?<=\\b[^\\d])May\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sMay,?\\s\\d{4}(?=\\D|$)|
-                                    |May\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sMay,?\\s\\d{4}(?=\\D|$)|
-                                    
-                                    |(?<=\\b[^\\d])June\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sJune,?\\s\\d{4}(?=\\D|$)|
-                                    |June\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sJune,?\\s\\d{4}(?=\\D|$)|             
-                                     
-                                    |(?<=\\b[^\\d])July\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sJuly,?\\s\\d{4}(?=\\D|$)|
-                                    |July\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sJuly,?\\s\\d{4}(?=\\D|$)|
-                                     
-                                    |(?<=\\b[^\\d])August\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sAugust,?\\s\\d{4}(?=\\D|$)|
-                                    |August\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sAugust,?\\s\\d{4}(?=\\D|$)| 
-                                     
-                                    |(?<=\\b[^\\d])September\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sSeptember,?\\s\\d{4}(?=\\D|$)|
-                                    |September\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sSeptember,?\\s\\d{4}(?=\\D|$)|
-                                    
-                                    |(?<=\\b[^\\d])October\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sOctober,?\\s\\d{4}(?=\\D|$)|
-                                    |October\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sOctober,?\\s\\d{4}(?=\\D|$)|
-                                     
-                                    |(?<=\\b[^\\d])November\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sNovember,?\\s\\d{4}(?=\\D|$)|
-                                    |November\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sNovember,?\\s\\d{4}(?=\\D|$)|
-                                     
-                                    |(?<=\\b[^\\d])December\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |(?<=\\b[^\\d])\\d{1,2}\\sDecember,?\\s\\d{4}(?=\\D|$)|
-                                    |December\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
-                                    |\\d{1,2}\\sDecember,?\\s\\d{4}(?=\\D|$)'))
+    mutate(
+      release = case_when(
+        str_detect(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}') ~ as.character(dmy(str_extract(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}'))),
+        str_detect(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}') ~ as.character(mdy(str_extract(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}'))),
+        .default = release))
+  
+    #mutate(release = str_extract({{var}},
+    #                                 
+    #                                '(?<=\\b[^\\d])January\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sJanuary,?\\s\\d{4}(?=\\D|$)|
+    #                                |January\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sJanuary,?\\s\\d{4}(?=\\D|$)|
+    #                                
+    #                                |(?<=\\b[^\\d])February\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sFebruary,?\\s\\d{4}(?=\\D|$)|
+    #                                |February\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sFebruary,?\\s\\d{4}(?=\\D|$)|             
+    #                               
+    #                                |(?<=\\b[^\\d])March\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sMarch,?\\s\\d{4}(?=\\D|$)|
+    #                                |March\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|              
+    #                                |\\d{1,2}\\sMarch,?\\s\\d{4}(?=\\D|$)|             
+    #                                 
+    #                                |(?<=\\b[^\\d])April\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sApril,?\\s\\d{4}(?=\\D|$)|
+    #                                |April\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|              
+    #                                |\\d{1,2}\\sApril,?\\s\\d{4}(?=\\D|$)|              
+    #                                 
+    #                                |(?<=\\b[^\\d])May\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sMay,?\\s\\d{4}(?=\\D|$)|
+    #                                |May\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sMay,?\\s\\d{4}(?=\\D|$)|
+    #                                
+    #                                |(?<=\\b[^\\d])June\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sJune,?\\s\\d{4}(?=\\D|$)|
+    #                                |June\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sJune,?\\s\\d{4}(?=\\D|$)|             
+    #                                 
+    #                                |(?<=\\b[^\\d])July\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sJuly,?\\s\\d{4}(?=\\D|$)|
+    #                                |July\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sJuly,?\\s\\d{4}(?=\\D|$)|
+    #                                 
+    #                                |(?<=\\b[^\\d])August\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sAugust,?\\s\\d{4}(?=\\D|$)|
+    #                                |August\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sAugust,?\\s\\d{4}(?=\\D|$)| 
+    #                                 
+    #                                |(?<=\\b[^\\d])September\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sSeptember,?\\s\\d{4}(?=\\D|$)|
+    #                                |September\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sSeptember,?\\s\\d{4}(?=\\D|$)|
+    #                                
+    #                                |(?<=\\b[^\\d])October\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sOctober,?\\s\\d{4}(?=\\D|$)|
+    #                                |October\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sOctober,?\\s\\d{4}(?=\\D|$)|
+    #                                 
+    #                                |(?<=\\b[^\\d])November\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sNovember,?\\s\\d{4}(?=\\D|$)|
+    #                                |November\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sNovember,?\\s\\d{4}(?=\\D|$)|
+    #                                 
+    #                                |(?<=\\b[^\\d])December\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |(?<=\\b[^\\d])\\d{1,2}\\sDecember,?\\s\\d{4}(?=\\D|$)|
+    #                                |December\\s\\d{1,2},?\\s\\d{4}(?=\\D|$)|
+    #                                |\\d{1,2}\\sDecember,?\\s\\d{4}(?=\\D|$)'),
+    #       release = case_when(
+    #         str_detect(release, '\\d{1,2}\\s\\D{3,9}\\s\\d{4}') ~ as.character(dmy(release)),
+    #         str_detect(release, '\\D{3,9}\\s\\d{1,2},?\\s\\d{4}') ~ as.character(mdy(release)),
+    #         .default = release))
 }
 
 
@@ -175,6 +188,11 @@ publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
     html_elements('.infobox-data') |> 
     html_elements('a') |> 
     html_attr('title')
+  
+  publisher <- c(publisher, read_html(paste0('https://en.wikipedia.org', link)) |> 
+                   html_elements('.infobox') |> 
+                   html_elements('.infobox-data') |> 
+                   html_text())
   
   df |> 
     mutate(publishers = is_publisher(publisher, publisher_list)) |> 
@@ -284,9 +302,10 @@ else if((games_2022_0toN |>
 else{games_info_df}
 
 }
-
+###########################
 test_function <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_video_games'){
   wikipage <- read_html(link)
+  games_info_df <- data.frame()
   
   games_links <-  
     wikipage |> 
@@ -296,16 +315,60 @@ test_function <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_vi
   
   for(game in games_links){
     #get the game info
+    
       if(!is.null(get_games_info(game))){
-        print(get_games_info(game) |> 
+        
+        game_info <-
+        get_games_info(game) |> 
           release_extractor() |> 
           publisher_cleaner(game) |> 
-          add_series())
+          add_series()
+        
+        games_info_df <- rbind(games_info_df, game_info)
       }
+    next
+    
+    if(((wikipage |> 
+        html_elements('.mw-category-generated') |> 
+        html_element('div') |> 
+        html_elements('a') |> 
+        html_text())[2]) == 'next page'){
+      
+      next_page <- 
+        (wikipage |> 
+           html_elements('.mw-category-generated') |> 
+           html_element('div') |> 
+           html_elements('a') |> 
+           html_attr('href'))[2]
+      
+      get_games_list(next_page)
     }
+    
+    else if(((wikipage |> 
+             html_elements('.mw-category-generated') |> 
+             html_element('div') |> 
+             html_elements('a') |> 
+             html_text())[3]) == "next page"){
+      
+      next_page <- 
+        (wikipage |> 
+           html_elements('.mw-category-generated') |> 
+           html_element('div') |> 
+           html_elements('a') |> 
+           html_attr('href'))[3]
+      
+      get_games_list(next_page)
+    }
+
+  } #end of for loop
+  
+  distinct(games_info_df)
 }
 
+test <-
 test_function()
+
+
 
 ###############################################################
 #######    check how all the functions work together!    ######
@@ -352,10 +415,63 @@ get_games_info('/wiki/Aquamarine_(video_game)')  |>
 
 get_games_list('https://en.wikipedia.org/wiki/Category:2022_video_games')
 
-read_html(paste0('https://en.wikipedia.org', '/wiki/Loop8:_Summer_of_Gods')) |> 
+read_html(paste0('https://en.wikipedia.org', link)) |> 
   html_elements('.infobox') |> 
   html_elements('.infobox-data') |> 
-  html_text2()
+  html_text()
+
+#################################################
+## new publisher list, a lot more observations ##
+#################################################
+
+new_publisher_list <-
+pull((read_html('https://www.gamesdatabase.org/publishers') |> 
+  html_elements('.NoWrap') |> 
+  html_table())[[1]] |> 
+  select(X2) |> 
+  mutate(X2 = tolower(X2)))
+
+
+
+test_og_publisher_list |> 
+  filter(publishers != "") |> 
+  semi_join(test_new_publisher_list |> filter(publishers != ""),
+             join_by(publishers))
+
+test <-
+distinct(test |> 
+  separate_rows(genres, sep = ", "))
+
+test |> 
+  filter(is.na(release))
+
+get_games_info('/wiki/20_Minutes_Till_Dawn') |> 
+  select(release)
+
+get_games_info('/wiki/Endling:_Extinction_is_Forever') |> 
+  select(release)
+  
+  mutate(
+  release = case_when(
+    str_detect(release, '(?<=\\s|^)\\d{1,2}\\s\\D{3,9}\\s\\d{4}\\b') ~ as.character(mdy(str_extract(release, '(?<=\\s|^)\\d{1,2}\\s\\D{3,9}\\s\\d{4}\\b'))),
+    str_detect(release, '\\b\\D{3,9}\\s\\d{1,2},?\\s\\d{4}\\b') ~ as.character(mdy(str_extract(release, '\\b\\D{3,9}\\s\\d{1,2},?\\s\\d{4}\\b'))),
+    .default = release)) |> 
+  select(release)
+
+
+  
+  
+get_games_info('/wiki/Apico') |> 
+  mutate(
+    release = case_when(
+    str_detect(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}') ~ as.character(dmy(str_extract(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}'))),
+    str_detect(release, '[A-Z][a-z]\\D{1,7}\\s\\d{1,2},?\\s\\d{4}') ~ as.character(mdy(str_extract(release, '[A-Z][a-z]\\D{1,7}\\s\\d{1,2},?\\s\\d{4}'))),
+    .default = release))
+
+test_new_publisher_list |> 
+  select(release)
+
+str_extract('Windows, Switch, PlayStation 4, Xbox OneJuly 19, 2022PS5, Xbox', '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}')
 
 ##############################
 ######    some notes    ######
