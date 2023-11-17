@@ -70,10 +70,18 @@ error = function(e) { NULL })
 #release_cleaner extracts the initial release date
 
 release_extractor <- function(df, var = release){
+  
+  if(!('release' %in% names(df))){
+    df <-
+    df |> 
+      add_column(release = NA, .before = 'genres') |> 
+      mutate(release = as.character(release))
+  }
+  
   df |> 
     mutate(
-      release = case_when(
-        str_detect(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}') ~ as.character(dmy(str_extract(release, '\\d{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}'))),
+      release = case_when(  #\\d{1,2}
+        str_detect(release, '[1-2]{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}') ~ as.character(dmy(str_extract(release, '[1-2]{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}'))),
         str_detect(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}') ~ as.character(mdy(str_extract(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}'))),
         .default = release))
   
@@ -206,6 +214,7 @@ publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
 add_series <- function(df){
   
   if(!('series' %in% names(df))){
+    
     df |> 
       add_column(series = NA, .after = 'publishers') |> 
       mutate(series = as.character(series))
@@ -221,90 +230,19 @@ add_series <- function(df){
 games_2022_0toN <- read_html('https://en.wikipedia.org/wiki/Category:2022_video_games')
 games_2022_0toN_p2 <- read_html('https://en.wikipedia.org/w/index.php?title=Category:2022_video_games&pagefrom=Nine+to+Five+%28video+game%29#mw-pages')
 
-#we can definitely get a list of links
-(games_2022_0toN |> 
-  html_elements('.mw-category-group') |> 
-  html_elements('a') |> 
-  html_attr('href'))[1]
+#############################
+## get_games_list function ##
+#############################
 
-#if the second element of this list is next page...
-(games_2022_0toN |> 
-  html_elements('.mw-category-generated') |> 
-  html_element('div') |> 
-  html_elements('a') |> 
-  html_text())[2]
-
-#...we should take the next page list and do the process over again
-(games_2022_0toN |> 
-    html_elements('.mw-category-generated') |> 
-    html_element('div') |> 
-    html_elements('a') |> 
-    html_attr('href'))[2]
-
-get_games_list <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_video_games'){
+get_games_list <- function(link = '/wiki/Category:2022_video_games'){
   
-wikipage <- read_html(link)
-games_info_df <- data.frame()
+  max_attempts <- 10  # Maximum number of attempts
+  attempt <- 1       # Initialize attempt counter
   
-#getting the game links 
-games_links <-  
-  wikipage |> 
-    html_elements('.mw-category-group') |> 
-    html_elements('a') |> 
-    html_attr('href')
-
-for(game in games_links){
-  #get the game info
-  game_info <-
-  get_games_info(game) |> 
-    release_extractor() |> 
-    publisher_cleaner(link) |> 
-    add_series()
+  while (attempt <= max_attempts) {
+    tryCatch({
   
-  #put that info into the data frame
-  games_info_df <- rbind(games_info_df, game_info)
-    }
-
-#if there is another page of games for that year, iterate over this function
-# again
-if((games_2022_0toN |> 
-    html_elements('.mw-category-generated') |> 
-    html_element('div') |> 
-    html_elements('a') |> 
-    html_text())[2] == 'next page'){
-  
-  next_page <- 
-    (games_2022_0toN |> 
-       html_elements('.mw-category-generated') |> 
-       html_element('div') |> 
-       html_elements('a') |> 
-       html_attr('href'))[2]
-    
-  get_games_list(next_page)
-}
-   
-else if((games_2022_0toN |> 
-    html_elements('.mw-category-generated') |> 
-    html_element('div') |> 
-    html_elements('a') |> 
-    html_text())[3] == 'next page'){
-  
-  next_page <- 
-    (games_2022_0toN |> 
-       html_elements('.mw-category-generated') |> 
-       html_element('div') |> 
-       html_elements('a') |> 
-       html_attr('href'))[3]
-  
-  get_games_list(next_page)
-}
-
-else{games_info_df}
-
-}
-###########################
-test_function <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_video_games'){
-  wikipage <- read_html(link)
+  wikipage <- read_html(paste0('https://en.wikipedia.org', link))
   games_info_df <- data.frame()
   
   games_links <-  
@@ -315,8 +253,11 @@ test_function <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_vi
   
   for(game in games_links){
     #get the game info
-    
+    #Sys.sleep(1)
       if(!is.null(get_games_info(game))){
+        
+        #printing it to see it go and go
+        print(get_games_info(game))
         
         game_info <-
         get_games_info(game) |> 
@@ -328,46 +269,148 @@ test_function <- function(link = 'https://en.wikipedia.org/wiki/Category:2022_vi
       }
     next
     
+  } #end of for loop
+    
     if(((wikipage |> 
         html_elements('.mw-category-generated') |> 
-        html_element('div') |> 
+        html_element('#mw-pages') |> 
         html_elements('a') |> 
         html_text())[2]) == 'next page'){
       
-      next_page <- 
-        (wikipage |> 
-           html_elements('.mw-category-generated') |> 
-           html_element('div') |> 
-           html_elements('a') |> 
-           html_attr('href'))[2]
       
-      get_games_list(next_page)
+      print('ayo')
+      
+      next_page <- 
+        ((wikipage |> 
+           html_elements('.mw-category-generated') |> 
+           html_element('#mw-pages') |> 
+           html_elements('a') |> 
+           html_attr('href'))[2])
+      
+      games_info_df <- rbind(games_info_df, get_games_list(next_page))
     }
     
     else if(((wikipage |> 
              html_elements('.mw-category-generated') |> 
-             html_element('div') |> 
+             html_element('#mw-pages') |> 
              html_elements('a') |> 
              html_text())[3]) == "next page"){
       
-      next_page <- 
-        (wikipage |> 
-           html_elements('.mw-category-generated') |> 
-           html_element('div') |> 
-           html_elements('a') |> 
-           html_attr('href'))[3]
+      print('ayo')
       
-      get_games_list(next_page)
+      next_page <- 
+        ((wikipage |> 
+           html_elements('.mw-category-generated') |> 
+           html_element('#mw-pages') |> 
+           html_elements('a') |> 
+           html_attr('href'))[3])
+      
+      games_info_df <- rbind(games_info_df, get_games_list(next_page))
     }
-
-  } #end of for loop
+  
+  # If the connection is successful, break out of the loop
+  break
+    }, error = function(e) {
+      # Handle the error here, such as displaying a message
+      print(paste("Connection attempt", attempt, "failed:", conditionMessage(e)))
+      
+      # Increment the attempt counter
+      attempt <- attempt + 1
+      
+      # Wait for a specified delay before attempting the connection again
+      Sys.sleep(10)  # Adjust the delay time (in seconds) as needed
+    })
+  }
+  
+  # If max_attempts reached without successful connection
+  if (attempt > max_attempts) {
+    print("Max attempts reached. Unable to establish a connection.")
+  }
   
   distinct(games_info_df)
 }
 
-test <-
-test_function()
+#############################
+## for loop over each year ##
+#############################
 
+
+### trying individually first #################################################
+
+games_2013 <-
+  get_games_list('/wiki/Category:2013_video_games')
+
+games_2014 <-
+  get_games_list('/wiki/Category:2014_video_games')
+
+games_2015 <-
+  get_games_list('/wiki/Category:2015_video_games')
+
+games_2016 <-
+  get_games_list('/wiki/Category:2016_video_games')
+
+games_2017 <-
+  get_games_list('/wiki/Category:2017_video_games')
+
+games_2018 <-
+  get_games_list('/wiki/Category:2018_video_games')
+
+games_2019 <-
+  get_games_list('/wiki/Category:2019_video_games')
+
+games_2020 <-
+  get_games_list('/wiki/Category:2020_video_games')
+
+games_2021 <-
+  get_games_list('/wiki/Category:2021_video_games')
+
+games_2022 <-
+  get_games_list('/wiki/Category:2022_video_games')
+
+games_2023 <-
+  get_games_list('/wiki/Category:2023_video_games')
+
+### now the for loop ##########################################################
+
+
+videogame_info <- data.frame()
+
+videogame_info <-
+for( year in c(2013:2023)){
+  videogame_info <- rbind(videogame_info, 
+                          get_games_list(rlang::englue('/wiki/Category:{year}_video_games')))
+}
+
+###############################################################################
+
+### TryCatch function ####
+
+max_attempts <- 5  # Maximum number of attempts
+attempt <- 1       # Initialize attempt counter
+
+while (attempt <= max_attempts) {
+  tryCatch({
+    
+    
+    
+    # If the connection is successful, break out of the loop
+    break
+  }, error = function(e) {
+    # Handle the error here, such as displaying a message
+    print(paste("Connection attempt", attempt, "failed:", conditionMessage(e)))
+    
+    # Increment the attempt counter
+    attempt <- attempt + 1
+    
+    # Wait for a specified delay before attempting the connection again
+    Sys.sleep(5)  # Adjust the delay time (in seconds) as needed
+  })
+}
+
+# If max_attempts reached without successful connection
+if (attempt > max_attempts) {
+  print("Max attempts reached. Unable to establish a connection.")
+}
 
 
 ###############################################################
@@ -472,6 +515,30 @@ test_new_publisher_list |>
   select(release)
 
 str_extract('Windows, Switch, PlayStation 4, Xbox OneJuly 19, 2022PS5, Xbox', '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}')
+
+paste0('https://en.wikipedia.org', 
+       ((read_html('https://en.wikipedia.org/wiki/Category:2022_video_games') |> 
+    html_elements('.mw-category-generated') |> 
+    html_element('div') |> 
+    html_elements('a') |> 
+    html_attr('href'))[2])
+)
+
+game_test <-
+get_games_info('/wiki/Redshirt_(video_game)')  
+  if(!('release' %in% names(game_test))){
+    game_test |> 
+      add_column(release = NA, .before = 'genres') |> 
+      mutate(release = as.character(release))
+  }
+  
+
+get_games_info('/wiki/Oxenfree_II:_Lost_Signals') |> 
+  release_extractor() |> 
+  publisher_cleaner('/wiki/Oxenfree_II:_Lost_Signals') |> 
+  add_series
+
+
 
 ##############################
 ######    some notes    ######
