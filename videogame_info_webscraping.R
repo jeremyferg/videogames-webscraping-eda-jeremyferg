@@ -375,7 +375,7 @@ games_2023 <-
 
 videogame_info <- data.frame()
 
-videogame_info <-
+
 for( year in c(2013:2023)){
   videogame_info <- rbind(videogame_info, 
                           get_games_list(rlang::englue('/wiki/Category:{year}_video_games')))
