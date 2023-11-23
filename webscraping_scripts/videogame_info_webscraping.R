@@ -91,8 +91,8 @@ release_extractor <- function(df, var = release){
     mutate(
       #these two cases should be able to capture all the release dates (revise later)
       release = case_when(  
-        str_detect(release, '[1-9]\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}') 
-          ~ as.character(dmy(str_extract(release, '[1-2]{1,2}\\s[A-Z]\\D{2,8}\\s\\d{4}'))),
+        str_detect(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}') 
+          ~ as.character(dmy(str_extract(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}'))),
         str_detect(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}') 
           ~ as.character(mdy(str_extract(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}'))),
         .default = release))
@@ -283,7 +283,8 @@ get_games_list <- function(link = '/wiki/Category:2022_video_games'){
     print("Max attempts reached. Unable to establish a connection.")
   }
   
-  #there is the possibility that some games 
+  #there is the possibility that some games are duplicated (same game on different
+  # pages)
   distinct(games_info_df)
 }
 
