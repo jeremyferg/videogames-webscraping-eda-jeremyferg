@@ -1,0 +1,615 @@
+---
+title: "Progress Memo 2"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Jeremy Ferguson"
+date: today
+
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git](https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git)
+
+:::
+
+```{r}
+#| label: libraries
+#| echo: false
+
+library(tidyverse)
+library(rvest)
+library(magick)
+```
+
+## Overview
+
+In my project, I wish to analyze the correlation between stocks of video game publishers and industry-related events occurring over the past 10 years. 
+
+The majority of the complexity of my project comes from the way I retrieve and clean my data. I decided to web scrape video game information from Wikipedia pages, past Game Awards results from Wikipedia pages, and critic reviews from OpenCritic. With my web-scrapped data frames, combined with a few pre-existing data frames, my original goal was to create one large time series data frame. Since then, these objectives have changed slightly while still maintaining an appropriate level of complexity. 
+
+I have spent my time creating web-scraping functions that can find my specified information. Specifically, I have made significant progress on web scrapping general game information, game reviews, and game awards. Each of the R scripts for these functions is located in the `webscraping_scripts` folder of my GitHub.
+
+## Web Scraping
+
+### game_info
+
+Web scrapping game information was my first and certainly hardest function to create. All of the general information I needed for each game was conveniently in the info box on each game’s Wikipedia page. However, the structure of these tables was not entirely uniform. Publishers and release dates gave me (and still are giving me) the most problems. Concerning release dates, many had different formatting or were embedded in other text. Also, many games have multiple release dates, depending on a player’s region. I decided to extract the first date string from the page and dropped the other dates, which I believe still gives me enough information for thorough analysis. I had a similar issue arise with publishers, adding the problem that publishers are linked in the table while others are not. I chose to try and capture every publisher involved in the game’s creation. I’m still working on completely parsing out all relevant information.
+
+We can see how my functions clean video game information by using Crysis 3, a 2013 first-person-shooter:
+
+First, `get_games_info` extracts the specified data from the Wikipedia page. This function also separates distinct genres and modes into different rows.
+
+```{r}
+#| label: game_info function
+#| echo: false
+
+################################################
+######    Get Wikipedia links to games    ######
+################################################
+
+###########################################
+######    General scrape function    ######
+###########################################
+
+#gets video game info, given part of a link
+get_games_info <- function(link){
+  html <- read_html(paste0('https://en.wikipedia.org', link))
+  
+  new_column_names <- c('x', 'y')
+  ##etting the table and the desired columns
+
+#some of the links aren't even video games (some are links to other media that the
+# game is based off of), so we're using a tryCatch to resolve this issue
+result <- tryCatch({
+  
+  html |> 
+  html_element('.infobox') |> 
+  html_table() |> 
+  janitor::clean_names() |> 
+  rename_all(~new_column_names) |> 
+  #getting the specified variables from the table read-in
+  filter(x == 'Publisher(s)' | x == 'Series' | 
+             x == 'Release' |  x == 'Genre(s)' |
+             x == 'Mode(s)') |> 
+    add_row(x = 'Name', y = str_extract(link, '[^/wiki/].*'), .before = 1) |> 
+   
+   pivot_wider(
+      names_from = 'x',
+      values_from = 'y'
+    ) |> 
+    janitor::clean_names() |> 
+    #cleaning up the column names a bit more
+    rename(publishers = publisher_s,
+           genres = genre_s,
+           modes = mode_s) |> 
+    #games with multiple rows and genres are separated by a ','
+    # creating a new row for these different values
+    separate_rows(modes, sep = ", ") |> 
+    separate_rows(genres, sep = ", ")
+
+},
+
+error = function(e) { NULL })
+  
+  if(!is.null(result)){ result }
+  
+
+}
+
+##########################################
+######    Cleaning release dates    ######
+##########################################
+
+#Many games have separate release dates for different world regions
+# I am only concerned about the initial release
+# release_extractor extracts the initial release date
+release_extractor <- function(df, var = release){
+  
+  #concerned about the possibility of there not being a release date on the 
+  # Wikipedia page
+  if(!('release' %in% names(df))){
+    df <-
+    df |> 
+      add_column(release = NA, .before = 'genres') |> 
+      mutate(release = as.character(release))
+  }
+  
+  df |> 
+    mutate(
+      #these two cases should be able to capture all the release dates (revise later)
+      release = case_when(  
+        str_detect(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}') 
+          ~ as.character(dmy(str_extract(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}'))),
+        str_detect(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}') 
+          ~ as.character(mdy(str_extract(release, '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}'))),
+        .default = release))
+  
+}
+
+
+####################################################
+######    Dealing with multiple publishers    ######
+####################################################
+
+
+#a character vector of all publishers
+publisher_list <-
+  
+  pull((read_html('https://en.wikipedia.org/wiki/List_of_video_game_publishers') |> 
+          html_elements('.wikitable') |>
+          html_elements('tbody') |> 
+          html_table())[[2]] |> 
+         select(Publisher)) |> 
+  tolower()
+
+#NOTE: this process banks on the fact that publishers on the Wikipedia page are 
+# hyper linked and therefore can be extracted into publisher_list
+# this is NOT the case for all games --> must revise this process
+
+#helper function --> finds publishers directly from Wikipedia usually the previously
+# made publisher_list
+is_publisher <- function(x, publisher_list){
+  
+  publisher <- c()
+  for(element in x){
+    element <- tolower(element)
+  if(element %in% publisher_list){
+    publisher <- c(publisher, element)
+  }}
+
+  paste0(publisher, collapse = ",")
+}
+
+publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
+  
+  #finding all the titles for the links in the infobox on the Wikipage, which 
+  # (should) include the publishers
+  publisher <- read_html(paste0('https://en.wikipedia.org', link)) |> 
+    html_elements('.infobox') |> 
+    html_elements('.infobox-data') |> 
+    html_elements('a') |> 
+    html_attr('title')
+  
+  #attempting to try to resolve the missing links problem, these lines of code don't
+  # affect the output at the moment
+  #publisher <- c(publisher, read_html(paste0('https://en.wikipedia.org', link)) |> 
+  #                 html_elements('.infobox') |> 
+  #                 html_elements('.infobox-data') |> 
+  #                 html_text())
+  
+  df |> 
+    #
+    mutate(publishers = is_publisher(publisher, publisher_list)) |> 
+    separate_rows(publishers, sep = ",")
+}
+
+########################################################
+######    Making the missing series columns NA    ######
+########################################################
+
+#Many games are not part of a game series, if this is the case, series was not
+# created as a column in get_games_info, we'll do that process here
+add_series <- function(df){
+  
+  if(!('series' %in% names(df))){
+    
+    df |> 
+      add_column(series = NA, .after = 'publishers') |> 
+      mutate(series = as.character(series))
+  }
+  else{df}
+  
+}
+
+```
+
+```{r}
+#| label: get_games_info() example
+#| echo: false
+
+example1 <- 
+get_games_info('/wiki/Crysis_3') |> 
+  knitr::kable()
+
+example1
+```
+
+`release_extractor()` finds the first release date and makes this date type date
+
+```{r}
+#| label: release_extractor() example
+#| echo: false
+
+example1 <- 
+get_games_info('/wiki/Crysis_3') |> 
+  release_extractor() |> 
+  knitr::kable()
+
+example1
+```
+
+
+`publisher_cleaner()` finds all publishers
+
+
+```{r}
+#| label: publisher_cleaner() example
+#| echo: false
+
+example1 <- 
+get_games_info('/wiki/Crysis_3') |> 
+  release_extractor() |> 
+  publisher_cleaner('/wiki/Crysis_3') |> 
+  knitr::kable()
+
+example1
+```
+
+Looping over these functions for each game gives us the current `game_info` data frame, which has 8692 observations and (tentatively) has 4524 unique games and 204 unique publishers. 
+
+### game_awards
+
+The challenge with the Game Awards data was restructuring the data. Reading the table directly from Wikipedia created a very disorganized data frame, which I was able to successfully manipulate and clean. One function gets the Game Awards for a given year. Note, that while the nominees have been released for the 2023 Game Awards, the ceremony does not happen until December. So, these observations are not in my data frame.
+
+Here is an example of using the function `game_awards_2016_2022` to find 2016 data. For conciseness, I only printed the first 10 observations:
+
+```{r}
+#| label: game_awards_2016_2022() function
+#| echo: false
+
+############################################
+#####   Find date of the Game Awards   #####
+############################################
+
+#the first (and only) date in the infobox is the date of the Game Awards
+# lucky for us, this date is always formatted the same
+get_award_date <- function(wikipage){
+  mdy(str_extract(
+    read_html(wikipage) |> 
+      html_element('.infobox-data') |> 
+      html_text(),
+    
+    '[A-Z][a-z]{1,8}\\s\\d{1,2},?\\s\\d{4}'
+    
+  ))
+}
+
+################################################################################
+
+#############################################################
+#####   Get Game Awards results for 2016 through 2022   #####
+#############################################################
+
+game_awards_2016_2022 <- 
+  function(wikipage = 'https://en.wikipedia.org/wiki/The_Game_Awards_2016'){
+    
+    #initial scraped_table, but the observations are very disorganized
+    # no defined column
+    scraped_table <-
+      (
+        read_html(wikipage) |> 
+          html_element('.wikitable') |> 
+          html_elements('tbody') |> 
+          html_table()
+      )[[1]] |> 
+      janitor::clean_names() |> 
+      add_row(game_of_the_year = 'Game of the Year', 
+              #recall developper of the year was discontinued after 2015
+              # best_game_direction replaces developer_of_the_year as the initial
+              # name of the second column for the next years
+              best_game_direction = 'Best Game Direction',
+              .before = 1)
+    
+    #making scraped_table into one column
+    # very helpful when trying to rearrange the columns so we have categories on 
+    # one side and everything else on the other
+    scraped_table_one_col <-
+      scraped_table |> 
+      rename(
+        best_game_direction = 'game_of_the_year',
+        game_of_the_year  = 'best_game_direction') |> 
+      relocate(game_of_the_year) |> 
+      rbind(scraped_table) |> 
+      select(game_of_the_year)
+    
+    #cleaning up even further
+    scraped_table <-
+      scraped_table_one_col |> 
+      filter(!str_detect(game_of_the_year, '‡')) |> 
+      rowid_to_column("id") |> 
+      #joining a column of only award categories with a column of only winners/nominees
+      inner_join(
+        scraped_table_one_col |> 
+          filter(str_detect(game_of_the_year, '‡')) |> 
+          rowid_to_column("id"),
+        join_by(id)
+        
+      ) |>
+      #game_of_the_year.x is a column of the award categories
+      #game_of_the_year.y is a column of the winners/nominees
+      select(game_of_the_year.x, game_of_the_year.y) |> 
+      
+      #separate the winners/nominees into their own row
+      separate_rows(game_of_the_year.y, sep = '\n')  |> 
+      #winners/nominees are written as both the game and the publisher, so separate
+      # these two values into different columns
+      separate(game_of_the_year.y, 
+               into = c('game', 'publisher'), 
+               sep = '– ', 
+               extra = 'merge',
+               fill = 'left') |> 
+      #'‡' indicates a winner and is used in `winner` to indicate whether or not the
+      #' game won the category in that year
+      mutate(winner = if_else(str_detect(publisher, '‡'),
+                              TRUE, 
+                              FALSE),
+             date = get_award_date(wikipage = wikipage)) |> 
+      rename(category = 'game_of_the_year.x')
+    
+    scraped_table
+    
+  }
+
+```
+
+```{r}
+#| label: game_awards_2016
+#| echo: false
+
+game_awards_2016_2022() |> 
+  slice_head(n = 10) |> 
+  knitr::kable()
+```
+
+Overall we have 1420 observations with 56 unique categories and 578 unique games.
+
+### game_reviews
+
+At first, I wanted to scrape data from Metacritic, which has both critic scores and user scores. However, I had a very difficult time trying to extract this data, which I believe to be because Metacritic is a dynamic site. Instead, I scraped critic scores from OpenCritic. Though I lost the ability to scrape user data, using OpenCritic made the process much more manageable.
+
+Again, here is an example of my functions for `game_reviews` in use using critic reviews for Elden Ring:
+
+`ratings_date_tibble()` gets the raw data for a given game
+
+```{r}
+#| label: game_reviews function
+#| echo: false
+
+############################################
+##### Functions for making the dataset #####
+############################################
+
+#################################
+#####   Get the game name   #####
+#################################
+
+#gets the title of the game by extracting the name from the review link
+get_game_title <- function(link){
+  
+  #we want the text between these two parts of the link
+  removed_parts <- c('https\\:\\//opencritic\\.com\\/game\\/\\d*\\/', '\\/reviews\\?page=')
+  
+  game_title <- str_remove(link, removed_parts[1])
+  game_title <- str_remove(game_title, removed_parts[2])
+  
+  #the links replace spaces with '-', so i'm replacing '-' with '_'
+  game_title <- str_replace_all(game_title, '-', '_')
+  
+  game_title
+}
+
+##################################################
+#####   Getting ratings table for one game   #####
+##################################################
+
+ratings_date_tibble <- 
+  function(link = 'https://opencritic.com/game/15131/super-mario-rpg/reviews?page=', 
+           n = 1){
+  
+  #dataframe that the function can rbind over
+  ratings_dates_tibble <- data.frame()
+  
+  #we create a tibble with columns `reviewer`, `review_company`, `rating`, and
+  # `date`
+  ratings_dates_tibble <- rbind(ratings_dates_tibble,
+    (tibble(
+      
+      reviewer = c(
+        read_html(paste0(link, n)) |> 
+          html_elements('.col.author-info') |> 
+          html_elements('.author-name') |> 
+          html_text()
+      ),
+      
+      review_company = c(
+        read_html(paste0(link, n)) |> 
+          html_elements('.col.author-info') |> 
+          html_elements('.outlet-name') |> 
+          html_text()
+      ),
+      
+      rating = c(
+        read_html(paste0(link, n)) |> 
+          html_elements('app-review-row') |> 
+          html_elements('.d-flex') |> 
+          html_elements('span') |> 
+          html_text()
+      ),
+      
+      date = c(
+        read_html(paste0(link, n)) |> 
+          html_elements('app-review-row') |> 
+          html_elements('.d-flex') |> 
+          html_elements('.text-right.date-block') |> 
+          html_text()
+      ))))
+  
+  #if the next page number has reviews on it...
+  if(length(read_html(
+    paste0(link, n+1)) |> 
+            html_elements('app-review-row'))
+     > 0)
+    
+  #...iterate over the next page of reviews
+  {ratings_dates_tibble <- rbind(ratings_dates_tibble,
+                             ratings_date_tibble(link, n+1))}
+
+  
+  #getting rid of any of the ratings that used star images on the page
+  ratings_dates_tibble |> 
+    filter(str_detect(rating, '[1|5]0?') & !str_detect(rating, '[A-Z|a-z]'))
+           
+  
+  }
+
+#####################################
+#####   Avg ratings yesterday   #####
+#####################################        
+
+#this function needs to be called after we have all ratings for the game
+
+#finds the average reviewer score based on all the ratings that were made before
+# the date of a given observation
+avg_rating_yesterday <- function(review_tibble){
+  
+  #finding the unique dates that reviews were made
+  #NOTE: the tibble is arranged by date later to make this method work
+  ratings_dates <- 
+    unlist(review_tibble |> 
+    distinct(as.character(date)))
+
+  #the first date in ratings_dates should have a `rating_yesterday` of 0
+  # so, first we set rating_yesterday equal to 0 if the observation has the first
+  # date and NA if the observation as a date other than the first date
+  review_tibble <-
+  review_tibble |> 
+    mutate(rating_yesterday = if_else(date == date(ratings_dates[1]), 0, NA))
+  
+  #removing the first date from ratings_dates
+  ratings_dates <- ratings_dates[-1]
+  
+  #finding rating_yesterday for all other dates
+  for(some_date in ratings_dates){
+    
+    da_mean <-
+      unlist(review_tibble |> 
+               filter(date < date(some_date)) |> 
+               summarise(
+                 mean = mean(rating)
+               ))
+    
+  review_tibble <-
+    review_tibble |> 
+      mutate(rating_yesterday = if_else(date == some_date, round(da_mean, 2), rating_yesterday))
+      
+  }
+  
+  review_tibble
+  
+}
+```
+
+```{r}
+#| label: rating_dates_tibble() ex
+#| echo: false
+
+example3 <-
+  ratings_date_tibble(link = 'https://opencritic.com/game/12090/elden-ring/reviews?page=') |> 
+  slice_head(n = 10) |> 
+  knitr::kable()
+
+example3
+```
+
+Next, I find `game` and make several mutations to `rating`, `date`, and `reviewer`
+
+```{r}
+#| label: mutations ex
+#| echo: false
+
+example3 <-
+  ratings_date_tibble(link = 'https://opencritic.com/game/12090/elden-ring/reviews?page=') |>
+  mutate(game = get_game_title('https://opencritic.com/game/12090/elden-ring/reviews?page='),
+         #changing the ratings so they are XX out of 100
+         rating = (if_else(str_detect(rating, '\\%'),
+                           as.double(str_extract(rating, '\\d\\d?')),
+                           ((as.double(str_extract(rating, "\\d+\\.?\\d*"))/
+                               (as.double(str_extract(rating, "[1|5]0?\\.?0?$")))
+                           ))*100)),
+         date = mdy(date),
+         #most reviewer observations have \n at the end of their string, removing this
+         reviewer = str_extract(reviewer, '[^\n]+')) |> 
+  #must arrange by date before using avg_rating_yesterday()
+  arrange(date) |>
+  relocate(game) |> 
+  slice_head(n = 10) |> 
+  knitr::kable()
+
+example3
+```
+
+Lastly, I find the average critic score for the game on the previous day, `avg_rating_yesterday()`
+
+```{r}
+#| label: avg_rating_yesterday() ex
+#| echo: false
+
+example3 <-
+  ratings_date_tibble(link = 'https://opencritic.com/game/12090/elden-ring/reviews?page=') |>
+  mutate(game = get_game_title('https://opencritic.com/game/12090/elden-ring/reviews?page='),
+         #changing the ratings so they are XX out of 100
+         rating = (if_else(str_detect(rating, '\\%'),
+                           as.double(str_extract(rating, '\\d\\d?')),
+                           ((as.double(str_extract(rating, "\\d+\\.?\\d*"))/
+                               (as.double(str_extract(rating, "[1|5]0?\\.?0?$")))
+                           ))*100)),
+         date = mdy(date),
+         #most reviewer observations have \n at the end of their string, removing this
+         reviewer = str_extract(reviewer, '[^\n]+')) |> 
+  #must arrange by date before using avg_rating_yesterday()
+  arrange(date) |>
+  relocate(date, game) |>
+  avg_rating_yesterday() |> 
+  slice_head(n = 10) |> 
+  knitr::kable()
+
+example3
+```
+
+Overall, `game_reviews` holds 163962 observations from 7998 reviewers and 494 review companies
+
+## Relational Database Design
+
+While I can make one large time series data frame, this data frame would be incredibly long with a lot of redundant information. I found creating a relational database design that easily separates key variables while making clear relationships with each variable would prove to be more appropriate for this project. The PNG file showing this design is located in the `data` folder of my GitHub. I have also printed the design here:
+
+```{r}
+#| label: relational-db-design
+#| echo: false
+
+img <- image_read("data/games_relational_database_design.png", strip = TRUE);
+
+img
+```
+
+
+`game_info` can be used to find the ids for variables `game_id`, `publisher_id`, `series_id`, `genre_id`, and `mode_id` by finding the distinct values of each of the respective variables. I am assuming that `game_name` will correctly match with game names in the raw version of `game_awards`, `game_reviews`, and `esports` so I can easily add `game_id` to these tables as foreign keys. After adding the id, the actual name of the game will be dropped to address redundancy across tables. The same assumption applies to publisher names with `publishers` and `publisher_stocks`, but I would be able to resolve this issue much easier given I am only looking at 10 different companies stocks. `category_id`, `review_company_id`, and `reviewer_id` should also be easy to create, given we have full information about each of these variables.
+
+## Final Thoughts
+
+By the 2nd memo, I wanted to at least have my web-scraped data frames completely cleaned and have my EDA started. That goal proved to be a bit ambitious of me, as I found myself dealing with multiple issues when making functions. The functions I created certainly can be made more efficient, and I plan to explore ways to tidy the functions. However, I think the techniques I used are a nice reflection of the skills I gained from this course. I still think I’m in a good position for this project. I originally wanted to shoot for an early submission, and, while it may take some serious time and effort, I think I can still accomplish that goal. Through all the issues, I have enjoyed learning this new skill and would love to continue refining it in future personal or class projects.  
+
