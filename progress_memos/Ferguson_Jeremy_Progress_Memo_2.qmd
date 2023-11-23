@@ -48,11 +48,11 @@ I have spent my time creating web-scraping functions that can find my specified 
 
 ### game_info
 
-Web scrapping game information was my first and certainly hardest function to create. All of the general information I needed for each game was conveniently in the info box on each game’s Wikipedia page. However, the structure of these tables was not entirely uniform. Publishers and release dates gave me (and still are giving me) the most problems. Concerning release dates, many had different formatting or were embedded in other text. Also, many games have multiple release dates, depending on a player’s region. I decided to extract the first date string from the page and dropped the other dates, which I believe still gives me enough information for thorough analysis. I had a similar issue arise with publishers, adding the problem that publishers are linked in the table while others are not. I chose to try and capture every publisher involved in the game’s creation. I’m still working on completely parsing out all relevant information.
+Web scrapping game information was my first and certainly hardest function to create. All of the general information I needed for each game was conveniently in the info box on each game’s Wikipedia page. However, the structure of these tables was not entirely uniform. Publishers and release dates gave me (and still are giving me) the most problems. Concerning release dates, many had different formatting or were embedded in other text. Also, many games have multiple release dates, depending on a player’s region. I decided to extract the first date string from the page and drop the other dates, which I believe still gives me enough information for thorough analysis. I had a similar issue arise with publishers, adding the problem that some publishers are linked in the table while others are not. I chose to try and capture every publisher involved in the game’s creation. I’m still working on completely parsing out all relevant information.
 
-We can see how my functions clean video game information by using Crysis 3, a 2013 first-person-shooter:
+We can see how my functions clean video game information by using Crysis 3, a 2013 first-person-shooter, as an example:
 
-First, `get_games_info` extracts the specified data from the Wikipedia page. This function also separates distinct genres and modes into different rows.
+First, `get_games_info()` extracts the specified data from the Wikipedia page. This function also separates distinct genres and modes into different rows.
 
 ```{r}
 #| label: game_info function
@@ -229,7 +229,7 @@ get_games_info('/wiki/Crysis_3') |>
 example1
 ```
 
-`release_extractor()` finds the first release date and makes this date type date
+`release_extractor()` finds the first release date and makes this charcater type date.
 
 ```{r}
 #| label: release_extractor() example
@@ -244,7 +244,7 @@ example1
 ```
 
 
-`publisher_cleaner()` finds all publishers
+`publisher_cleaner()` finds all publishers.
 
 
 ```{r}
@@ -260,13 +260,13 @@ get_games_info('/wiki/Crysis_3') |>
 example1
 ```
 
-Looping over these functions for each game gives us the current `game_info` data frame, which has 8692 observations and (tentatively) has 4524 unique games and 204 unique publishers. 
+Looping over these functions for each game gives us the current `game_info` data frame, which has 8692 observations, (tentatively) has 4524 unique games, and 204 unique publishers. 
 
 ### game_awards
 
 The challenge with the Game Awards data was restructuring the data. Reading the table directly from Wikipedia created a very disorganized data frame, which I was able to successfully manipulate and clean. One function gets the Game Awards for a given year. Note, that while the nominees have been released for the 2023 Game Awards, the ceremony does not happen until December. So, these observations are not in my data frame.
 
-Here is an example of using the function `game_awards_2016_2022` to find 2016 data. For conciseness, I only printed the first 10 observations:
+Here is an example of using the function `game_awards_2016_2022()` to find 2016 data. For conciseness, I only printed the first 10 observations:
 
 ```{r}
 #| label: game_awards_2016_2022() function
@@ -380,11 +380,11 @@ Overall we have 1420 observations with 56 unique categories and 578 unique games
 
 ### game_reviews
 
-At first, I wanted to scrape data from Metacritic, which has both critic scores and user scores. However, I had a very difficult time trying to extract this data, which I believe to be because Metacritic is a dynamic site. Instead, I scraped critic scores from OpenCritic. Though I lost the ability to scrape user data, using OpenCritic made the process much more manageable.
+At first, I wanted to scrape data from Metacritic, which has both critic scores and user scores. However, I had a very difficult time trying to extract this data, which I believe to be because Metacritic is a dynamic site. Instead, I scraped critic scores from OpenCritic. Though I lost the ability to scrape user data, using OpenCritic made the web scrapping process much more manageable.
 
 Again, here is an example of my functions for `game_reviews` in use using critic reviews for Elden Ring:
 
-`ratings_date_tibble()` gets the raw data for a given game
+`ratings_date_tibble()` gets the raw data for a given game.
 
 ```{r}
 #| label: game_reviews function
@@ -536,7 +536,7 @@ example3 <-
 example3
 ```
 
-Next, I find `game` and make several mutations to `rating`, `date`, and `reviewer`
+Next, I find `game` and make several mutations to `rating`, `date`, and `reviewer`.
 
 ```{r}
 #| label: mutations ex
@@ -556,14 +556,14 @@ example3 <-
          reviewer = str_extract(reviewer, '[^\n]+')) |> 
   #must arrange by date before using avg_rating_yesterday()
   arrange(date) |>
-  relocate(game) |> 
+  relocate(date, game) |> 
   slice_head(n = 10) |> 
   knitr::kable()
 
 example3
 ```
 
-Lastly, I find the average critic score for the game on the previous day, `avg_rating_yesterday()`
+Lastly, I find the average critic score for the game on the previous day, `avg_rating_yesterday()`.
 
 ```{r}
 #| label: avg_rating_yesterday() ex
@@ -591,7 +591,7 @@ example3 <-
 example3
 ```
 
-Overall, `game_reviews` holds 163962 observations from 7998 reviewers and 494 review companies
+Overall, `game_reviews` holds 163962 observations from 7998 reviewers and 494 review companies.
 
 ## Relational Database Design
 
@@ -601,13 +601,13 @@ While I can make one large time series data frame, this data frame would be incr
 #| label: relational-db-design
 #| echo: false
 
-img <- image_read("data/games_relational_database_design.png", strip = TRUE);
+img <- image_read('C:/stat-301-1/final-project-1-jeremyferg/data/games_relational_database_design.png')
 
 img
 ```
 
 
-`game_info` can be used to find the ids for variables `game_id`, `publisher_id`, `series_id`, `genre_id`, and `mode_id` by finding the distinct values of each of the respective variables. I am assuming that `game_name` will correctly match with game names in the raw version of `game_awards`, `game_reviews`, and `esports` so I can easily add `game_id` to these tables as foreign keys. After adding the id, the actual name of the game will be dropped to address redundancy across tables. The same assumption applies to publisher names with `publishers` and `publisher_stocks`, but I would be able to resolve this issue much easier given I am only looking at 10 different companies stocks. `category_id`, `review_company_id`, and `reviewer_id` should also be easy to create, given we have full information about each of these variables.
+`game_info` can be used to find the ids for variables `game_id`, `publisher_id`, `series_id`, `genre_id`, and `mode_id` by finding the distinct values of each of the respective variables. I am assuming that `game_name` will correctly match with game names in the raw version of `game_awards`, `game_reviews`, and `esports` so I can easily add `game_id` to these tables as foreign keys. After adding the id, the actual name of the game will be dropped to address redundancy across tables. The same assumption applies to publisher names with `publishers` and `publisher_stocks`, but I would be able to resolve this issue much easier given I am only looking at 10 different company stocks. `category_id`, `review_company_id`, and `reviewer_id` should also be easy to create, given we have full information about each of these variables.
 
 ## Final Thoughts
 
