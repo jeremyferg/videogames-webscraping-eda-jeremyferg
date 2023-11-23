@@ -1,0 +1,1421 @@
+date,category,game,publisher,winner
+2014-12-05,Developer of the Year,NA,Nintendo‡,TRUE
+2014-12-05,Developer of the Year,NA,Blizzard Entertainment,FALSE
+2014-12-05,Developer of the Year,NA,Monolith Productions,FALSE
+2014-12-05,Developer of the Year,NA,Telltale Games,FALSE
+2014-12-05,Developer of the Year,NA,Ubisoft Montreal,FALSE
+2014-12-05,Best Mobile/Handheld Game,Hearthstone ,Blizzard Entertainment‡,TRUE
+2014-12-05,Best Mobile/Handheld Game,Bravely Default ,Silicon Studio and Square Enix,FALSE
+2014-12-05,Best Mobile/Handheld Game,Monument Valley ,Ustwo,FALSE
+2014-12-05,Best Mobile/Handheld Game,Super Smash Bros. for Nintendo 3DS ,Sora Ltd and Bandai Namco Games,FALSE
+2014-12-05,Best Mobile/Handheld Game,Threes ,Sirvo,FALSE
+2014-12-05,Best Score/Soundtrack,Destiny ,"Michael Salvatori, C. Paul Johnson, Martin O'Donnell and Paul McCartney‡",TRUE
+2014-12-05,Best Score/Soundtrack,Alien: Isolation ,"Byron Bullock, Sam Cooper, Jeff van Dyck, Christian Henson, Joe Henson, Haydn Payne and Alexis Smith",FALSE
+2014-12-05,Best Score/Soundtrack,Child of Light ,Béatrice Martin,FALSE
+2014-12-05,Best Score/Soundtrack,Sunset Overdrive ,Boris Salchow,FALSE
+2014-12-05,Best Score/Soundtrack,Transistor ,Darren Korb,FALSE
+2014-12-05,Games for Change,Valiant Hearts: The Great War ,Ubisoft Montpellier‡,TRUE
+2014-12-05,Games for Change,Mountain ,David OReilly,FALSE
+2014-12-05,Games for Change,Never Alone ,Upper One Games and E-Line Media,FALSE
+2014-12-05,Games for Change,The Last of Us: Left Behind ,Naughty Dog,FALSE
+2014-12-05,Games for Change,This War of Mine ,11 bit studios,FALSE
+2014-12-05,Best Action/Adventure,Middle-earth: Shadow of Mordor ,Monolith Productions‡,TRUE
+2014-12-05,Best Action/Adventure,Assassin's Creed Unity ,Ubisoft Montreal,FALSE
+2014-12-05,Best Action/Adventure,Alien: Isolation ,The Creative Assembly,FALSE
+2014-12-05,Best Action/Adventure,Bayonetta 2 ,PlatinumGames,FALSE
+2014-12-05,Best Action/Adventure,Sunset Overdrive ,Insomniac Games,FALSE
+2014-12-05,Best Fighting Game,Super Smash Bros. for Wii U ,Sora Ltd. and Bandai Namco Games‡,TRUE
+2014-12-05,Best Fighting Game,Killer Instinct: Season Two ,"Double Helix Games, Iron Galaxy Studios, Rare and Microsoft Studios",FALSE
+2014-12-05,Best Fighting Game,Persona 4 Arena Ultimax ,Arc System Works,FALSE
+2014-12-05,Best Fighting Game,Super Smash Bros. for Nintendo 3DS ,Sora Ltd. and Bandai Namco Games,FALSE
+2014-12-05,Best Fighting Game,Ultra Street Fighter IV ,Capcom,FALSE
+2014-12-05,Best Sports/Racing Game,Mario Kart 8 ,Nintendo EAD‡,TRUE
+2014-12-05,Best Sports/Racing Game,FIFA 15 ,EA Canada,FALSE
+2014-12-05,Best Sports/Racing Game,Forza Horizon 2 ,"Playground Games, Sumo Digital and Turn 10 Studios",FALSE
+2014-12-05,Best Sports/Racing Game,NBA 2K15 ,Visual Concepts,FALSE
+2014-12-05,Best Sports/Racing Game,Trials Fusion ,"RedLynx, Ubisoft Shanghai and Ubisoft Kiev",FALSE
+2014-12-05,Best Remaster,Grand Theft Auto V ,by Rockstar North‡,TRUE
+2014-12-05,Best Remaster,Halo: The Master Chief Collection ,by Bungie and 343 Industries; redeveloped by 343 Industries,FALSE
+2014-12-05,Best Remaster,Pokémon Omega Ruby and Alpha Sapphire ,by Game Freak,FALSE
+2014-12-05,Best Remaster,The Last of Us Remastered ,by Naughty Dog,FALSE
+2014-12-05,Best Remaster,Tomb Raider: Definitive Edition ,originally developed by Crystal Dynamics; redeveloped by Nixxes Software and United Front Games,FALSE
+2014-12-05,Game of the Year,Dragon Age: Inquisition ,BioWare‡,TRUE
+2014-12-05,Game of the Year,Bayonetta 2 ,PlatinumGames,FALSE
+2014-12-05,Game of the Year,Dark Souls II ,FromSoftware,FALSE
+2014-12-05,Game of the Year,Hearthstone ,Blizzard Entertainment,FALSE
+2014-12-05,Game of the Year,Middle-earth: Shadow of Mordor ,Monolith Productions,FALSE
+2014-12-05,Best Independent Game,Shovel Knight ,Yacht Club Games‡,TRUE
+2014-12-05,Best Independent Game,Broken Age Act I ,Double Fine Productions,FALSE
+2014-12-05,Best Independent Game,Monument Valley ,Ustwo,FALSE
+2014-12-05,Best Independent Game,Transistor ,Supergiant Games,FALSE
+2014-12-05,Best Independent Game,The Vanishing of Ethan Carter ,The Astronauts,FALSE
+2014-12-05,Best Narrative,Valiant Hearts: The Great War ,Ubisoft Montpellier‡,TRUE
+2014-12-05,Best Narrative,South Park: The Stick of Truth ,Obsidian Entertainment and South Park Digital Studios,FALSE
+2014-12-05,Best Narrative,The Walking Dead: Season Two ,Telltale Games,FALSE
+2014-12-05,Best Narrative,The Wolf Among Us ,Telltale Games,FALSE
+2014-12-05,Best Narrative,Wolfenstein: The New Order ,MachineGames,FALSE
+2014-12-05,Best Performance,Trey Parker as Various Voices ,South Park: The Stick of Truth‡,TRUE
+2014-12-05,Best Performance,Adam Harrington as Bigby Wolf ,The Wolf Among Us,FALSE
+2014-12-05,Best Performance,Kevin Spacey as Jonathan Irons ,Call of Duty: Advanced Warfare,FALSE
+2014-12-05,Best Performance,Melissa Hutchison as Clementine ,The Walking Dead: Season Two,FALSE
+2014-12-05,Best Performance,Troy Baker as Talion ,Middle-earth: Shadow of Mordor,FALSE
+2014-12-05,Best Shooter,Far Cry 4 ,Ubisoft Montreal‡,TRUE
+2014-12-05,Best Shooter,Call of Duty: Advanced Warfare ,Sledgehammer Games,FALSE
+2014-12-05,Best Shooter,Destiny ,Bungie,FALSE
+2014-12-05,Best Shooter,Titanfall ,Respawn Entertainment,FALSE
+2014-12-05,Best Shooter,Wolfenstein: The New Order ,MachineGames,FALSE
+2014-12-05,Best Role Playing Game,Dragon Age: Inquisition ,BioWare‡,TRUE
+2014-12-05,Best Role Playing Game,Bravely Default ,Silicon Studio and Square Enix,FALSE
+2014-12-05,Best Role Playing Game,Dark Souls II ,FromSoftware,FALSE
+2014-12-05,Best Role Playing Game,Divinity: Original Sin ,Larian Studios,FALSE
+2014-12-05,Best Role Playing Game,South Park: The Stick of Truth ,Obsidian Entertainment and South Park Digital Studios,FALSE
+2014-12-05,Best Family Game,Mario Kart 8 ,Nintendo EAD‡,TRUE
+2014-12-05,Best Family Game,Disney Infinity: Marvel Super Heroes ,Avalanche Software,FALSE
+2014-12-05,Best Family Game,Fantasia: Music Evolved ,Harmonix,FALSE
+2014-12-05,Best Family Game,Skylanders: Trap Team ,Toys for Bob and Beenox,FALSE
+2014-12-05,Best Family Game,Tomodachi Life ,Nintendo SPD,FALSE
+2014-12-05,Best Online Experience,Destiny ,Bungie‡,TRUE
+2014-12-05,Best Online Experience,Call of Duty: Advanced Warfare ,"Sledgehammer Games, High Moon Studios and Raven Software",FALSE
+2014-12-05,Best Online Experience,Dark Souls II ,FromSoftware,FALSE
+2014-12-05,Best Online Experience,Hearthstone ,Blizzard Entertainment,FALSE
+2014-12-05,Best Online Experience,Titanfall ,Respawn Entertainment,FALSE
+2015-12-03,Developer of the Year,NA,CD Projekt Red‡,TRUE
+2015-12-03,Developer of the Year,NA,Bethesda Game Studios,FALSE
+2015-12-03,Developer of the Year,NA,FromSoftware,FALSE
+2015-12-03,Developer of the Year,NA,Kojima Productions,FALSE
+2015-12-03,Developer of the Year,NA,Nintendo,FALSE
+2015-12-03,Best Mobile/Handheld Game,Lara Croft Go ,Square Enix Montréal‡,TRUE
+2015-12-03,Best Mobile/Handheld Game,Downwell ,Moppin,FALSE
+2015-12-03,Best Mobile/Handheld Game,Fallout Shelter ,Bethesda Game Studios and Behaviour Interactive,FALSE
+2015-12-03,Best Mobile/Handheld Game,Monster Hunter 4 Ultimate ,Capcom,FALSE
+2015-12-03,Best Mobile/Handheld Game,Pac-Man 256 ,Hipster Whale,FALSE
+2015-12-03,Best Art Direction,Ori and the Blind Forest ,Moon Studios‡,TRUE
+2015-12-03,Best Art Direction,Batman: Arkham Knight ,Rocksteady Studios,FALSE
+2015-12-03,Best Art Direction,Bloodborne ,FromSoftware,FALSE
+2015-12-03,Best Art Direction,Metal Gear Solid V: The Phantom Pain ,Kojima Productions,FALSE
+2015-12-03,Best Art Direction,The Witcher 3: Wild Hunt ,CD Projekt Red,FALSE
+2015-12-03,Best Performance,Viva Seifert as Hannah Smith ,Her Story‡,TRUE
+2015-12-03,Best Performance,Ashly Burch as Chloe Price ,Life Is Strange,FALSE
+2015-12-03,Best Performance,Camilla Luddington as Lara Croft ,Rise of the Tomb Raider,FALSE
+2015-12-03,Best Performance,Doug Cockle as Geralt of Rivia ,The Witcher 3: Wild Hunt,FALSE
+2015-12-03,Best Performance,Mark Hamill as the Joker ,Batman: Arkham Knight,FALSE
+2015-12-03,Best Shooter,Splatoon ,Nintendo‡,TRUE
+2015-12-03,Best Shooter,Call of Duty: Black Ops III ,Treyarch,FALSE
+2015-12-03,Best Shooter,Destiny: The Taken King ,Bungie,FALSE
+2015-12-03,Best Shooter,Halo 5: Guardians ,343 Industries,FALSE
+2015-12-03,Best Shooter,Star Wars Battlefront ,EA Digital Illusions CE,FALSE
+2015-12-03,Best Role Playing Game,The Witcher 3: Wild Hunt ,CD Projekt Red‡,TRUE
+2015-12-03,Best Role Playing Game,Bloodborne ,FromSoftware,FALSE
+2015-12-03,Best Role Playing Game,Fallout 4 ,Bethesda Game Studios,FALSE
+2015-12-03,Best Role Playing Game,Pillars of Eternity ,Obsidian Entertainment,FALSE
+2015-12-03,Best Role Playing Game,Undertale ,Toby Fox,FALSE
+2015-12-03,Best Family Game,Super Mario Maker ,Nintendo‡,TRUE
+2015-12-03,Best Family Game,Disney Infinity 3.0 ,"Avalanche Software with additional work by Ninja Theory, Studio Gobo, Sumo Digital and United Front Games",FALSE
+2015-12-03,Best Family Game,Lego Dimensions ,Traveller's Tales,FALSE
+2015-12-03,Best Family Game,Skylanders: SuperChargers ,Vicarious Visions and Beenox,FALSE
+2015-12-03,Best Family Game,Splatoon ,Nintendo,FALSE
+2015-12-03,Best Multiplayer,Splatoon ,Nintendo‡,TRUE
+2015-12-03,Best Multiplayer,Call of Duty: Black Ops III ,Treyarch,FALSE
+2015-12-03,Best Multiplayer,Destiny: The Taken King ,Bungie,FALSE
+2015-12-03,Best Multiplayer,Halo 5: Guardians ,343 Industries,FALSE
+2015-12-03,Best Multiplayer,Rocket League ,Psyonix,FALSE
+2015-12-03,Game of the Year,The Witcher 3: Wild Hunt ,CD Projekt Red‡,TRUE
+2015-12-03,Game of the Year,Bloodborne ,FromSoftware,FALSE
+2015-12-03,Game of the Year,Fallout 4 ,Bethesda Game Studios,FALSE
+2015-12-03,Game of the Year,Metal Gear Solid V: The Phantom Pain ,Kojima Productions,FALSE
+2015-12-03,Game of the Year,Super Mario Maker ,Nintendo,FALSE
+2015-12-03,Best Independent Game,Rocket League ,Psyonix‡,TRUE
+2015-12-03,Best Independent Game,Axiom Verge ,Tom Happ,FALSE
+2015-12-03,Best Independent Game,Her Story ,Sam Barlow,FALSE
+2015-12-03,Best Independent Game,Ori and the Blind Forest ,Moon Studios,FALSE
+2015-12-03,Best Independent Game,Undertale ,Toby Fox,FALSE
+2015-12-03,Best Narrative,Her Story ,Sam Barlow‡,TRUE
+2015-12-03,Best Narrative,Life Is Strange ,Dontnod Entertainment,FALSE
+2015-12-03,Best Narrative,Tales from the Borderlands ,Telltale Games,FALSE
+2015-12-03,Best Narrative,The Witcher 3: Wild Hunt ,CD Projekt Red,FALSE
+2015-12-03,Best Narrative,Until Dawn ,Supermassive Games,FALSE
+2015-12-03,Best Score/Soundtrack,Metal Gear Solid V: The Phantom Pain ,Kojima Productions‡,TRUE
+2015-12-03,Best Score/Soundtrack,Fallout 4 ,Bethesda Game Studios,FALSE
+2015-12-03,Best Score/Soundtrack,Halo 5: Guardians ,343 Industries,FALSE
+2015-12-03,Best Score/Soundtrack,Ori and the Blind Forest ,Moon Studios,FALSE
+2015-12-03,Best Score/Soundtrack,The Witcher 3: Wild Hunt ,CD Projekt Red,FALSE
+2015-12-03,Games for Impact,Life Is Strange ,Dontnod Entertainment‡,TRUE
+2015-12-03,Games for Impact,Cibele ,Star Maid Games,FALSE
+2015-12-03,Games for Impact,Her Story ,Sam Barlow,FALSE
+2015-12-03,Games for Impact,Sunset ,Tale of Tales,FALSE
+2015-12-03,Games for Impact,Undertale ,by Toby Fox,FALSE
+2015-12-03,Best Action/Adventure,Metal Gear Solid V: The Phantom Pain ,Kojima Productions‡,TRUE
+2015-12-03,Best Action/Adventure,Assassin's Creed Syndicate ,Ubisoft Quebec,FALSE
+2015-12-03,Best Action/Adventure,Batman: Arkham Knight ,Rocksteady Studios,FALSE
+2015-12-03,Best Action/Adventure,Ori and the Blind Forest ,Moon Studios,FALSE
+2015-12-03,Best Action/Adventure,Rise of the Tomb Raider ,Crystal Dynamics,FALSE
+2015-12-03,Best Fighting Game,Mortal Kombat X ,NetherRealm Studios‡,TRUE
+2015-12-03,Best Fighting Game,Guilty Gear Xrd –SIGN– ,Arc System Works Team Red,FALSE
+2015-12-03,Best Fighting Game,Rise of Incarnates ,Bandai Namco Entertainment,FALSE
+2015-12-03,Best Fighting Game,Rising Thunder ,Radiant Entertainment,FALSE
+2015-12-03,Best Sports/Racing Game,Rocket League ,Psyonix‡,TRUE
+2015-12-03,Best Sports/Racing Game,FIFA 16 ,EA Canada,FALSE
+2015-12-03,Best Sports/Racing Game,Forza Motorsport 6 ,Turn 10 Studios,FALSE
+2015-12-03,Best Sports/Racing Game,NBA 2K16 ,Visual Concepts,FALSE
+2015-12-03,Best Sports/Racing Game,Pro Evolution Soccer 2016 ,PES Productions,FALSE
+2016-12-01,Best Game Direction,Overwatch ,Blizzard Entertainment‡,TRUE
+2016-12-01,Best Game Direction,Battlefield 1 ,EA DICE,FALSE
+2016-12-01,Best Game Direction,Doom ,id Software,FALSE
+2016-12-01,Best Game Direction,Titanfall 2 ,Respawn Entertainment,FALSE
+2016-12-01,Best Game Direction,Uncharted 4: A Thief's End ,Naughty Dog,FALSE
+2016-12-01,Best Art Direction,Inside ,Playdead‡,TRUE
+2016-12-01,Best Art Direction,Abzû ,Giant Squid,FALSE
+2016-12-01,Best Art Direction,Firewatch ,Campo Santo,FALSE
+2016-12-01,Best Art Direction,Overwatch ,Blizzard Entertainment,FALSE
+2016-12-01,Best Art Direction,Uncharted 4: A Thief's End ,Naughty Dog,FALSE
+2016-12-01,Best Performance,Nolan North as Nathan Drake ,Uncharted 4: A Thief's End‡,TRUE
+2016-12-01,Best Performance,Alex Hernandez as Lincoln Clay ,Mafia III,FALSE
+2016-12-01,Best Performance,Cissy Jones as Delilah ,Firewatch,FALSE
+2016-12-01,Best Performance,Emily Rose as Elena Fisher ,Uncharted 4: A Thief's End,FALSE
+2016-12-01,Best Performance,Rich Sommer as Henry ,Firewatch,FALSE
+2016-12-01,Best Performance,Troy Baker as Sam Drake ,Uncharted 4: A Thief's End,FALSE
+2016-12-01,Best Independent Game,Inside ,Playdead‡,TRUE
+2016-12-01,Best Independent Game,Firewatch ,Campo Santo,FALSE
+2016-12-01,Best Independent Game,Hyper Light Drifter ,Heart Machine,FALSE
+2016-12-01,Best Independent Game,Stardew Valley ,ConcernedApe,FALSE
+2016-12-01,Best Independent Game,The Witness ,"Thekla, Inc.",FALSE
+2016-12-01,Best VR Game,Rez Infinite ,United Game Artists‡,TRUE
+2016-12-01,Best VR Game,Batman: Arkham VR ,Rocksteady Studios,FALSE
+2016-12-01,Best VR Game,Eve: Valkyrie ,CCP Games,FALSE
+2016-12-01,Best VR Game,Job Simulator ,Owlchemy Labs,FALSE
+2016-12-01,Best VR Game,Thumper ,Drool,FALSE
+2016-12-01,Best Action/Adventure,Dishonored 2 ,Arkane Studios‡,TRUE
+2016-12-01,Best Action/Adventure,Hitman ,IO Interactive,FALSE
+2016-12-01,Best Action/Adventure,Hyper Light Drifter ,Heart Machine,FALSE
+2016-12-01,Best Action/Adventure,Ratchet & Clank ,Insomniac Games,FALSE
+2016-12-01,Best Action/Adventure,Uncharted 4: A Thief's End ,Naughty Dog,FALSE
+2016-12-01,Best Fighting Game,Street Fighter V ,Capcom‡,TRUE
+2016-12-01,Best Fighting Game,Killer Instinct Season Three ,Iron Galaxy,FALSE
+2016-12-01,Best Fighting Game,The King of Fighters XIV ,SNK,FALSE
+2016-12-01,Best Fighting Game,Pokkén Tournament ,Bandai Namco Studios,FALSE
+2016-12-01,Best Family Game,Pokémon Go ,Niantic‡,TRUE
+2016-12-01,Best Family Game,Dragon Quest Builders ,Square Enix,FALSE
+2016-12-01,Best Family Game,Lego Star Wars: The Force Awakens ,TT Fusion,FALSE
+2016-12-01,Best Family Game,Ratchet & Clank ,Insomniac Games,FALSE
+2016-12-01,Best Family Game,Skylanders: Imaginators ,Toys for Bob,FALSE
+2016-12-01,Best Multiplayer,Overwatch ,Blizzard Entertainment‡,TRUE
+2016-12-01,Best Multiplayer,Battlefield 1 ,EA DICE,FALSE
+2016-12-01,Best Multiplayer,Gears of War 4 ,The Coalition,FALSE
+2016-12-01,Best Multiplayer,Overcooked ,Ghost Town Games,FALSE
+2016-12-01,Best Multiplayer,Titanfall 2 ,Respawn Entertainment,FALSE
+2016-12-01,Best Multiplayer,Tom Clancy's Rainbow Six Siege ,Ubisoft Montreal,FALSE
+2016-12-01,Game of the Year,Overwatch ,Blizzard Entertainment‡,TRUE
+2016-12-01,Game of the Year,Doom ,id Software,FALSE
+2016-12-01,Game of the Year,Inside ,Playdead,FALSE
+2016-12-01,Game of the Year,Titanfall 2 ,Respawn Entertainment,FALSE
+2016-12-01,Game of the Year,Uncharted 4: A Thief's End ,Naughty Dog,FALSE
+2016-12-01,Best Narrative,Uncharted 4: A Thief's End ,Naughty Dog‡,TRUE
+2016-12-01,Best Narrative,Firewatch ,Campo Santo,FALSE
+2016-12-01,Best Narrative,Inside ,Playdead,FALSE
+2016-12-01,Best Narrative,Mafia III ,Hangar 13,FALSE
+2016-12-01,Best Narrative,Oxenfree ,Night School Studio,FALSE
+2016-12-01,Best Music/Sound Design,Doom ,id Software‡,TRUE
+2016-12-01,Best Music/Sound Design,Battlefield 1 ,EA DICE,FALSE
+2016-12-01,Best Music/Sound Design,Inside ,Playdead,FALSE
+2016-12-01,Best Music/Sound Design,Rez Infinite ,United Game Artists,FALSE
+2016-12-01,Best Music/Sound Design,Thumper ,Drool,FALSE
+2016-12-01,Games for Impact,"That Dragon, Cancer ",Numinous Games‡,TRUE
+2016-12-01,Games for Impact,Block'hood ,Plethora Project,FALSE
+2016-12-01,Games for Impact,Orwell ,Osmotic,FALSE
+2016-12-01,Games for Impact,Sea Hero Quest ,Glitchers,FALSE
+2016-12-01,Games for Impact,1979 Revolution: Black Friday ,iNK Stories,FALSE
+2016-12-01,Best Mobile/Handheld Game,Pokémon Go ,Niantic‡,TRUE
+2016-12-01,Best Mobile/Handheld Game,Clash Royale ,Supercell,FALSE
+2016-12-01,Best Mobile/Handheld Game,Fire Emblem Fates ,Intelligent Systems,FALSE
+2016-12-01,Best Mobile/Handheld Game,Monster Hunter Generations ,Capcom,FALSE
+2016-12-01,Best Mobile/Handheld Game,Severed ,DrinkBox Studios,FALSE
+2016-12-01,Best Action Game,Doom ,id Software‡,TRUE
+2016-12-01,Best Action Game,Battlefield 1 ,EA DICE,FALSE
+2016-12-01,Best Action Game,Gears of War 4 ,The Coalition,FALSE
+2016-12-01,Best Action Game,Overwatch ,Blizzard Entertainment,FALSE
+2016-12-01,Best Action Game,Titanfall 2 ,Respawn Entertainment,FALSE
+2016-12-01,Best Role Playing Game,The Witcher 3: Wild Hunt ,Blood and Wine – CD Projekt Red‡,TRUE
+2016-12-01,Best Role Playing Game,Dark Souls III ,FromSoftware,FALSE
+2016-12-01,Best Role Playing Game,Deus Ex: Mankind Divided ,Eidos Montréal,FALSE
+2016-12-01,Best Role Playing Game,World of Warcraft: Legion ,Blizzard Entertainment,FALSE
+2016-12-01,Best Role Playing Game,Xenoblade Chronicles X ,Monolith Soft,FALSE
+2016-12-01,Best Strategy Game,Civilization VI ,Firaxis Games‡,TRUE
+2016-12-01,Best Strategy Game,Fire Emblem Fates ,Intelligent Systems,FALSE
+2016-12-01,Best Strategy Game,The Banner Saga 2 ,Stoic,FALSE
+2016-12-01,Best Strategy Game,Total War: Warhammer ,Creative Assembly,FALSE
+2016-12-01,Best Strategy Game,XCOM 2 ,Firaxis Games,FALSE
+2016-12-01,Best Sports/Racing Game,Forza Horizon 3 ,Playground Games‡,TRUE
+2016-12-01,Best Sports/Racing Game,FIFA 17 ,EA Canada,FALSE
+2016-12-01,Best Sports/Racing Game,MLB The Show 16 ,San Diego Studio,FALSE
+2016-12-01,Best Sports/Racing Game,NBA 2K17 ,Visual Concepts,FALSE
+2016-12-01,Best Sports/Racing Game,Pro Evolution Soccer 2017 ,PES Productions,FALSE
+2017-12-07,Best Game Direction,The Legend of Zelda: Breath of the Wild ,Nintendo‡,TRUE
+2017-12-07,Best Game Direction,Horizon Zero Dawn ,Guerrilla Games/Sony Interactive Entertainment,FALSE
+2017-12-07,Best Game Direction,Resident Evil 7: Biohazard ,Capcom,FALSE
+2017-12-07,Best Game Direction,Super Mario Odyssey ,Nintendo,FALSE
+2017-12-07,Best Game Direction,Wolfenstein II: The New Colossus ,MachineGames/Bethesda Softworks,FALSE
+2017-12-07,Best Art Direction,Cuphead ,Studio MDHR‡,TRUE
+2017-12-07,Best Art Direction,Destiny 2 ,Bungie/Activision,FALSE
+2017-12-07,Best Art Direction,Horizon Zero Dawn ,Guerrilla Games/Sony Interactive Entertainment,FALSE
+2017-12-07,Best Art Direction,Persona 5 ,Atlus,FALSE
+2017-12-07,Best Art Direction,The Legend of Zelda: Breath of the Wild ,Nintendo,FALSE
+2017-12-07,Best Audio Design,Hellblade: Senua's Sacrifice ,Ninja Theory‡,TRUE
+2017-12-07,Best Audio Design,Destiny 2 ,Bungie/Activision,FALSE
+2017-12-07,Best Audio Design,Resident Evil 7: Biohazard ,Capcom,FALSE
+2017-12-07,Best Audio Design,Super Mario Odyssey ,Nintendo,FALSE
+2017-12-07,Best Audio Design,The Legend of Zelda: Breath of the Wild ,Nintendo,FALSE
+2017-12-07,Games for Impact,Hellblade: Senua's Sacrifice ,Ninja Theory‡,TRUE
+2017-12-07,Games for Impact,"Bury Me, My Love ",The Pixel Hunt,FALSE
+2017-12-07,Games for Impact,Life Is Strange: Before the Storm ,Deck Nine,FALSE
+2017-12-07,Games for Impact,Night in the Woods ,Infinite Fall,FALSE
+2017-12-07,Games for Impact,Please Knock on My Door ,Levall Games AB,FALSE
+2017-12-07,Games for Impact,What Remains of Edith Finch ,Giant Sparrow,FALSE
+2017-12-07,Best Independent Game,Cuphead ,Studio MDHR‡,TRUE
+2017-12-07,Best Independent Game,Hellblade: Senua's Sacrifice ,Ninja Theory,FALSE
+2017-12-07,Best Independent Game,Night in the Woods ,Infinite Fall,FALSE
+2017-12-07,Best Independent Game,Pyre ,Supergiant Games,FALSE
+2017-12-07,Best Independent Game,What Remains of Edith Finch ,Giant Sparrow,FALSE
+2017-12-07,Best Handheld Game,Metroid: Samus Returns ,MercurySteam/Nintendo‡,TRUE
+2017-12-07,Best Handheld Game,Ever Oasis ,Grezzo,FALSE
+2017-12-07,Best Handheld Game,Fire Emblem Echoes: Shadows of Valentia ,Intelligent Systems,FALSE
+2017-12-07,Best Handheld Game,Monster Hunter Stories ,Marvelous Entertainment,FALSE
+2017-12-07,Best Handheld Game,Poochy and Yoshi's Woolly World ,Good-Feel,FALSE
+2017-12-07,Best Action Game,Wolfenstein II: The New Colossus ,MachineGames/Bethesda Softworks‡,TRUE
+2017-12-07,Best Action Game,Cuphead ,Studio MDHR,FALSE
+2017-12-07,Best Action Game,Destiny 2 ,Bungie/Activision,FALSE
+2017-12-07,Best Action Game,Nioh ,Team Ninja,FALSE
+2017-12-07,Best Action Game,Prey ,Arkane Studios/Bethesda Softworks,FALSE
+2017-12-07,Best Role Playing Game,Persona 5 ,Atlus‡,TRUE
+2017-12-07,Best Role Playing Game,Divinity: Original Sin II ,Larian Studios,FALSE
+2017-12-07,Best Role Playing Game,Final Fantasy XV ,Square Enix,FALSE
+2017-12-07,Best Role Playing Game,Nier: Automata ,PlatinumGames/Square Enix,FALSE
+2017-12-07,Best Role Playing Game,South Park: The Fractured But Whole ,Ubisoft,FALSE
+2017-12-07,Best Family Game,Super Mario Odyssey ,Nintendo‡,TRUE
+2017-12-07,Best Family Game,Mario Kart 8 Deluxe ,"Nintendo, Bandai Namco",FALSE
+2017-12-07,Best Family Game,Mario + Rabbids Kingdom Battle ,Ubisoft,FALSE
+2017-12-07,Best Family Game,Sonic Mania ,"Christian Whitehead, PagodaWest Games, Headcannon",FALSE
+2017-12-07,Best Family Game,Splatoon 2 ,Nintendo,FALSE
+2017-12-07,Best Sports/Racing Game,Forza Motorsport 7 ,Turn 10 Studios‡,TRUE
+2017-12-07,Best Sports/Racing Game,FIFA 18 ,EA Vancouver,FALSE
+2017-12-07,Best Sports/Racing Game,Gran Turismo Sport ,Polyphony Digital,FALSE
+2017-12-07,Best Sports/Racing Game,NBA 2K18 ,Visual Concepts,FALSE
+2017-12-07,Best Sports/Racing Game,Pro Evolution Soccer 2018 ,Konami,FALSE
+2017-12-07,Best Sports/Racing Game,Project Cars 2 ,Slightly Mad Studios,FALSE
+2017-12-07,Student Game Award,Level Squared ,"Kip Brennan, Stephen Scoglio, and Dane Perry Svendsen, Swinburne University‡",TRUE
+2017-12-07,Student Game Award,Falling Sky ,"Jonathan Nielssen, Nikolay Savov, and Mohsen Shah, National Film and Television School",FALSE
+2017-12-07,Student Game Award,From Light ,"Alejandro Grossman, Steven Li, and Sherveen Uduwana, University of Southern California",FALSE
+2017-12-07,Student Game Award,Hollowed ,"Erin Marek, Jerrick Flores, and Charley Choucard, University of Central Florida",FALSE
+2017-12-07,Student Game Award,Impulsion ,"Hugo Verger, Remi Bertrand, and Maxime Lupinski, Institut de l'Internet et du Multimédia",FALSE
+2017-12-07,Student Game Award,Meaning ,"Hariz Yet, DigiPen Institute of Technology Singapore",FALSE
+2017-12-07,Game of the Year,The Legend of Zelda: Breath of the Wild ,Nintendo‡,TRUE
+2017-12-07,Game of the Year,Horizon Zero Dawn ,Guerrilla Games/Sony Interactive Entertainment,FALSE
+2017-12-07,Game of the Year,Persona 5 ,Atlus,FALSE
+2017-12-07,Game of the Year,PlayerUnknown's Battlegrounds ,PUBG Corporation,FALSE
+2017-12-07,Game of the Year,Super Mario Odyssey ,Nintendo,FALSE
+2017-12-07,Best Narrative,What Remains of Edith Finch ,Giant Sparrow/Annapurna Interactive‡,TRUE
+2017-12-07,Best Narrative,Hellblade: Senua's Sacrifice ,Ninja Theory,FALSE
+2017-12-07,Best Narrative,Horizon Zero Dawn ,Guerrilla Games/Sony Interactive Entertainment,FALSE
+2017-12-07,Best Narrative,Nier: Automata ,PlatinumGames/Square Enix,FALSE
+2017-12-07,Best Narrative,Wolfenstein II: The New Colossus ,MachineGames/Bethesda Softworks,FALSE
+2017-12-07,Best Score/Music,Nier: Automata ,PlatinumGames/Square Enix‡,TRUE
+2017-12-07,Best Score/Music,Cuphead ,Studio MDHR,FALSE
+2017-12-07,Best Score/Music,Destiny 2 ,Bungie/Activision,FALSE
+2017-12-07,Best Score/Music,Persona 5 ,Atlus,FALSE
+2017-12-07,Best Score/Music,Super Mario Odyssey ,Nintendo,FALSE
+2017-12-07,Best Score/Music,The Legend of Zelda: Breath of the Wild ,Nintendo,FALSE
+2017-12-07,Best Performance,Melina Juergens as Senua ,Hellblade: Senua's Sacrifice‡,TRUE
+2017-12-07,Best Performance,Ashly Burch as Aloy ,Horizon Zero Dawn,FALSE
+2017-12-07,Best Performance,Brian Bloom as B.J. Blazkowicz ,Wolfenstein II: The New Colossus,FALSE
+2017-12-07,Best Performance,Claudia Black as Chloe Frazer ,Uncharted: The Lost Legacy,FALSE
+2017-12-07,Best Performance,Laura Bailey as Nadine Ross ,Uncharted: The Lost Legacy,FALSE
+2017-12-07,Best Ongoing Game,Overwatch ,Blizzard Entertainment‡,TRUE
+2017-12-07,Best Ongoing Game,Destiny 2 ,Bungie,FALSE
+2017-12-07,Best Ongoing Game,Grand Theft Auto Online ,Rockstar Games,FALSE
+2017-12-07,Best Ongoing Game,PlayerUnknown's Battlegrounds ,PUBG Corporation,FALSE
+2017-12-07,Best Ongoing Game,Tom Clancy's Rainbow Six Siege ,Ubisoft,FALSE
+2017-12-07,Best Ongoing Game,Warframe ,Digital Extremes,FALSE
+2017-12-07,Best Mobile Game,Monument Valley 2 ,ustwo games‡,TRUE
+2017-12-07,Best Mobile Game,Fire Emblem Heroes ,Intelligent Systems,FALSE
+2017-12-07,Best Mobile Game,Hidden Folks ,Adriaan de Jongh and Sylvain Tegroeg,FALSE
+2017-12-07,Best Mobile Game,Old Man's Journey ,Broken Rules,FALSE
+2017-12-07,Best Mobile Game,Super Mario Run ,Nintendo,FALSE
+2017-12-07,Best VR/AR Game,Resident Evil 7: Biohazard ,Capcom‡,TRUE
+2017-12-07,Best VR/AR Game,Farpoint ,Impulse Gear,FALSE
+2017-12-07,Best VR/AR Game,Lone Echo ,Ready at Dawn,FALSE
+2017-12-07,Best VR/AR Game,Star Trek: Bridge Crew ,Red Storm Entertainment,FALSE
+2017-12-07,Best VR/AR Game,Superhot VR ,Superhot Team,FALSE
+2017-12-07,Best Action/Adventure,The Legend of Zelda: Breath of the Wild ,Nintendo‡,TRUE
+2017-12-07,Best Action/Adventure,Assassin's Creed: Origins ,Ubisoft,FALSE
+2017-12-07,Best Action/Adventure,Horizon Zero Dawn ,Guerrilla Games/Sony Interactive Entertainment,FALSE
+2017-12-07,Best Action/Adventure,Super Mario Odyssey ,Nintendo,FALSE
+2017-12-07,Best Action/Adventure,Uncharted: The Lost Legacy ,Naughty Dog/Sony Interactive Entertainment,FALSE
+2017-12-07,Best Fighting Game,Injustice 2 ,NetherRealm Studios‡,TRUE
+2017-12-07,Best Fighting Game,ARMS ,Nintendo,FALSE
+2017-12-07,Best Fighting Game,Marvel vs. Capcom: Infinite ,Capcom,FALSE
+2017-12-07,Best Fighting Game,Nidhogg 2 ,Messhof Games,FALSE
+2017-12-07,Best Fighting Game,Tekken 7 ,Bandai Namco,FALSE
+2017-12-07,Best Strategy Game,Mario + Rabbids Kingdom Battle ,Ubisoft‡,TRUE
+2017-12-07,Best Strategy Game,Halo Wars 2 ,Creative Assembly and 343 Industries,FALSE
+2017-12-07,Best Strategy Game,Total War: Warhammer II ,Creative Assembly,FALSE
+2017-12-07,Best Strategy Game,Tooth and Tail ,Pocketwatch Games,FALSE
+2017-12-07,Best Strategy Game,XCOM 2: War of the Chosen ,Firaxis Games,FALSE
+2017-12-07,Best Multiplayer,PlayerUnknown's Battlegrounds ,PUBG Corporation‡,TRUE
+2017-12-07,Best Multiplayer,Call of Duty: WWII ,Sledgehammer Games/Activision,FALSE
+2017-12-07,Best Multiplayer,Destiny 2 ,Bungie/Activision,FALSE
+2017-12-07,Best Multiplayer,Fortnite ,Epic Games,FALSE
+2017-12-07,Best Multiplayer,Mario Kart 8 Deluxe ,Nintendo,FALSE
+2017-12-07,Best Multiplayer,Splatoon 2 ,Nintendo,FALSE
+2017-12-07,Best Debut Indie Game,Cuphead ,Studio MDHR‡,TRUE
+2017-12-07,Best Debut Indie Game,Golf Story ,Sidebar Games,FALSE
+2017-12-07,Best Debut Indie Game,Hollow Knight ,Team Cherry,FALSE
+2017-12-07,Best Debut Indie Game,Mr. Shifty ,Team Shifty,FALSE
+2017-12-07,Best Debut Indie Game,Slime Rancher ,Monomi Park,FALSE
+2018-12-06,Best Game Direction,God of War ,Santa Monica Studio,TRUE
+2018-12-06,Best Game Direction,God of War , Sony Interactive Entertainment‡,TRUE
+2018-12-06,Best Game Direction,A Way Out ,Hazelight Studios,FALSE
+2018-12-06,Best Game Direction,A Way Out , Electronic Arts,FALSE
+2018-12-06,Best Game Direction,Detroit: Become Human ,Quantic Dream,FALSE
+2018-12-06,Best Game Direction,Detroit: Become Human , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Game Direction,Marvel's Spider-Man ,Insomniac Games,FALSE
+2018-12-06,Best Game Direction,Marvel's Spider-Man , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Game Direction,Red Dead Redemption 2 ,Rockstar Games,FALSE
+2018-12-06,Best Art Direction,Return of the Obra Dinn ,3909 LLC‡,TRUE
+2018-12-06,Best Art Direction,Assassin's Creed Odyssey ,Ubisoft Quebec,FALSE
+2018-12-06,Best Art Direction,Assassin's Creed Odyssey , Ubisoft,FALSE
+2018-12-06,Best Art Direction,God of War ,Santa Monica Studio,FALSE
+2018-12-06,Best Art Direction,God of War , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Art Direction,Red Dead Redemption 2 ,Rockstar Games,FALSE
+2018-12-06,Best Art Direction,Octopath Traveler ,"Square Enix Business Division 11, Acquire",FALSE
+2018-12-06,Best Art Direction,Octopath Traveler , Nintendo,FALSE
+2018-12-06,Best Audio Design[e],Red Dead Redemption 2 ,Rockstar Games‡,TRUE
+2018-12-06,Best Audio Design[e],Call of Duty: Black Ops 4 ,Treyarch,FALSE
+2018-12-06,Best Audio Design[e],Call of Duty: Black Ops 4 , Activision,FALSE
+2018-12-06,Best Audio Design[e],Forza Horizon 4 ,Playground Games,FALSE
+2018-12-06,Best Audio Design[e],Forza Horizon 4 , Microsoft Studios,FALSE
+2018-12-06,Best Audio Design[e],God of War ,Santa Monica Studio,FALSE
+2018-12-06,Best Audio Design[e],God of War , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Audio Design[e],Marvel's Spider-Man ,Insomniac Games,FALSE
+2018-12-06,Best Audio Design[e],Marvel's Spider-Man , Sony Interactive Entertainment,FALSE
+2018-12-06,Games for Impact,Celeste ,Maddy Makes Games‡,TRUE
+2018-12-06,Games for Impact,11-11: Memories Retold ,"DigixArt, Aardman Animations",FALSE
+2018-12-06,Games for Impact,11-11: Memories Retold , Bandai Namco Entertainment,FALSE
+2018-12-06,Games for Impact,Florence ,Mountains,FALSE
+2018-12-06,Games for Impact,Florence , Annapurna Interactive,FALSE
+2018-12-06,Games for Impact,Life Is Strange 2: Episode 1 ,Dontnod Entertainment,FALSE
+2018-12-06,Games for Impact,Life Is Strange 2: Episode 1 , Square Enix,FALSE
+2018-12-06,Games for Impact,The Missing: J.J. Macfield and the Island of Memories ,White Owls,FALSE
+2018-12-06,Games for Impact,The Missing: J.J. Macfield and the Island of Memories , Arc System Works,FALSE
+2018-12-06,Best Independent Game,Celeste ,Maddy Makes Games‡,TRUE
+2018-12-06,Best Independent Game,Dead Cells ,Motion Twin,FALSE
+2018-12-06,Best Independent Game,Into the Breach ,Subset Games,FALSE
+2018-12-06,Best Independent Game,The Messenger ,Sabotage,FALSE
+2018-12-06,Best Independent Game,The Messenger , Devolver Digital,FALSE
+2018-12-06,Best Independent Game,Return of the Obra Dinn ,3909 LLC,FALSE
+2018-12-06,Best VR/AR Game,Astro Bot Rescue Mission ,Japan Studio,TRUE
+2018-12-06,Best VR/AR Game,Astro Bot Rescue Mission , Sony Interactive Entertainment‡,TRUE
+2018-12-06,Best VR/AR Game,Beat Saber ,Beat Games,FALSE
+2018-12-06,Best VR/AR Game,Firewall: Zero Hour ,First Contact Entertainment,FALSE
+2018-12-06,Best VR/AR Game,Firewall: Zero Hour , Sony Interactive Entertainment,FALSE
+2018-12-06,Best VR/AR Game,Moss ,Polyarc Games,FALSE
+2018-12-06,Best VR/AR Game,Tetris Effect ,Resonair,FALSE
+2018-12-06,Best VR/AR Game,Tetris Effect ," Enhance, Inc.",FALSE
+2018-12-06,Best Action/Adventure Game,God of War ,Santa Monica Studio,TRUE
+2018-12-06,Best Action/Adventure Game,God of War , Sony Interactive Entertainment‡,TRUE
+2018-12-06,Best Action/Adventure Game,Assassin's Creed Odyssey ,Ubisoft Quebec,FALSE
+2018-12-06,Best Action/Adventure Game,Assassin's Creed Odyssey , Ubisoft,FALSE
+2018-12-06,Best Action/Adventure Game,Marvel's Spider-Man ,Insomniac Games,FALSE
+2018-12-06,Best Action/Adventure Game,Marvel's Spider-Man , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Action/Adventure Game,Red Dead Redemption 2 ,Rockstar Games,FALSE
+2018-12-06,Best Action/Adventure Game,Shadow of the Tomb Raider ,Eidos Montréal,FALSE
+2018-12-06,Best Action/Adventure Game,Shadow of the Tomb Raider , Square Enix,FALSE
+2018-12-06,Best Fighting Game,Dragon Ball FighterZ ,Arc System Works,TRUE
+2018-12-06,Best Fighting Game,Dragon Ball FighterZ , Bandai Namco Entertainment‡,TRUE
+2018-12-06,Best Fighting Game,BlazBlue: Cross Tag Battle ,Arc System Works,FALSE
+2018-12-06,Best Fighting Game,Soulcalibur VI ,"Bandai Namco Studios, Dimps",FALSE
+2018-12-06,Best Fighting Game,Soulcalibur VI , Bandai Namco Entertainment,FALSE
+2018-12-06,Best Fighting Game,Street Fighter V: Arcade Edition ,Capcom,FALSE
+2018-12-06,Best Strategy Game,Into the Breach ,Subset Games‡,TRUE
+2018-12-06,Best Strategy Game,The Banner Saga 3 ,Stoic Studio,FALSE
+2018-12-06,Best Strategy Game,The Banner Saga 3 , Versus Evil,FALSE
+2018-12-06,Best Strategy Game,BattleTech ,Harebrained Schemes,FALSE
+2018-12-06,Best Strategy Game,BattleTech , Paradox Interactive,FALSE
+2018-12-06,Best Strategy Game,Frostpunk ,11 bit studios,FALSE
+2018-12-06,Best Strategy Game,Valkyria Chronicles 4 ,Sega,FALSE
+2018-12-06,Best Multiplayer Game,Fortnite ,Epic Games‡,TRUE
+2018-12-06,Best Multiplayer Game,Call of Duty: Black Ops 4 ,Treyarch,FALSE
+2018-12-06,Best Multiplayer Game,Call of Duty: Black Ops 4 , Activision,FALSE
+2018-12-06,Best Multiplayer Game,Destiny 2: Forsaken ,Bungie,FALSE
+2018-12-06,Best Multiplayer Game,Destiny 2: Forsaken , Activision,FALSE
+2018-12-06,Best Multiplayer Game,Monster Hunter: World ,Capcom,FALSE
+2018-12-06,Best Multiplayer Game,Sea of Thieves ,Rare,FALSE
+2018-12-06,Best Multiplayer Game,Sea of Thieves , Microsoft Studios,FALSE
+2018-12-06,Best Debut Indie Game,The Messenger ,Sabotage,TRUE
+2018-12-06,Best Debut Indie Game,The Messenger , Devolver Digital‡,TRUE
+2018-12-06,Best Debut Indie Game,Donut County ,Ben Esposito,FALSE
+2018-12-06,Best Debut Indie Game,Donut County , Annapurna Interactive,FALSE
+2018-12-06,Best Debut Indie Game,Florence ,Mountains,FALSE
+2018-12-06,Best Debut Indie Game,Florence , Annapurna Interactive,FALSE
+2018-12-06,Best Debut Indie Game,Moss ,Polyarc Games,FALSE
+2018-12-06,Best Debut Indie Game,Yoku's Island Express ,Villa Gorilla,FALSE
+2018-12-06,Game of the Year,God of War ,Santa Monica Studio,TRUE
+2018-12-06,Game of the Year,God of War , Sony Interactive Entertainment‡,TRUE
+2018-12-06,Game of the Year,Assassin's Creed Odyssey ,Ubisoft Quebec,FALSE
+2018-12-06,Game of the Year,Assassin's Creed Odyssey , Ubisoft,FALSE
+2018-12-06,Game of the Year,Celeste ,Maddy Makes Games,FALSE
+2018-12-06,Game of the Year,Marvel's Spider-Man ,Insomniac Games,FALSE
+2018-12-06,Game of the Year,Marvel's Spider-Man , Sony Interactive Entertainment,FALSE
+2018-12-06,Game of the Year,Monster Hunter: World ,Capcom,FALSE
+2018-12-06,Game of the Year,Red Dead Redemption 2 ,Rockstar Games,FALSE
+2018-12-06,Best Narrative,Red Dead Redemption 2 ,Rockstar Games‡,TRUE
+2018-12-06,Best Narrative,Detroit: Become Human ,Quantic Dream,FALSE
+2018-12-06,Best Narrative,Detroit: Become Human , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Narrative,God of War ,Santa Monica Studio,FALSE
+2018-12-06,Best Narrative,God of War , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Narrative,Life Is Strange 2: Episode 1 ,Dontnod Entertainment,FALSE
+2018-12-06,Best Narrative,Life Is Strange 2: Episode 1 , Square Enix,FALSE
+2018-12-06,Best Narrative,Marvel's Spider-Man ,Insomniac Games,FALSE
+2018-12-06,Best Narrative,Marvel's Spider-Man , Sony Interactive Entertainment,FALSE
+2018-12-06,Best Score/Music[d],Red Dead Redemption 2 ,Woody Jackson‡,TRUE
+2018-12-06,Best Score/Music[d],Celeste ,Lena Raine,FALSE
+2018-12-06,Best Score/Music[d],God of War ,Bear McCreary,FALSE
+2018-12-06,Best Score/Music[d],Marvel's Spider-Man ,John Paesano,FALSE
+2018-12-06,Best Score/Music[d],Ni no Kuni II: Revenant Kingdom ,Joe Hisaishi,FALSE
+2018-12-06,Best Score/Music[d],Octopath Traveler ,Yasunori Nishiki,FALSE
+2018-12-06,Best Performance,Roger Clark as Arthur Morgan ,Red Dead Redemption 2‡,TRUE
+2018-12-06,Best Performance,Bryan Dechart as Connor ,Detroit: Become Human,FALSE
+2018-12-06,Best Performance,Christopher Judge as Kratos ,God of War,FALSE
+2018-12-06,Best Performance,Yuri Lowenthal as Spider-Man ,Marvel's Spider-Man,FALSE
+2018-12-06,Best Performance,Melissanthi Mahut as Kassandra ,Assassin's Creed Odyssey,FALSE
+2018-12-06,Best Ongoing Game,Fortnite ,Epic Games‡,TRUE
+2018-12-06,Best Ongoing Game,Destiny 2: Forsaken ,Bungie,FALSE
+2018-12-06,Best Ongoing Game,Destiny 2: Forsaken , Activision,FALSE
+2018-12-06,Best Ongoing Game,No Man's Sky ,Hello Games,FALSE
+2018-12-06,Best Ongoing Game,Overwatch ,Blizzard Entertainment,FALSE
+2018-12-06,Best Ongoing Game,Tom Clancy's Rainbow Six Siege ,Ubisoft Montreal,FALSE
+2018-12-06,Best Ongoing Game,Tom Clancy's Rainbow Six Siege , Ubisoft,FALSE
+2018-12-06,Best Mobile Game,Florence ,Mountains,TRUE
+2018-12-06,Best Mobile Game,Florence , Annapurna Interactive‡,TRUE
+2018-12-06,Best Mobile Game,Donut County ,Ben Esposito,FALSE
+2018-12-06,Best Mobile Game,Donut County , Annapurna Interactive,FALSE
+2018-12-06,Best Mobile Game,Fortnite ,Epic Games,FALSE
+2018-12-06,Best Mobile Game,PUBG Mobile ,Lightspeed & Quantum,FALSE
+2018-12-06,Best Mobile Game,PUBG Mobile , Tencent Games,FALSE
+2018-12-06,Best Mobile Game,Reigns: Game of Thrones ,Nerial,FALSE
+2018-12-06,Best Mobile Game,Reigns: Game of Thrones , Devolver Digital,FALSE
+2018-12-06,Best Action Game,Dead Cells ,Motion Twin‡,TRUE
+2018-12-06,Best Action Game,Call of Duty: Black Ops 4 ,Treyarch,FALSE
+2018-12-06,Best Action Game,Call of Duty: Black Ops 4 , Activision,FALSE
+2018-12-06,Best Action Game,Destiny 2: Forsaken ,Bungie,FALSE
+2018-12-06,Best Action Game,Destiny 2: Forsaken , Activision,FALSE
+2018-12-06,Best Action Game,Far Cry 5 ,Ubisoft,FALSE
+2018-12-06,Best Action Game,Mega Man 11 ,Capcom,FALSE
+2018-12-06,Best Role Playing Game,Monster Hunter: World ,Capcom‡,TRUE
+2018-12-06,Best Role Playing Game,Dragon Quest XI ,Square Enix,FALSE
+2018-12-06,Best Role Playing Game,Ni no Kuni II: Revenant Kingdom ,Level-5,FALSE
+2018-12-06,Best Role Playing Game,Ni no Kuni II: Revenant Kingdom , Bandai Namco Entertainment,FALSE
+2018-12-06,Best Role Playing Game,Octopath Traveler ,"Square Enix Business Division 11, Acquire",FALSE
+2018-12-06,Best Role Playing Game,Octopath Traveler , Nintendo,FALSE
+2018-12-06,Best Role Playing Game,Pillars of Eternity II: Deadfire ,Obsidian Entertainment,FALSE
+2018-12-06,Best Family Game,Overcooked 2 ,Ghost Town Games,TRUE
+2018-12-06,Best Family Game,Overcooked 2 , Team17‡,TRUE
+2018-12-06,Best Family Game,Mario Tennis Aces ,Camelot Software Planning,FALSE
+2018-12-06,Best Family Game,Mario Tennis Aces , Nintendo,FALSE
+2018-12-06,Best Family Game,Nintendo Labo ,Nintendo,FALSE
+2018-12-06,Best Family Game,Starlink: Battle for Atlas ,Ubisoft Toronto,FALSE
+2018-12-06,Best Family Game,Starlink: Battle for Atlas , Ubisoft,FALSE
+2018-12-06,Best Family Game,Super Mario Party ,NDcube,FALSE
+2018-12-06,Best Family Game,Super Mario Party , Nintendo,FALSE
+2018-12-06,Best Sports/Racing Game,Forza Horizon 4 ,Playground Games,TRUE
+2018-12-06,Best Sports/Racing Game,Forza Horizon 4 , Microsoft Studios‡,TRUE
+2018-12-06,Best Sports/Racing Game,FIFA 19 ,EA Vancouver,FALSE
+2018-12-06,Best Sports/Racing Game,FIFA 19 , EA Sports,FALSE
+2018-12-06,Best Sports/Racing Game,Mario Tennis Aces ,Camelot Software Planning,FALSE
+2018-12-06,Best Sports/Racing Game,Mario Tennis Aces , Nintendo,FALSE
+2018-12-06,Best Sports/Racing Game,NBA 2K19 ,Visual Concepts,FALSE
+2018-12-06,Best Sports/Racing Game,NBA 2K19 , 2K Sports,FALSE
+2018-12-06,Best Sports/Racing Game,Pro Evolution Soccer 2019 ,PES Productions,FALSE
+2018-12-06,Best Sports/Racing Game,Pro Evolution Soccer 2019 , Konami,FALSE
+2018-12-06,Best Student Game,Combat 2018 ,Inland Norway University of Applied Sciences‡,TRUE
+2018-12-06,Best Student Game,Dash Quasar ,UC Santa Cruz,FALSE
+2018-12-06,Best Student Game,JERA ,"DigiPen Bilbao, Spain",FALSE
+2018-12-06,Best Student Game,LIFF ,ISART Digital,FALSE
+2018-12-06,Best Student Game,RE: Charge ,MIT,FALSE
+2019-12-12,Best Game Direction,Death Stranding ,Kojima Productions,TRUE
+2019-12-12,Best Game Direction,Death Stranding , Sony Interactive Entertainment‡,TRUE
+2019-12-12,Best Game Direction,Control ,Remedy Entertainment,FALSE
+2019-12-12,Best Game Direction,Control , 505 Games,FALSE
+2019-12-12,Best Game Direction,Outer Wilds ,Mobius Digital,FALSE
+2019-12-12,Best Game Direction,Outer Wilds , Annapurna Interactive,FALSE
+2019-12-12,Best Game Direction,Resident Evil 2 ,Capcom,FALSE
+2019-12-12,Best Game Direction,Sekiro: Shadows Die Twice ,FromSoftware,FALSE
+2019-12-12,Best Game Direction,Sekiro: Shadows Die Twice , Activision,FALSE
+2019-12-12,Best Art Direction,Control ,Remedy Entertainment,TRUE
+2019-12-12,Best Art Direction,Control , 505 Games‡,TRUE
+2019-12-12,Best Art Direction,Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Best Art Direction,Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Best Art Direction,Gris ,Nomada Studio,FALSE
+2019-12-12,Best Art Direction,Gris , Devolver Digital,FALSE
+2019-12-12,Best Art Direction,The Legend of Zelda: Link's Awakening ,Grezzo,FALSE
+2019-12-12,Best Art Direction,The Legend of Zelda: Link's Awakening , Nintendo,FALSE
+2019-12-12,Best Art Direction,Sayonara Wild Hearts ,Simogo,FALSE
+2019-12-12,Best Art Direction,Sayonara Wild Hearts , Annapurna Interactive,FALSE
+2019-12-12,Best Art Direction,Sekiro: Shadows Die Twice ,FromSoftware,FALSE
+2019-12-12,Best Art Direction,Sekiro: Shadows Die Twice , Activision,FALSE
+2019-12-12,Best Audio Design,Call of Duty: Modern Warfare ,Infinity Ward,TRUE
+2019-12-12,Best Audio Design,Call of Duty: Modern Warfare , Activision‡,TRUE
+2019-12-12,Best Audio Design,Control ,Remedy Entertainment,FALSE
+2019-12-12,Best Audio Design,Control , 505 Games,FALSE
+2019-12-12,Best Audio Design,Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Best Audio Design,Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Best Audio Design,Gears 5 ,The Coalition,FALSE
+2019-12-12,Best Audio Design,Gears 5 , Xbox Game Studios,FALSE
+2019-12-12,Best Audio Design,Resident Evil 2 ,Capcom,FALSE
+2019-12-12,Best Audio Design,Sekiro: Shadows Die Twice ,FromSoftware,FALSE
+2019-12-12,Best Audio Design,Sekiro: Shadows Die Twice , Activision,FALSE
+2019-12-12,Games for Impact,Gris ,Nomada Studio,TRUE
+2019-12-12,Games for Impact,Gris , Devolver Digital‡,TRUE
+2019-12-12,Games for Impact,Concrete Genie ,Pixelopus,FALSE
+2019-12-12,Games for Impact,Concrete Genie , Sony Interactive Entertainment,FALSE
+2019-12-12,Games for Impact,Kind Words ,Popcannibal,FALSE
+2019-12-12,Games for Impact,Life Is Strange 2 ,Dontnod,FALSE
+2019-12-12,Games for Impact,Life Is Strange 2 , Square Enix,FALSE
+2019-12-12,Games for Impact,Sea of Solitude ,Jo-Mei Games,FALSE
+2019-12-12,Games for Impact,Sea of Solitude , Electronic Arts,FALSE
+2019-12-12,Best Independent Game,Disco Elysium ,ZA/UM‡,TRUE
+2019-12-12,Best Independent Game,Baba Is You ,Hempuli,FALSE
+2019-12-12,Best Independent Game,Katana Zero ,Askiisoft,FALSE
+2019-12-12,Best Independent Game,Katana Zero , Devolver Digital,FALSE
+2019-12-12,Best Independent Game,Outer Wilds ,Mobius Digital,FALSE
+2019-12-12,Best Independent Game,Outer Wilds , Annapurna Interactive,FALSE
+2019-12-12,Best Independent Game,Untitled Goose Game ,House House,FALSE
+2019-12-12,Best Independent Game,Untitled Goose Game , Panic,FALSE
+2019-12-12,Best VR/AR Game,Beat Saber ,Beat Games‡,TRUE
+2019-12-12,Best VR/AR Game,Asgard's Wrath ,Sanzaru Games,FALSE
+2019-12-12,Best VR/AR Game,Asgard's Wrath , Oculus Studios,FALSE
+2019-12-12,Best VR/AR Game,Blood & Truth ,London Studio,FALSE
+2019-12-12,Best VR/AR Game,Blood & Truth , Sony Interactive Entertainment,FALSE
+2019-12-12,Best VR/AR Game,No Man's Sky ,Hello Games,FALSE
+2019-12-12,Best VR/AR Game,Trover Saves the Universe ,Squanch Games,FALSE
+2019-12-12,Best VR/AR Game,Trover Saves the Universe , Gearbox Publishing,FALSE
+2019-12-12,Best Action/Adventure Game,Sekiro: Shadows Die Twice ,FromSoftware,TRUE
+2019-12-12,Best Action/Adventure Game,Sekiro: Shadows Die Twice , Activision‡,TRUE
+2019-12-12,Best Action/Adventure Game,Borderlands 3 ,Gearbox Software,FALSE
+2019-12-12,Best Action/Adventure Game,Borderlands 3 , 2K Games,FALSE
+2019-12-12,Best Action/Adventure Game,Control ,Remedy Entertainment,FALSE
+2019-12-12,Best Action/Adventure Game,Control , 505 Games,FALSE
+2019-12-12,Best Action/Adventure Game,Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Best Action/Adventure Game,Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Best Action/Adventure Game,The Legend of Zelda: Link's Awakening ,Grezzo,FALSE
+2019-12-12,Best Action/Adventure Game,The Legend of Zelda: Link's Awakening , Nintendo,FALSE
+2019-12-12,Best Action/Adventure Game,Resident Evil 2 ,Capcom,FALSE
+2019-12-12,Best Fighting Game,Super Smash Bros. Ultimate ,"Bandai Namco Studios, Sora Ltd.",TRUE
+2019-12-12,Best Fighting Game,Super Smash Bros. Ultimate , Nintendo‡,TRUE
+2019-12-12,Best Fighting Game,Dead or Alive 6 ,Team Ninja,FALSE
+2019-12-12,Best Fighting Game,Dead or Alive 6 , Koei Tecmo,FALSE
+2019-12-12,Best Fighting Game,Jump Force ,Spike Chunsoft,FALSE
+2019-12-12,Best Fighting Game,Jump Force , Bandai Namco,FALSE
+2019-12-12,Best Fighting Game,Mortal Kombat 11 ,NetherRealm,FALSE
+2019-12-12,Best Fighting Game,Mortal Kombat 11 , Warner Bros. Interactive Entertainment,FALSE
+2019-12-12,Best Fighting Game,Samurai Shodown ,SNK Corporation,FALSE
+2019-12-12,Best Fighting Game,Samurai Shodown , Athlon Games,FALSE
+2019-12-12,Best Strategy Game,Fire Emblem: Three Houses ,"Intelligent Systems, Koei Tecmo",TRUE
+2019-12-12,Best Strategy Game,Fire Emblem: Three Houses , Nintendo‡,TRUE
+2019-12-12,Best Strategy Game,Age of Wonders: Planetfall ,Triumph Studios,FALSE
+2019-12-12,Best Strategy Game,Age of Wonders: Planetfall , Paradox Interactive,FALSE
+2019-12-12,Best Strategy Game,Anno 1800 ,Blue Byte,FALSE
+2019-12-12,Best Strategy Game,Anno 1800 , Ubisoft,FALSE
+2019-12-12,Best Strategy Game,Total War: Three Kingdoms ,Creative Assembly,FALSE
+2019-12-12,Best Strategy Game,Total War: Three Kingdoms , Sega,FALSE
+2019-12-12,Best Strategy Game,Tropico 6 ,Limbic Entertainment,FALSE
+2019-12-12,Best Strategy Game,Tropico 6 , Kalypso Media,FALSE
+2019-12-12,Best Strategy Game,Wargroove ,Chucklefish,FALSE
+2019-12-12,Best Multiplayer Game,Apex Legends ,Respawn Entertainment,TRUE
+2019-12-12,Best Multiplayer Game,Apex Legends , Electronic Arts‡,TRUE
+2019-12-12,Best Multiplayer Game,Borderlands 3 ,Gearbox Software,FALSE
+2019-12-12,Best Multiplayer Game,Borderlands 3 , 2K Games,FALSE
+2019-12-12,Best Multiplayer Game,Call of Duty: Modern Warfare ,Infinity Ward,FALSE
+2019-12-12,Best Multiplayer Game,Call of Duty: Modern Warfare , Activision,FALSE
+2019-12-12,Best Multiplayer Game,Tetris 99 ,Arika,FALSE
+2019-12-12,Best Multiplayer Game,Tetris 99 , Nintendo,FALSE
+2019-12-12,Best Multiplayer Game,Tom Clancy's The Division 2 ,Massive Entertainment,FALSE
+2019-12-12,Best Multiplayer Game,Tom Clancy's The Division 2 , Ubisoft,FALSE
+2019-12-12,Best Community Support,Destiny 2 ,Bungie‡,TRUE
+2019-12-12,Best Community Support,Apex Legends ,Respawn Entertainment,FALSE
+2019-12-12,Best Community Support,Apex Legends , Electronic Arts,FALSE
+2019-12-12,Best Community Support,Final Fantasy XIV ,Square Enix,FALSE
+2019-12-12,Best Community Support,Fortnite ,Epic Games,FALSE
+2019-12-12,Best Community Support,Tom Clancy's Rainbow Six Siege ,Ubisoft,FALSE
+2019-12-12,Player's Voice[e],Fire Emblem: Three Houses ,"Intelligent Systems, Koei Tecmo",TRUE
+2019-12-12,Player's Voice[e],Fire Emblem: Three Houses , Nintendo‡,TRUE
+2019-12-12,Player's Voice[e],Super Smash Bros. Ultimate ,"Bandai Namco Studios, Sora Ltd.",FALSE
+2019-12-12,Player's Voice[e],Super Smash Bros. Ultimate , Nintendo,FALSE
+2019-12-12,Player's Voice[e],Star Wars Jedi: Fallen Order ,Respawn Entertainment,FALSE
+2019-12-12,Player's Voice[e],Star Wars Jedi: Fallen Order , Electronic Arts,FALSE
+2019-12-12,Player's Voice[e],Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Player's Voice[e],Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Game of the Year,Sekiro: Shadows Die Twice ,FromSoftware,TRUE
+2019-12-12,Game of the Year,Sekiro: Shadows Die Twice , Activision‡,TRUE
+2019-12-12,Game of the Year,Control ,Remedy Entertainment,FALSE
+2019-12-12,Game of the Year,Control , 505 Games,FALSE
+2019-12-12,Game of the Year,Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Game of the Year,Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Game of the Year,The Outer Worlds ,Obsidian Entertainment,FALSE
+2019-12-12,Game of the Year,The Outer Worlds , Private Division,FALSE
+2019-12-12,Game of the Year,Resident Evil 2 ,Capcom,FALSE
+2019-12-12,Game of the Year,Super Smash Bros. Ultimate ,"Bandai Namco Studios, Sora Ltd.",FALSE
+2019-12-12,Game of the Year,Super Smash Bros. Ultimate , Nintendo,FALSE
+2019-12-12,Best Narrative,Disco Elysium ,ZA/UM‡,TRUE
+2019-12-12,Best Narrative,A Plague Tale: Innocence ,Asobo Studio,FALSE
+2019-12-12,Best Narrative,A Plague Tale: Innocence , Focus Home Interactive,FALSE
+2019-12-12,Best Narrative,Control ,Remedy Entertainment,FALSE
+2019-12-12,Best Narrative,Control , 505 Games,FALSE
+2019-12-12,Best Narrative,Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Best Narrative,Death Stranding , Sony Interactive Entertainment,FALSE
+2019-12-12,Best Narrative,The Outer Worlds ,Obsidian Entertainment,FALSE
+2019-12-12,Best Narrative,The Outer Worlds , Private Division,FALSE
+2019-12-12,Best Score/Music,Death Stranding ,Kojima Productions,TRUE
+2019-12-12,Best Score/Music,Death Stranding , Sony Interactive Entertainment‡,TRUE
+2019-12-12,Best Score/Music,Cadence of Hyrule ,Brace Yourself Games,FALSE
+2019-12-12,Best Score/Music,Cadence of Hyrule , Nintendo,FALSE
+2019-12-12,Best Score/Music,Devil May Cry 5 ,Capcom,FALSE
+2019-12-12,Best Score/Music,Kingdom Hearts III ,Square Enix Business Division 3,FALSE
+2019-12-12,Best Score/Music,Kingdom Hearts III , Square Enix,FALSE
+2019-12-12,Best Score/Music,Sayonara Wild Hearts ,Simogo,FALSE
+2019-12-12,Best Score/Music,Sayonara Wild Hearts , Annapurna Interactive,FALSE
+2019-12-12,Best Performance,Mads Mikkelsen as Cliff ,Death Stranding‡,TRUE
+2019-12-12,Best Performance,Laura Bailey as Kait Diaz ,Gears 5,FALSE
+2019-12-12,Best Performance,Ashly Burch as Parvati Holcomb ,The Outer Worlds,FALSE
+2019-12-12,Best Performance,Courtney Hope as Jesse Faden ,Control,FALSE
+2019-12-12,Best Performance,Matthew Porretta as Dr. Casper Darling ,Control,FALSE
+2019-12-12,Best Performance,Norman Reedus as Sam Porter Bridges ,Death Stranding,FALSE
+2019-12-12,Best Ongoing Game,Fortnite ,Epic Games ‡,TRUE
+2019-12-12,Best Ongoing Game,Apex Legends ,Respawn Entertainment,FALSE
+2019-12-12,Best Ongoing Game,Apex Legends , Electronic Arts,FALSE
+2019-12-12,Best Ongoing Game,Destiny 2 ,Bungie,FALSE
+2019-12-12,Best Ongoing Game,Final Fantasy XIV ,Square Enix,FALSE
+2019-12-12,Best Ongoing Game,Tom Clancy's Rainbow Six Siege ,Ubisoft,FALSE
+2019-12-12,Best Mobile Game,Call of Duty: Mobile ,TiMi Studios,TRUE
+2019-12-12,Best Mobile Game,Call of Duty: Mobile , Activision‡,TRUE
+2019-12-12,Best Mobile Game,Grindstone ,Capybara Games,FALSE
+2019-12-12,Best Mobile Game,Sayonara Wild Hearts ,Simogo,FALSE
+2019-12-12,Best Mobile Game,Sayonara Wild Hearts , Annapurna Interactive,FALSE
+2019-12-12,Best Mobile Game,Sky: Children of the Light ,Thatgamecompany,FALSE
+2019-12-12,Best Mobile Game,What the Golf ,Triband,FALSE
+2019-12-12,Best Action Game,Devil May Cry 5 ,Capcom‡,TRUE
+2019-12-12,Best Action Game,Apex Legends ,Respawn Entertainment,FALSE
+2019-12-12,Best Action Game,Apex Legends , Electronic Arts,FALSE
+2019-12-12,Best Action Game,Astral Chain ,PlatinumGames,FALSE
+2019-12-12,Best Action Game,Astral Chain , Nintendo,FALSE
+2019-12-12,Best Action Game,Call of Duty: Modern Warfare ,Infinity Ward,FALSE
+2019-12-12,Best Action Game,Call of Duty: Modern Warfare , Activision,FALSE
+2019-12-12,Best Action Game,Gears 5 ,The Coalition,FALSE
+2019-12-12,Best Action Game,Gears 5 , Xbox Game Studios,FALSE
+2019-12-12,Best Action Game,Metro Exodus ,4A Games,FALSE
+2019-12-12,Best Action Game,Metro Exodus , Deep Silver,FALSE
+2019-12-12,Best Role Playing Game,Disco Elysium ,ZA/UM‡,TRUE
+2019-12-12,Best Role Playing Game,Final Fantasy XIV ,Square Enix,FALSE
+2019-12-12,Best Role Playing Game,Kingdom Hearts III ,Square Enix Business Division 3,FALSE
+2019-12-12,Best Role Playing Game,Kingdom Hearts III , Square Enix,FALSE
+2019-12-12,Best Role Playing Game,Monster Hunter World: Iceborne ,Capcom,FALSE
+2019-12-12,Best Role Playing Game,The Outer Worlds ,Obsidian Entertainment,FALSE
+2019-12-12,Best Role Playing Game,The Outer Worlds , Private Division,FALSE
+2019-12-12,Best Family Game,Luigi's Mansion 3 ,Next Level Games,TRUE
+2019-12-12,Best Family Game,Luigi's Mansion 3 , Nintendo‡,TRUE
+2019-12-12,Best Family Game,Ring Fit Adventure ,Nintendo,FALSE
+2019-12-12,Best Family Game,Super Mario Maker 2 ,Nintendo,FALSE
+2019-12-12,Best Family Game,Super Smash Bros. Ultimate ,"Bandai Namco Studios, Sora Ltd.",FALSE
+2019-12-12,Best Family Game,Super Smash Bros. Ultimate , Nintendo,FALSE
+2019-12-12,Best Family Game,Yoshi's Crafted World ,Good-Feel,FALSE
+2019-12-12,Best Family Game,Yoshi's Crafted World , Nintendo,FALSE
+2019-12-12,Best Sports/Racing Game,Crash Team Racing Nitro-Fueled ,Beenox,TRUE
+2019-12-12,Best Sports/Racing Game,Crash Team Racing Nitro-Fueled , Activision‡,TRUE
+2019-12-12,Best Sports/Racing Game,Dirt Rally 2.0 ,Codemasters,FALSE
+2019-12-12,Best Sports/Racing Game,eFootball Pro Evolution Soccer 2020 ,PES Productions,FALSE
+2019-12-12,Best Sports/Racing Game,eFootball Pro Evolution Soccer 2020 , Konami,FALSE
+2019-12-12,Best Sports/Racing Game,F1 2019 ,Codemasters,FALSE
+2019-12-12,Best Sports/Racing Game,FIFA 20 ,"EA Vancouver, EA Romania",FALSE
+2019-12-12,Best Sports/Racing Game,FIFA 20 , EA Sports,FALSE
+2019-12-12,Fresh Indie Game[d],Disco Elysium ,ZA/UM‡,TRUE
+2019-12-12,Fresh Indie Game[d],Gris ,Nomada Studio,FALSE
+2019-12-12,Fresh Indie Game[d],My Friend Pedro ,DeadToast Entertainment,FALSE
+2019-12-12,Fresh Indie Game[d],Outer Wilds ,Mobius Digital,FALSE
+2019-12-12,Fresh Indie Game[d],Slay the Spire ,MegaCrit,FALSE
+2019-12-12,Fresh Indie Game[d],Untitled Goose Game ,House House,FALSE
+2019-12-12,Player's Voice[e],Fire Emblem: Three Houses ,"Intelligent Systems, Koei Tecmo",TRUE
+2019-12-12,Player's Voice[e],Fire Emblem: Three Houses , Nintendo‡,TRUE
+2019-12-12,Player's Voice[e],Super Smash Bros. Ultimate ,"Bandai Namco Studios, Sora Ltd.",FALSE
+2019-12-12,Player's Voice[e],Super Smash Bros. Ultimate , Nintendo,FALSE
+2019-12-12,Player's Voice[e],Star Wars Jedi: Fallen Order ,Respawn Entertainment,FALSE
+2019-12-12,Player's Voice[e],Star Wars Jedi: Fallen Order , Electronic Arts,FALSE
+2019-12-12,Player's Voice[e],Death Stranding ,Kojima Productions,FALSE
+2019-12-12,Player's Voice[e],Death Stranding , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Game Direction,The Last of Us Part II ,Naughty Dog,TRUE
+2020-12-10,Best Game Direction,The Last of Us Part II , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Best Game Direction,Final Fantasy VII Remake ,Square Enix,FALSE
+2020-12-10,Best Game Direction,Ghost of Tsushima ,Sucker Punch Productions,FALSE
+2020-12-10,Best Game Direction,Ghost of Tsushima , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Game Direction,Hades ,Supergiant Games,FALSE
+2020-12-10,Best Game Direction,Half-Life: Alyx ,Valve,FALSE
+2020-12-10,Best Art Direction,Ghost of Tsushima ,Sucker Punch Productions,TRUE
+2020-12-10,Best Art Direction,Ghost of Tsushima , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Best Art Direction,Final Fantasy VII Remake ,Square Enix,FALSE
+2020-12-10,Best Art Direction,Hades ,Supergiant Games,FALSE
+2020-12-10,Best Art Direction,The Last of Us Part II ,Naughty Dog,FALSE
+2020-12-10,Best Art Direction,The Last of Us Part II , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Art Direction,Ori and the Will of the Wisps ,Moon Studios,FALSE
+2020-12-10,Best Art Direction,Ori and the Will of the Wisps , Xbox Game Studios,FALSE
+2020-12-10,Best Audio Design,The Last of Us Part II ,Naughty Dog,TRUE
+2020-12-10,Best Audio Design,The Last of Us Part II , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Best Audio Design,Doom Eternal ,id Software,FALSE
+2020-12-10,Best Audio Design,Doom Eternal , Bethesda Softworks,FALSE
+2020-12-10,Best Audio Design,Ghost of Tsushima ,Sucker Punch Productions,FALSE
+2020-12-10,Best Audio Design,Ghost of Tsushima , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Audio Design,Half-Life: Alyx ,Valve,FALSE
+2020-12-10,Best Audio Design,Resident Evil 3 ,Capcom,FALSE
+2020-12-10,Games for Impact,Tell Me Why ,Dontnod Entertainment,TRUE
+2020-12-10,Games for Impact,Tell Me Why , Xbox Game Studios‡,TRUE
+2020-12-10,Games for Impact,If Found... ,Dreamfeel,FALSE
+2020-12-10,Games for Impact,If Found... , Annapurna Interactive,FALSE
+2020-12-10,Games for Impact,Kentucky Route Zero ,Cardboard Computer,FALSE
+2020-12-10,Games for Impact,Kentucky Route Zero , Annapurna Interactive,FALSE
+2020-12-10,Games for Impact,Spiritfarer ,Thunder Lotus Games,FALSE
+2020-12-10,Games for Impact,Through the Darkest of Times ,Paintbucket Games,FALSE
+2020-12-10,Games for Impact,Through the Darkest of Times , HandyGames,FALSE
+2020-12-10,Best Indie Game,Hades ,Supergiant Games‡,TRUE
+2020-12-10,Best Indie Game,Carrion ,Phobia Game Studio,FALSE
+2020-12-10,Best Indie Game,Carrion , Devolver Digital,FALSE
+2020-12-10,Best Indie Game,Fall Guys ,Mediatonic,FALSE
+2020-12-10,Best Indie Game,Fall Guys , Devolver Digital,FALSE
+2020-12-10,Best Indie Game,Spelunky 2 ,Mossmouth,FALSE
+2020-12-10,Best Indie Game,Spiritfarer ,Thunder Lotus Games,FALSE
+2020-12-10,Best Community Support,Fall Guys ,Mediatonic,TRUE
+2020-12-10,Best Community Support,Fall Guys , Devolver Digital‡,TRUE
+2020-12-10,Best Community Support,Apex Legends ,Respawn Entertainment,FALSE
+2020-12-10,Best Community Support,Apex Legends , Electronic Arts,FALSE
+2020-12-10,Best Community Support,Destiny 2 ,Bungie,FALSE
+2020-12-10,Best Community Support,Fortnite ,Epic Games,FALSE
+2020-12-10,Best Community Support,No Man's Sky ,Hello Games,FALSE
+2020-12-10,Best Community Support,Valorant ,Riot Games,FALSE
+2020-12-10,Innovation in Accessibility,The Last of Us Part II ,Naughty Dog,TRUE
+2020-12-10,Innovation in Accessibility,The Last of Us Part II , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Innovation in Accessibility,Assassin's Creed Valhalla ,Ubisoft Montreal,FALSE
+2020-12-10,Innovation in Accessibility,Assassin's Creed Valhalla , Ubisoft,FALSE
+2020-12-10,Innovation in Accessibility,Grounded ,Obsidian Entertainment,FALSE
+2020-12-10,Innovation in Accessibility,Grounded , Xbox Game Studios,FALSE
+2020-12-10,Innovation in Accessibility,HyperDot ,Tribe Games,FALSE
+2020-12-10,Innovation in Accessibility,HyperDot , GLITCH,FALSE
+2020-12-10,Innovation in Accessibility,Watch Dogs Legion ,Ubisoft Toronto,FALSE
+2020-12-10,Innovation in Accessibility,Watch Dogs Legion , Ubisoft,FALSE
+2020-12-10,Best Action/Adventure Game,The Last of Us Part II ,Naughty Dog,TRUE
+2020-12-10,Best Action/Adventure Game,The Last of Us Part II , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Best Action/Adventure Game,Assassin's Creed Valhalla ,Ubisoft Montreal,FALSE
+2020-12-10,Best Action/Adventure Game,Assassin's Creed Valhalla , Ubisoft,FALSE
+2020-12-10,Best Action/Adventure Game,Ghost of Tsushima ,Sucker Punch Productions,FALSE
+2020-12-10,Best Action/Adventure Game,Ghost of Tsushima , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Action/Adventure Game,Ori and the Will of the Wisps ,Moon Studios,FALSE
+2020-12-10,Best Action/Adventure Game,Ori and the Will of the Wisps , Xbox Game Studios,FALSE
+2020-12-10,Best Action/Adventure Game,Spider-Man: Miles Morales ,Insomniac Games,FALSE
+2020-12-10,Best Action/Adventure Game,Spider-Man: Miles Morales , Sony Interactive Entertainment,FALSE
+2020-12-10,Best Action/Adventure Game,Star Wars Jedi: Fallen Order ,Respawn Entertainment,FALSE
+2020-12-10,Best Action/Adventure Game,Star Wars Jedi: Fallen Order , Electronic Arts,FALSE
+2020-12-10,Best Fighting Game,Mortal Kombat 11: Ultimate Edition ,NetherRealm Studios,TRUE
+2020-12-10,Best Fighting Game,Mortal Kombat 11: Ultimate Edition , WB Games‡,TRUE
+2020-12-10,Best Fighting Game,Granblue Fantasy Versus ,Arc System Works,FALSE
+2020-12-10,Best Fighting Game,Granblue Fantasy Versus , Cygames,FALSE
+2020-12-10,Best Fighting Game,Granblue Fantasy Versus , Xseed Games,FALSE
+2020-12-10,Best Fighting Game,One-Punch Man: A Hero Nobody Knows ,Spike Chunsoft,FALSE
+2020-12-10,Best Fighting Game,One-Punch Man: A Hero Nobody Knows , Bandai Namco,FALSE
+2020-12-10,Best Fighting Game,Street Fighter V Champion Edition ,Dimps,FALSE
+2020-12-10,Best Fighting Game,Street Fighter V Champion Edition , Capcom,FALSE
+2020-12-10,Best Fighting Game,Under Night In-Birth Exe:Late[cl-r] ,French Bread,FALSE
+2020-12-10,Best Fighting Game,Under Night In-Birth Exe:Late[cl-r] , Arc System Works,FALSE
+2020-12-10,Best Fighting Game,Under Night In-Birth Exe:Late[cl-r] , Aksys,FALSE
+2020-12-10,Best Sim/Strategy Game,Microsoft Flight Simulator ,Asobo Studio,TRUE
+2020-12-10,Best Sim/Strategy Game,Microsoft Flight Simulator , Xbox Game Studios‡,TRUE
+2020-12-10,Best Sim/Strategy Game,Crusader Kings III ,Paradox Interactive,FALSE
+2020-12-10,Best Sim/Strategy Game,Desperados III ,Mimimi Games,FALSE
+2020-12-10,Best Sim/Strategy Game,Desperados III , THQ Nordic,FALSE
+2020-12-10,Best Sim/Strategy Game,Gears Tactics ,Splash Damage,FALSE
+2020-12-10,Best Sim/Strategy Game,Gears Tactics , The Coalition,FALSE
+2020-12-10,Best Sim/Strategy Game,Gears Tactics , Xbox Game Studios,FALSE
+2020-12-10,Best Sim/Strategy Game,XCOM: Chimera Squad ,Firaxis Games,FALSE
+2020-12-10,Best Sim/Strategy Game,XCOM: Chimera Squad , 2K Games,FALSE
+2020-12-10,Best Multiplayer Game,Among Us ,Innersloth‡,TRUE
+2020-12-10,Best Multiplayer Game,Animal Crossing: New Horizons ,Nintendo,FALSE
+2020-12-10,Best Multiplayer Game,Call of Duty: Warzone ,Infinity Ward,FALSE
+2020-12-10,Best Multiplayer Game,Call of Duty: Warzone , Raven Software,FALSE
+2020-12-10,Best Multiplayer Game,Call of Duty: Warzone , Activision,FALSE
+2020-12-10,Best Multiplayer Game,Fall Guys ,Mediatonic,FALSE
+2020-12-10,Best Multiplayer Game,Fall Guys , Devolver Digital,FALSE
+2020-12-10,Best Multiplayer Game,Valorant ,Riot Games,FALSE
+2020-12-10,Most Anticipated Game[e],Elden Ring ,FromSoftware,TRUE
+2020-12-10,Most Anticipated Game[e],Elden Ring , Bandai Namco Entertainment‡,TRUE
+2020-12-10,Most Anticipated Game[e],God of War sequel ,Santa Monica Studio,FALSE
+2020-12-10,Most Anticipated Game[e],God of War sequel , Sony Interactive Entertainment,FALSE
+2020-12-10,Most Anticipated Game[e],Halo Infinite ,343 Industries,FALSE
+2020-12-10,Most Anticipated Game[e],Halo Infinite , Xbox Game Studios,FALSE
+2020-12-10,Most Anticipated Game[e],Horizon Forbidden West ,Guerrilla Games,FALSE
+2020-12-10,Most Anticipated Game[e],Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2020-12-10,Most Anticipated Game[e],The Legend of Zelda: Breath of the Wild sequel ,Nintendo,FALSE
+2020-12-10,Most Anticipated Game[e],Resident Evil Village ,Capcom,FALSE
+2020-12-10,Player's Voice[f],Ghost of Tsushima ,Sucker Punch Productions,TRUE
+2020-12-10,Player's Voice[f],Ghost of Tsushima , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Player's Voice[f],The Last of Us Part II ,Naughty Dog,FALSE
+2020-12-10,Player's Voice[f],The Last of Us Part II , Sony Interactive Entertainment[g],FALSE
+2020-12-10,Player's Voice[f],Doom Eternal ,id Software,FALSE
+2020-12-10,Player's Voice[f],Doom Eternal , Bethesda Softworks,FALSE
+2020-12-10,Player's Voice[f],Hades ,Supergiant Games,FALSE
+2020-12-10,Player's Voice[f],Spider-Man: Miles Morales ,Insomniac Games,FALSE
+2020-12-10,Player's Voice[f],Spider-Man: Miles Morales , Sony Interactive Entertainment,FALSE
+2020-12-10,Game of the Year,The Last of Us Part II ,Naughty Dog,TRUE
+2020-12-10,Game of the Year,The Last of Us Part II , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Game of the Year,Animal Crossing: New Horizons ,Nintendo,FALSE
+2020-12-10,Game of the Year,Doom Eternal ,id Software,FALSE
+2020-12-10,Game of the Year,Doom Eternal , Bethesda Softworks,FALSE
+2020-12-10,Game of the Year,Final Fantasy VII Remake ,Square Enix,FALSE
+2020-12-10,Game of the Year,Ghost of Tsushima ,Sucker Punch Productions,FALSE
+2020-12-10,Game of the Year,Ghost of Tsushima , Sony Interactive Entertainment,FALSE
+2020-12-10,Game of the Year,Hades ,Supergiant Games,FALSE
+2020-12-10,Best Narrative,The Last of Us Part II ,Neil Druckmann and Halley Gross‡,TRUE
+2020-12-10,Best Narrative,13 Sentinels: Aegis Rim ,George Kamitani,FALSE
+2020-12-10,Best Narrative,Final Fantasy VII Remake ,"Kazushige Nojima, Motomu Toriyama, Hiroaki Iwaki, and Sachie Hirano",FALSE
+2020-12-10,Best Narrative,Ghost of Tsushima ,"Ian Ryan, Liz Albl, Patrick Downs, and Jordan Lemos",FALSE
+2020-12-10,Best Narrative,Hades ,Greg Kasavin,FALSE
+2020-12-10,Best Score and Music,Final Fantasy VII Remake ,"Nobuo Uematsu, Masashi Hamauzu, and Mitsuto Suzuki‡",TRUE
+2020-12-10,Best Score and Music,Doom Eternal ,Mick Gordon,FALSE
+2020-12-10,Best Score and Music,Hades ,Darren Korb,FALSE
+2020-12-10,Best Score and Music,The Last of Us Part II ,Gustavo Santaolalla and Mac Quayle,FALSE
+2020-12-10,Best Score and Music,Ori and the Will of the Wisps ,Gareth Coker,FALSE
+2020-12-10,Best Performance,Laura Bailey as Abby ,The Last of Us Part II‡,TRUE
+2020-12-10,Best Performance,Logan Cunningham as Hades ,Hades,FALSE
+2020-12-10,Best Performance,Nadji Jeter as Miles Morales ,Spider-Man: Miles Morales,FALSE
+2020-12-10,Best Performance,Ashley Johnson as Ellie ,The Last of Us Part II,FALSE
+2020-12-10,Best Performance,Daisuke Tsuji as Jin Sakai ,Ghost of Tsushima,FALSE
+2020-12-10,Best Ongoing Game,No Man's Sky ,Hello Games‡,TRUE
+2020-12-10,Best Ongoing Game,Apex Legends ,Respawn Entertainment,FALSE
+2020-12-10,Best Ongoing Game,Apex Legends , Electronic Arts,FALSE
+2020-12-10,Best Ongoing Game,Call of Duty: Warzone ,Infinity Ward,FALSE
+2020-12-10,Best Ongoing Game,Call of Duty: Warzone , Raven Software,FALSE
+2020-12-10,Best Ongoing Game,Call of Duty: Warzone , Activision,FALSE
+2020-12-10,Best Ongoing Game,Destiny 2 ,Bungie,FALSE
+2020-12-10,Best Ongoing Game,Fortnite ,Epic Games,FALSE
+2020-12-10,Best Mobile Game,Among Us ,Innersloth‡,TRUE
+2020-12-10,Best Mobile Game,Call of Duty: Mobile ,TiMi Studios,FALSE
+2020-12-10,Best Mobile Game,Call of Duty: Mobile , Activision,FALSE
+2020-12-10,Best Mobile Game,Genshin Impact ,miHoYo,FALSE
+2020-12-10,Best Mobile Game,Legends of Runeterra ,Riot Games,FALSE
+2020-12-10,Best Mobile Game,Pokémon Café Mix ,Genius Sonority,FALSE
+2020-12-10,Best Mobile Game,Pokémon Café Mix , The Pokémon Company,FALSE
+2020-12-10,Best VR / AR Game,Half-Life: Alyx ,Valve‡,TRUE
+2020-12-10,Best VR / AR Game,Dreams ,Media Molecule,FALSE
+2020-12-10,Best VR / AR Game,Dreams , Sony Interactive Entertainment,FALSE
+2020-12-10,Best VR / AR Game,Iron Man VR ,Camouflaj,FALSE
+2020-12-10,Best VR / AR Game,Iron Man VR , Sony Interactive Entertainment,FALSE
+2020-12-10,Best VR / AR Game,Star Wars Squadrons ,Motive Studios,FALSE
+2020-12-10,Best VR / AR Game,Star Wars Squadrons , Electronic Arts,FALSE
+2020-12-10,Best VR / AR Game,The Walking Dead: Saints & Sinners ,Skydance Interactive,FALSE
+2020-12-10,Best Action Game,Hades ,Supergiant Games‡,TRUE
+2020-12-10,Best Action Game,Doom Eternal ,id Software,FALSE
+2020-12-10,Best Action Game,Doom Eternal , Bethesda Softworks,FALSE
+2020-12-10,Best Action Game,Half-Life: Alyx ,Valve,FALSE
+2020-12-10,Best Action Game,Nioh 2 ,Team Ninja,FALSE
+2020-12-10,Best Action Game,Streets of Rage 4 ,Dotemu,FALSE
+2020-12-10,Best Role Playing Game,Final Fantasy VII Remake ,Square Enix‡,TRUE
+2020-12-10,Best Role Playing Game,Genshin Impact ,miHoYo,FALSE
+2020-12-10,Best Role Playing Game,Persona 5 Royal ,Atlus,FALSE
+2020-12-10,Best Role Playing Game,Persona 5 Royal , Sega,FALSE
+2020-12-10,Best Role Playing Game,Wasteland 3 ,inXile Entertainment,FALSE
+2020-12-10,Best Role Playing Game,Wasteland 3 , Deep Silver,FALSE
+2020-12-10,Best Role Playing Game,Yakuza: Like a Dragon ,Ryu Ga Gotoku Studio,FALSE
+2020-12-10,Best Role Playing Game,Yakuza: Like a Dragon , Sega,FALSE
+2020-12-10,Best Family Game,Animal Crossing: New Horizons ,Nintendo‡,TRUE
+2020-12-10,Best Family Game,Crash Bandicoot 4: It's About Time ,Toys for Bob,FALSE
+2020-12-10,Best Family Game,Crash Bandicoot 4: It's About Time , Activision,FALSE
+2020-12-10,Best Family Game,Fall Guys ,Mediatonic,FALSE
+2020-12-10,Best Family Game,Fall Guys , Devolver Digital,FALSE
+2020-12-10,Best Family Game,Mario Kart Live: Home Circuit ,Velan Studios,FALSE
+2020-12-10,Best Family Game,Mario Kart Live: Home Circuit , Nintendo,FALSE
+2020-12-10,Best Family Game,Minecraft Dungeons ,Mojang Studios,FALSE
+2020-12-10,Best Family Game,Minecraft Dungeons , Xbox Game Studios,FALSE
+2020-12-10,Best Family Game,Paper Mario: The Origami King ,Intelligent Systems,FALSE
+2020-12-10,Best Family Game,Paper Mario: The Origami King , Nintendo,FALSE
+2020-12-10,Best Sports/Racing Game,Tony Hawk's Pro Skater 1 + 2 ,Vicarious Visions,TRUE
+2020-12-10,Best Sports/Racing Game,Tony Hawk's Pro Skater 1 + 2 , Activision‡,TRUE
+2020-12-10,Best Sports/Racing Game,Dirt 5 ,Codemasters,FALSE
+2020-12-10,Best Sports/Racing Game,F1 2020 ,Codemasters,FALSE
+2020-12-10,Best Sports/Racing Game,FIFA 21 ,EA Vancouver,FALSE
+2020-12-10,Best Sports/Racing Game,FIFA 21 , EA Sports,FALSE
+2020-12-10,Best Sports/Racing Game,NBA 2K21 ,Visual Concepts,FALSE
+2020-12-10,Best Sports/Racing Game,NBA 2K21 , 2K,FALSE
+2020-12-10,Best Debut Game[d],Phasmophobia ,Kinetic Games‡,TRUE
+2020-12-10,Best Debut Game[d],Carrion ,Phobia Game Studio,FALSE
+2020-12-10,Best Debut Game[d],Carrion , Devolver Digital,FALSE
+2020-12-10,Best Debut Game[d],Mortal Shell ,Cold Symmetry,FALSE
+2020-12-10,Best Debut Game[d],Mortal Shell , Playstack,FALSE
+2020-12-10,Best Debut Game[d],Raji: An Ancient Epic ,Nodding Heads Games,FALSE
+2020-12-10,Best Debut Game[d],Raji: An Ancient Epic , Super.com,FALSE
+2020-12-10,Best Debut Game[d],Röki ,Polygon Treehouse,FALSE
+2020-12-10,Best Debut Game[d],Röki , United Label,FALSE
+2020-12-10,Player's Voice[f],Ghost of Tsushima ,Sucker Punch Productions,TRUE
+2020-12-10,Player's Voice[f],Ghost of Tsushima , Sony Interactive Entertainment‡,TRUE
+2020-12-10,Player's Voice[f],The Last of Us Part II ,Naughty Dog,FALSE
+2020-12-10,Player's Voice[f],The Last of Us Part II , Sony Interactive Entertainment[g],FALSE
+2020-12-10,Player's Voice[f],Doom Eternal ,id Software,FALSE
+2020-12-10,Player's Voice[f],Doom Eternal , Bethesda Softworks,FALSE
+2020-12-10,Player's Voice[f],Hades ,Supergiant Games,FALSE
+2020-12-10,Player's Voice[f],Spider-Man: Miles Morales ,Insomniac Games,FALSE
+2020-12-10,Player's Voice[f],Spider-Man: Miles Morales , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Game Direction,Deathloop ,Arkane Studios,TRUE
+2021-12-09,Best Game Direction,Deathloop , Bethesda Softworks‡,TRUE
+2021-12-09,Best Game Direction,It Takes Two ,Hazelight Studios,FALSE
+2021-12-09,Best Game Direction,It Takes Two , Electronic Arts,FALSE
+2021-12-09,Best Game Direction,Psychonauts 2 ,Double Fine,FALSE
+2021-12-09,Best Game Direction,Psychonauts 2 , Xbox Game Studios,FALSE
+2021-12-09,Best Game Direction,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Best Game Direction,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Game Direction,Returnal ,Housemarque,FALSE
+2021-12-09,Best Game Direction,Returnal , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Art Direction,Deathloop ,Arkane Studios,TRUE
+2021-12-09,Best Art Direction,Deathloop , Bethesda Softworks‡,TRUE
+2021-12-09,Best Art Direction,Kena: Bridge of Spirits ,Ember Lab,FALSE
+2021-12-09,Best Art Direction,Psychonauts 2 ,Double Fine,FALSE
+2021-12-09,Best Art Direction,Psychonauts 2 , Xbox Game Studios,FALSE
+2021-12-09,Best Art Direction,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Best Art Direction,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Art Direction,The Artful Escape ,Beethoven & Dinosaur,FALSE
+2021-12-09,Best Art Direction,The Artful Escape , Annapurna Interactive,FALSE
+2021-12-09,Best Audio Design,Forza Horizon 5 ,Playground Games,TRUE
+2021-12-09,Best Audio Design,Forza Horizon 5 , Xbox Game Studios‡,TRUE
+2021-12-09,Best Audio Design,Deathloop ,Arkane Studios,FALSE
+2021-12-09,Best Audio Design,Deathloop , Bethesda Softworks,FALSE
+2021-12-09,Best Audio Design,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Best Audio Design,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Audio Design,Resident Evil Village ,Capcom,FALSE
+2021-12-09,Best Audio Design,Returnal ,Housemarque,FALSE
+2021-12-09,Best Audio Design,Returnal , Sony Interactive Entertainment,FALSE
+2021-12-09,Games for Impact,Life Is Strange: True Colors ,Deck Nine,TRUE
+2021-12-09,Games for Impact,Life Is Strange: True Colors , Square Enix‡,TRUE
+2021-12-09,Games for Impact,Before Your Eyes ,GoodbyeWorld Games,FALSE
+2021-12-09,Games for Impact,Before Your Eyes , Skybound Games,FALSE
+2021-12-09,Games for Impact,Boyfriend Dungeon ,Kitfox Games,FALSE
+2021-12-09,Games for Impact,Chicory: A Colorful Tale ,Greg Lobanov,FALSE
+2021-12-09,Games for Impact,Chicory: A Colorful Tale , Finji,FALSE
+2021-12-09,Games for Impact,No Longer Home ,Humble Grove,FALSE
+2021-12-09,Games for Impact,No Longer Home , Fellow Traveller,FALSE
+2021-12-09,Best Independent Game,Kena: Bridge of Spirits ,Ember Lab‡,TRUE
+2021-12-09,Best Independent Game,12 Minutes ,Luís António,FALSE
+2021-12-09,Best Independent Game,12 Minutes , Annapurna Interactive,FALSE
+2021-12-09,Best Independent Game,Death's Door ,Acid Nerve,FALSE
+2021-12-09,Best Independent Game,Death's Door , Devolver Digital,FALSE
+2021-12-09,Best Independent Game,Inscryption ,Daniel Mullins Games,FALSE
+2021-12-09,Best Independent Game,Inscryption , Devolver Digital,FALSE
+2021-12-09,Best Independent Game,Loop Hero ,Four Quarters,FALSE
+2021-12-09,Best Independent Game,Loop Hero , Devolver Digital,FALSE
+2021-12-09,Best Community Support,Final Fantasy XIV ,Square Enix‡,TRUE
+2021-12-09,Best Community Support,Apex Legends ,Respawn Entertainment,FALSE
+2021-12-09,Best Community Support,Apex Legends , Electronic Arts,FALSE
+2021-12-09,Best Community Support,Destiny 2: Beyond Light ,Bungie,FALSE
+2021-12-09,Best Community Support,Fortnite ,Epic Games,FALSE
+2021-12-09,Best Community Support,No Man's Sky ,Hello Games,FALSE
+2021-12-09,Innovation in Accessibility,Forza Horizon 5 ,Playground Games,TRUE
+2021-12-09,Innovation in Accessibility,Forza Horizon 5 , Xbox Game Studios‡,TRUE
+2021-12-09,Innovation in Accessibility,Far Cry 6 ,Ubisoft,FALSE
+2021-12-09,Innovation in Accessibility,Marvel's Guardians of the Galaxy ,Eidos Montreal,FALSE
+2021-12-09,Innovation in Accessibility,Marvel's Guardians of the Galaxy , Square Enix,FALSE
+2021-12-09,Innovation in Accessibility,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Innovation in Accessibility,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Innovation in Accessibility,The Vale: Shadow of the Crown ,Falling Squirrel,FALSE
+2021-12-09,Best Action / Adventure Game,Metroid Dread ,MercurySteam,TRUE
+2021-12-09,Best Action / Adventure Game,Metroid Dread , Nintendo‡,TRUE
+2021-12-09,Best Action / Adventure Game,Marvel's Guardians of the Galaxy ,Eidos Montreal,FALSE
+2021-12-09,Best Action / Adventure Game,Marvel's Guardians of the Galaxy , Square Enix,FALSE
+2021-12-09,Best Action / Adventure Game,Psychonauts 2 ,Double Fine,FALSE
+2021-12-09,Best Action / Adventure Game,Psychonauts 2 , Xbox Game Studios,FALSE
+2021-12-09,Best Action / Adventure Game,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Best Action / Adventure Game,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Best Action / Adventure Game,Resident Evil Village ,Capcom,FALSE
+2021-12-09,Best Fighting Game,Guilty Gear Strive ,Arc System Works‡,TRUE
+2021-12-09,Best Fighting Game,Demon Slayer: Kimetsu no Yaiba ,The Hinokami Chronicles – CyberConnect2,FALSE
+2021-12-09,Best Fighting Game,Demon Slayer: Kimetsu no Yaiba , Sega,FALSE
+2021-12-09,Best Fighting Game,Melty Blood: Type Lumina ,French Bread,FALSE
+2021-12-09,Best Fighting Game,Melty Blood: Type Lumina , Delightworks,FALSE
+2021-12-09,Best Fighting Game,Nickelodeon All-Star Brawl ,Ludosity,FALSE
+2021-12-09,Best Fighting Game,Nickelodeon All-Star Brawl , Fair Play Labs,FALSE
+2021-12-09,Best Fighting Game,Nickelodeon All-Star Brawl , GameMill Entertainment,FALSE
+2021-12-09,Best Fighting Game,Virtua Fighter 5: Ultimate Showdown ,Sega,FALSE
+2021-12-09,Best Sports / Racing Game,Forza Horizon 5 ,Playground Games,TRUE
+2021-12-09,Best Sports / Racing Game,Forza Horizon 5 , Xbox Game Studios‡,TRUE
+2021-12-09,Best Sports / Racing Game,F1 2021 ,Codemasters,FALSE
+2021-12-09,Best Sports / Racing Game,F1 2021 , EA Sports,FALSE
+2021-12-09,Best Sports / Racing Game,FIFA 22 ,EA Vancouver,FALSE
+2021-12-09,Best Sports / Racing Game,FIFA 22 , EA Sports,FALSE
+2021-12-09,Best Sports / Racing Game,Hot Wheels Unleashed ,Milestone,FALSE
+2021-12-09,Best Sports / Racing Game,Riders Republic ,Ubisoft,FALSE
+2021-12-09,Best Multiplayer Game,It Takes Two ,Hazelight Studios,TRUE
+2021-12-09,Best Multiplayer Game,It Takes Two , Electronic Arts‡,TRUE
+2021-12-09,Best Multiplayer Game,Back 4 Blood ,Turtle Rock Studios,FALSE
+2021-12-09,Best Multiplayer Game,Back 4 Blood , WB Games,FALSE
+2021-12-09,Best Multiplayer Game,Knockout City ,Velan Studios,FALSE
+2021-12-09,Best Multiplayer Game,Knockout City , Electronic Arts,FALSE
+2021-12-09,Best Multiplayer Game,Monster Hunter Rise ,Capcom,FALSE
+2021-12-09,Best Multiplayer Game,New World ,Amazon Games,FALSE
+2021-12-09,Best Multiplayer Game,Valheim ,Iron Gate Studio,FALSE
+2021-12-09,Best Multiplayer Game,Valheim , Coffee Stain Studios,FALSE
+2021-12-09,Most Anticipated Game,Elden Ring ,FromSoftware,TRUE
+2021-12-09,Most Anticipated Game,Elden Ring , Bandai Namco‡,TRUE
+2021-12-09,Most Anticipated Game,God of War Ragnarök ,Santa Monica Studio,FALSE
+2021-12-09,Most Anticipated Game,God of War Ragnarök , Sony Interactive Entertainment,FALSE
+2021-12-09,Most Anticipated Game,Horizon Forbidden West ,Guerrilla Games,FALSE
+2021-12-09,Most Anticipated Game,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2021-12-09,Most Anticipated Game,The Legend of Zelda: Breath of the Wild sequel ,Nintendo,FALSE
+2021-12-09,Most Anticipated Game,Starfield ,Bethesda Game Studios,FALSE
+2021-12-09,Most Anticipated Game,Starfield , Bethesda Softworks,FALSE
+2021-12-09,Players' Voice[b],Halo Infinite ,343 Industries,TRUE
+2021-12-09,Players' Voice[b],Halo Infinite , Xbox Game Studios‡,TRUE
+2021-12-09,Players' Voice[b],Forza Horizon 5 ,Playground Games,FALSE
+2021-12-09,Players' Voice[b],Forza Horizon 5 , Xbox Game Studios,FALSE
+2021-12-09,Players' Voice[b],It Takes Two ,Hazelight Studios,FALSE
+2021-12-09,Players' Voice[b],It Takes Two , Electronic Arts,FALSE
+2021-12-09,Players' Voice[b],Metroid Dread ,MercurySteam,FALSE
+2021-12-09,Players' Voice[b],Metroid Dread , Nintendo,FALSE
+2021-12-09,Players' Voice[b],Resident Evil Village ,Capcom,FALSE
+2021-12-09,Game of the Year,It Takes Two ,Hazelight Studios,TRUE
+2021-12-09,Game of the Year,It Takes Two , Electronic Arts‡,TRUE
+2021-12-09,Game of the Year,Deathloop ,Arkane Studios,FALSE
+2021-12-09,Game of the Year,Deathloop , Bethesda Softworks,FALSE
+2021-12-09,Game of the Year,Metroid Dread ,MercurySteam,FALSE
+2021-12-09,Game of the Year,Metroid Dread , Nintendo,FALSE
+2021-12-09,Game of the Year,Psychonauts 2 ,Double Fine,FALSE
+2021-12-09,Game of the Year,Psychonauts 2 , Xbox Game Studios,FALSE
+2021-12-09,Game of the Year,Ratchet & Clank: Rift Apart ,Insomniac Games,FALSE
+2021-12-09,Game of the Year,Ratchet & Clank: Rift Apart , Sony Interactive Entertainment,FALSE
+2021-12-09,Game of the Year,Resident Evil Village ,Capcom,FALSE
+2021-12-09,Best Narrative,Marvel's Guardians of the Galaxy ,Eidos Montreal,TRUE
+2021-12-09,Best Narrative,Marvel's Guardians of the Galaxy , Square Enix‡,TRUE
+2021-12-09,Best Narrative,Deathloop ,Arkane Studios,FALSE
+2021-12-09,Best Narrative,Deathloop , Bethesda Softworks,FALSE
+2021-12-09,Best Narrative,It Takes Two ,Hazelight Studios,FALSE
+2021-12-09,Best Narrative,It Takes Two , Electronic Arts,FALSE
+2021-12-09,Best Narrative,Life Is Strange: True Colors ,Deck Nine,FALSE
+2021-12-09,Best Narrative,Life Is Strange: True Colors , Square Enix,FALSE
+2021-12-09,Best Narrative,Psychonauts 2 ,Double Fine,FALSE
+2021-12-09,Best Narrative,Psychonauts 2 , Xbox Game Studios,FALSE
+2021-12-09,Best Score and Music,Nier Replicant ver 1.22474487139 ,Keiichi Okabe‡,TRUE
+2021-12-09,Best Score and Music,Cyberpunk 2077 ,Marcin Przybylowicz and Piotr T. Adamczyk,FALSE
+2021-12-09,Best Score and Music,Deathloop ,Tom Salta,FALSE
+2021-12-09,Best Score and Music,Marvel's Guardians of the Galaxy ,Richard Jacques,FALSE
+2021-12-09,Best Score and Music,The Artful Escape ,Johnny Galvatron and Josh Abrahams,FALSE
+2021-12-09,Best Performance,Maggie Robertson as Lady Dimitrescu ,Resident Evil Village‡,TRUE
+2021-12-09,Best Performance,Erika Mori as Alex Chen ,Life Is Strange: True Colors,FALSE
+2021-12-09,Best Performance,Giancarlo Esposito as Antón Castillo ,Far Cry 6,FALSE
+2021-12-09,Best Performance,Jason E. Kelley as Colt Vahn ,Deathloop,FALSE
+2021-12-09,Best Performance,Ozioma Akagha as Juliana Blake ,Deathloop,FALSE
+2021-12-09,Best Ongoing Game,Final Fantasy XIV ,Square Enix‡,TRUE
+2021-12-09,Best Ongoing Game,Apex Legends ,Respawn Entertainment,FALSE
+2021-12-09,Best Ongoing Game,Apex Legends , Electronic Arts,FALSE
+2021-12-09,Best Ongoing Game,Call of Duty: Warzone ,Raven Software,FALSE
+2021-12-09,Best Ongoing Game,Call of Duty: Warzone , Activision,FALSE
+2021-12-09,Best Ongoing Game,Fortnite ,Epic Games,FALSE
+2021-12-09,Best Ongoing Game,Genshin Impact ,miHoYo,FALSE
+2021-12-09,Best Mobile Game,Genshin Impact ,miHoYo‡,TRUE
+2021-12-09,Best Mobile Game,Fantasian ,Mistwalker,FALSE
+2021-12-09,Best Mobile Game,League of Legends: Wild Rift ,Riot Games,FALSE
+2021-12-09,Best Mobile Game,Marvel Future Revolution ,Netmarble,FALSE
+2021-12-09,Best Mobile Game,Marvel Future Revolution , Marvel Games,FALSE
+2021-12-09,Best Mobile Game,Pokémon Unite ,TiMi Studio,FALSE
+2021-12-09,Best Mobile Game,Pokémon Unite , The Pokémon Company,FALSE
+2021-12-09,Best VR / AR Game,Resident Evil 4 ,Armature Studio,TRUE
+2021-12-09,Best VR / AR Game,Resident Evil 4 , Capcom,TRUE
+2021-12-09,Best VR / AR Game,Resident Evil 4 , Oculus Studios‡,TRUE
+2021-12-09,Best VR / AR Game,Hitman 3 ,IO Interactive,FALSE
+2021-12-09,Best VR / AR Game,I Expect You to Die 2: The Spy and the Liar ,Schell Games,FALSE
+2021-12-09,Best VR / AR Game,Lone Echo II ,Ready at Dawn,FALSE
+2021-12-09,Best VR / AR Game,Lone Echo II , Oculus Studios,FALSE
+2021-12-09,Best VR / AR Game,Sniper Elite VR ,Coatsink,FALSE
+2021-12-09,Best VR / AR Game,Sniper Elite VR , Just Add Water,FALSE
+2021-12-09,Best VR / AR Game,Sniper Elite VR , Rebellion Developments,FALSE
+2021-12-09,Best Action Game,Returnal ,Housemarque,TRUE
+2021-12-09,Best Action Game,Returnal , Sony Interactive Entertainment‡,TRUE
+2021-12-09,Best Action Game,Back 4 Blood ,Turtle Rock Studios,FALSE
+2021-12-09,Best Action Game,Back 4 Blood , WB Games,FALSE
+2021-12-09,Best Action Game,Chivalry II ,Torn Banner Studios,FALSE
+2021-12-09,Best Action Game,Chivalry II , Tripwire Interactive,FALSE
+2021-12-09,Best Action Game,Deathloop ,Arkane Studios,FALSE
+2021-12-09,Best Action Game,Deathloop , Bethesda Softworks,FALSE
+2021-12-09,Best Action Game,Far Cry 6 ,Ubisoft,FALSE
+2021-12-09,Best Role Playing Game,Tales of Arise ,Bandai Namco Studios,TRUE
+2021-12-09,Best Role Playing Game,Tales of Arise , Bandai Namco Entertainment‡,TRUE
+2021-12-09,Best Role Playing Game,Cyberpunk 2077 ,CD Projekt RED,FALSE
+2021-12-09,Best Role Playing Game,Monster Hunter Rise ,Capcom,FALSE
+2021-12-09,Best Role Playing Game,Scarlet Nexus ,Bandai Namco Studios,FALSE
+2021-12-09,Best Role Playing Game,Scarlet Nexus , Tose,FALSE
+2021-12-09,Best Role Playing Game,Scarlet Nexus , Bandai Namco,FALSE
+2021-12-09,Best Role Playing Game,Shin Megami Tensei V ,Atlus,FALSE
+2021-12-09,Best Role Playing Game,Shin Megami Tensei V , Sega,FALSE
+2021-12-09,Best Family Game,It Takes Two ,Hazelight Studios,TRUE
+2021-12-09,Best Family Game,It Takes Two , Electronic Arts‡,TRUE
+2021-12-09,Best Family Game,Mario Party Superstars ,NDcube,FALSE
+2021-12-09,Best Family Game,Mario Party Superstars , Nintendo,FALSE
+2021-12-09,Best Family Game,New Pokémon Snap ,Bandai Namco Studios,FALSE
+2021-12-09,Best Family Game,New Pokémon Snap , The Pokémon Company,FALSE
+2021-12-09,Best Family Game,Super Mario 3D World + Bowser's Fury ,Nintendo,FALSE
+2021-12-09,Best Family Game,WarioWare: Get It Together! ,Nintendo,FALSE
+2021-12-09,Best Sim / Strategy Game,Age of Empires IV ,Relic Entertainment,TRUE
+2021-12-09,Best Sim / Strategy Game,Age of Empires IV , Xbox Game Studios‡,TRUE
+2021-12-09,Best Sim / Strategy Game,Evil Genius 2: World Domination ,Rebellion Developments,FALSE
+2021-12-09,Best Sim / Strategy Game,Humankind ,Amplitude Studios,FALSE
+2021-12-09,Best Sim / Strategy Game,Humankind , Sega,FALSE
+2021-12-09,Best Sim / Strategy Game,Inscryption ,Daniel Mullins Games,FALSE
+2021-12-09,Best Sim / Strategy Game,Inscryption , Devolver Digital,FALSE
+2021-12-09,Best Sim / Strategy Game,Microsoft Flight Simulator ,Asobo Studio,FALSE
+2021-12-09,Best Sim / Strategy Game,Microsoft Flight Simulator , Xbox Game Studios,FALSE
+2021-12-09,Best Debut Indie Game,Kena: Bridge of Spirits ,Ember Lab‡,TRUE
+2021-12-09,Best Debut Indie Game,Sable ,Shedworks,FALSE
+2021-12-09,Best Debut Indie Game,Sable , Raw Fury,FALSE
+2021-12-09,Best Debut Indie Game,The Artful Escape ,Beethoven & Dinosaur,FALSE
+2021-12-09,Best Debut Indie Game,The Artful Escape , Annapurna Interactive,FALSE
+2021-12-09,Best Debut Indie Game,The Forgotten City ,Modern Storyteller,FALSE
+2021-12-09,Best Debut Indie Game,The Forgotten City , Dear Villager,FALSE
+2021-12-09,Best Debut Indie Game,Valheim ,Iron Gate Studio,FALSE
+2021-12-09,Best Debut Indie Game,Valheim , Coffee Stain Studios,FALSE
+2021-12-09,Players' Voice[b],Halo Infinite ,343 Industries,TRUE
+2021-12-09,Players' Voice[b],Halo Infinite , Xbox Game Studios‡,TRUE
+2021-12-09,Players' Voice[b],Forza Horizon 5 ,Playground Games,FALSE
+2021-12-09,Players' Voice[b],Forza Horizon 5 , Xbox Game Studios,FALSE
+2021-12-09,Players' Voice[b],It Takes Two ,Hazelight Studios,FALSE
+2021-12-09,Players' Voice[b],It Takes Two , Electronic Arts,FALSE
+2021-12-09,Players' Voice[b],Metroid Dread ,MercurySteam,FALSE
+2021-12-09,Players' Voice[b],Metroid Dread , Nintendo,FALSE
+2021-12-09,Players' Voice[b],Resident Evil Village ,Capcom,FALSE
+2022-12-08,Best Game Direction,Elden Ring ,FromSoftware,TRUE
+2022-12-08,Best Game Direction,Elden Ring , Bandai Namco Entertainment‡,TRUE
+2022-12-08,Best Game Direction,God of War Ragnarök ,Santa Monica Studio,FALSE
+2022-12-08,Best Game Direction,God of War Ragnarök , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Game Direction,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Best Game Direction,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Game Direction,Immortality ,Sam Barlow,FALSE
+2022-12-08,Best Game Direction,Immortality , Half Mermaid Productions,FALSE
+2022-12-08,Best Game Direction,Stray ,BlueTwelve Studio,FALSE
+2022-12-08,Best Game Direction,Stray , Annapurna Interactive,FALSE
+2022-12-08,Best Art Direction,Elden Ring ,FromSoftware,TRUE
+2022-12-08,Best Art Direction,Elden Ring , Bandai Namco Entertainment‡,TRUE
+2022-12-08,Best Art Direction,God of War Ragnarök ,Santa Monica Studio,FALSE
+2022-12-08,Best Art Direction,God of War Ragnarök , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Art Direction,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Best Art Direction,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Art Direction,Scorn ,Ebb Software,FALSE
+2022-12-08,Best Art Direction,Scorn , Kepler Interactive,FALSE
+2022-12-08,Best Art Direction,Stray ,BlueTwelve Studio,FALSE
+2022-12-08,Best Art Direction,Stray , Annapurna Interactive,FALSE
+2022-12-08,Best Audio Design,God of War Ragnarök ,Santa Monica Studio,TRUE
+2022-12-08,Best Audio Design,God of War Ragnarök , Sony Interactive Entertainment‡,TRUE
+2022-12-08,Best Audio Design,Call of Duty: Modern Warfare II ,Infinity Ward,FALSE
+2022-12-08,Best Audio Design,Call of Duty: Modern Warfare II , Activision,FALSE
+2022-12-08,Best Audio Design,Elden Ring ,FromSoftware,FALSE
+2022-12-08,Best Audio Design,Elden Ring , Bandai Namco Entertainment,FALSE
+2022-12-08,Best Audio Design,Gran Turismo 7 ,Polyphony Digital,FALSE
+2022-12-08,Best Audio Design,Gran Turismo 7 , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Audio Design,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Best Audio Design,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Games for Impact,As Dusk Falls ,Interior Night,TRUE
+2022-12-08,Games for Impact,As Dusk Falls , Xbox Game Studios‡,TRUE
+2022-12-08,Games for Impact,A Memoir Blue ,Cloisters Interactive,FALSE
+2022-12-08,Games for Impact,A Memoir Blue , Annapurna Interactive,FALSE
+2022-12-08,Games for Impact,Citizen Sleeper ,Jump Over the Age,FALSE
+2022-12-08,Games for Impact,Citizen Sleeper , Fellow Traveller,FALSE
+2022-12-08,Games for Impact,Endling: Extinction is Forever ,Herobeat Studios,FALSE
+2022-12-08,Games for Impact,Endling: Extinction is Forever , HandyGames,FALSE
+2022-12-08,Games for Impact,Hindsight ,Joel McDonald,FALSE
+2022-12-08,Games for Impact,Hindsight , Annapurna Interactive,FALSE
+2022-12-08,Games for Impact,I Was a Teenage Exocolonist ,Northway Games,FALSE
+2022-12-08,Games for Impact,I Was a Teenage Exocolonist , Finji,FALSE
+2022-12-08,Best Independent Game,Stray ,BlueTwelve Studio,TRUE
+2022-12-08,Best Independent Game,Stray , Annapurna Interactive‡,TRUE
+2022-12-08,Best Independent Game,Cult of the Lamb ,Massive Monster,FALSE
+2022-12-08,Best Independent Game,Cult of the Lamb , Devolver Digital,FALSE
+2022-12-08,Best Independent Game,Neon White ,Angel Matrix,FALSE
+2022-12-08,Best Independent Game,Neon White , Annapurna Interactive,FALSE
+2022-12-08,Best Independent Game,Sifu ,Sloclap,FALSE
+2022-12-08,Best Independent Game,Tunic ,Andrew Shouldice,FALSE
+2022-12-08,Best Independent Game,Tunic , Finji,FALSE
+2022-12-08,Best Community Support[f],Final Fantasy XIV ,Square Enix‡,TRUE
+2022-12-08,Best Community Support[f],Apex Legends ,Respawn Entertainment,FALSE
+2022-12-08,Best Community Support[f],Apex Legends , Electronic Arts,FALSE
+2022-12-08,Best Community Support[f],Destiny 2: The Witch Queen ,Bungie,FALSE
+2022-12-08,Best Community Support[f],Fortnite ,Epic Games,FALSE
+2022-12-08,Best Community Support[f],No Man's Sky ,Hello Games,FALSE
+2022-12-08,Innovation in Accessibility,God of War Ragnarök ,Santa Monica Studio,TRUE
+2022-12-08,Innovation in Accessibility,God of War Ragnarök , Sony Interactive Entertainment‡,TRUE
+2022-12-08,Innovation in Accessibility,As Dusk Falls ,Interior Night,FALSE
+2022-12-08,Innovation in Accessibility,As Dusk Falls , Xbox Game Studios,FALSE
+2022-12-08,Innovation in Accessibility,Return to Monkey Island ,"Terrible Toybox, Lucasfilm Games",FALSE
+2022-12-08,Innovation in Accessibility,Return to Monkey Island , Devolver Digital,FALSE
+2022-12-08,Innovation in Accessibility,The Last of Us Part I ,Naughty Dog,FALSE
+2022-12-08,Innovation in Accessibility,The Last of Us Part I , Sony Interactive Entertainment,FALSE
+2022-12-08,Innovation in Accessibility,The Quarry ,Supermassive Games,FALSE
+2022-12-08,Innovation in Accessibility,The Quarry , 2K,FALSE
+2022-12-08,Best Action/Adventure Game,God of War Ragnarök ,Santa Monica Studio,TRUE
+2022-12-08,Best Action/Adventure Game,God of War Ragnarök , Sony Interactive Entertainment‡,TRUE
+2022-12-08,Best Action/Adventure Game,A Plague Tale: Requiem ,Asobo Studio,FALSE
+2022-12-08,Best Action/Adventure Game,A Plague Tale: Requiem , Focus Entertainment,FALSE
+2022-12-08,Best Action/Adventure Game,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Best Action/Adventure Game,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Action/Adventure Game,Stray ,BlueTwelve Studio,FALSE
+2022-12-08,Best Action/Adventure Game,Stray , Annapurna Interactive,FALSE
+2022-12-08,Best Action/Adventure Game,Tunic ,Andrew Shouldice,FALSE
+2022-12-08,Best Action/Adventure Game,Tunic , Finji,FALSE
+2022-12-08,Best Fighting Game,MultiVersus ,Player First Games,TRUE
+2022-12-08,Best Fighting Game,MultiVersus , Warner Bros. Interactive Entertainment‡,TRUE
+2022-12-08,Best Fighting Game,DNF Duel ,"Arc System Works, Eighting, Neople",FALSE
+2022-12-08,Best Fighting Game,DNF Duel , Nexon,FALSE
+2022-12-08,Best Fighting Game,JoJo's Bizarre Adventure: All Star Battle R ,CyberConnect2,FALSE
+2022-12-08,Best Fighting Game,JoJo's Bizarre Adventure: All Star Battle R , Bandai Namco Entertainment,FALSE
+2022-12-08,Best Fighting Game,The King of Fighters XV ,SNK,FALSE
+2022-12-08,Best Fighting Game,Sifu ,Sloclap,FALSE
+2022-12-08,Best Sports/Racing Game,Gran Turismo 7 ,Polyphony Digital,TRUE
+2022-12-08,Best Sports/Racing Game,Gran Turismo 7 , Sony Interactive Entertainment‡,TRUE
+2022-12-08,Best Sports/Racing Game,F1 22 ,Codemasters,FALSE
+2022-12-08,Best Sports/Racing Game,F1 22 , EA Sports,FALSE
+2022-12-08,Best Sports/Racing Game,FIFA 23 ,"EA Vancouver, EA Romania",FALSE
+2022-12-08,Best Sports/Racing Game,FIFA 23 , EA Sports,FALSE
+2022-12-08,Best Sports/Racing Game,NBA 2K23 ,Visual Concepts,FALSE
+2022-12-08,Best Sports/Racing Game,NBA 2K23 , 2K Sports,FALSE
+2022-12-08,Best Sports/Racing Game,OlliOlli World ,Roll7,FALSE
+2022-12-08,Best Sports/Racing Game,OlliOlli World , Private Division,FALSE
+2022-12-08,Best Multiplayer Game,Splatoon 3 ,Nintendo EPD,TRUE
+2022-12-08,Best Multiplayer Game,Splatoon 3 , Nintendo‡,TRUE
+2022-12-08,Best Multiplayer Game,Call of Duty: Modern Warfare II ,Infinity Ward,FALSE
+2022-12-08,Best Multiplayer Game,Call of Duty: Modern Warfare II , Activision,FALSE
+2022-12-08,Best Multiplayer Game,MultiVersus ,Player First Games,FALSE
+2022-12-08,Best Multiplayer Game,MultiVersus , Warner Bros. Interactive Entertainment,FALSE
+2022-12-08,Best Multiplayer Game,Overwatch 2 ,Blizzard Entertainment,FALSE
+2022-12-08,Best Multiplayer Game,Teenage Mutant Ninja Turtles: Shredder's Revenge ,Tribute Games,FALSE
+2022-12-08,Best Multiplayer Game,Teenage Mutant Ninja Turtles: Shredder's Revenge , Dotemu,FALSE
+2022-12-08,Most Anticipated Game,The Legend of Zelda: Tears of the Kingdom ,Nintendo EPD,TRUE
+2022-12-08,Most Anticipated Game,The Legend of Zelda: Tears of the Kingdom , Nintendo‡,TRUE
+2022-12-08,Most Anticipated Game,Final Fantasy XVI ,Square Enix Creative Business Unit III,FALSE
+2022-12-08,Most Anticipated Game,Final Fantasy XVI , Square Enix,FALSE
+2022-12-08,Most Anticipated Game,Hogwarts Legacy ,Avalanche Software,FALSE
+2022-12-08,Most Anticipated Game,Hogwarts Legacy , Warner Bros. Interactive Entertainment,FALSE
+2022-12-08,Most Anticipated Game,Resident Evil 4 ,Capcom,FALSE
+2022-12-08,Most Anticipated Game,Starfield ,Bethesda Game Studios,FALSE
+2022-12-08,Most Anticipated Game,Starfield , Bethesda Softworks,FALSE
+2022-12-08,Players' Voice[h],Genshin Impact ,miHoYo‡,TRUE
+2022-12-08,Players' Voice[h],Elden Ring ,FromSoftware,FALSE
+2022-12-08,Players' Voice[h],Elden Ring , Bandai Namco Entertainment,FALSE
+2022-12-08,Players' Voice[h],God of War Ragnarök ,Santa Monica Studio,FALSE
+2022-12-08,Players' Voice[h],God of War Ragnarök , Sony Interactive Entertainment,FALSE
+2022-12-08,Players' Voice[h],Sonic Frontiers ,Sonic Team,FALSE
+2022-12-08,Players' Voice[h],Sonic Frontiers , Sega,FALSE
+2022-12-08,Players' Voice[h],Stray ,BlueTwelve Studio,FALSE
+2022-12-08,Players' Voice[h],Stray , Annapurna Interactive,FALSE
+2022-12-08,Game of the Year,Elden Ring ,FromSoftware,TRUE
+2022-12-08,Game of the Year,Elden Ring , Bandai Namco Entertainment‡,TRUE
+2022-12-08,Game of the Year,A Plague Tale: Requiem ,Asobo Studio,FALSE
+2022-12-08,Game of the Year,A Plague Tale: Requiem , Focus Entertainment,FALSE
+2022-12-08,Game of the Year,God of War Ragnarök ,Santa Monica Studio,FALSE
+2022-12-08,Game of the Year,God of War Ragnarök , Sony Interactive Entertainment,FALSE
+2022-12-08,Game of the Year,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Game of the Year,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Game of the Year,Stray ,BlueTwelve Studio,FALSE
+2022-12-08,Game of the Year,Stray , Annapurna Interactive,FALSE
+2022-12-08,Game of the Year,Xenoblade Chronicles 3 ,Monolith Soft,FALSE
+2022-12-08,Game of the Year,Xenoblade Chronicles 3 , Nintendo,FALSE
+2022-12-08,Best Narrative,God of War Ragnarök ,Santa Monica Studio,TRUE
+2022-12-08,Best Narrative,God of War Ragnarök , Sony Interactive Entertainment‡,TRUE
+2022-12-08,Best Narrative,A Plague Tale: Requiem ,Asobo Studio,FALSE
+2022-12-08,Best Narrative,A Plague Tale: Requiem , Focus Entertainment,FALSE
+2022-12-08,Best Narrative,Elden Ring ,FromSoftware,FALSE
+2022-12-08,Best Narrative,Elden Ring , Bandai Namco Entertainment,FALSE
+2022-12-08,Best Narrative,Horizon Forbidden West ,Guerrilla Games,FALSE
+2022-12-08,Best Narrative,Horizon Forbidden West , Sony Interactive Entertainment,FALSE
+2022-12-08,Best Narrative,Immortality ,Sam Barlow,FALSE
+2022-12-08,Best Narrative,Immortality , Half Mermaid Productions,FALSE
+2022-12-08,Best Score and Music,God of War Ragnarök ,Bear McCreary‡,TRUE
+2022-12-08,Best Score and Music,A Plague Tale: Requiem ,Olivier Deriviere,FALSE
+2022-12-08,Best Score and Music,Elden Ring ,Tsukasa Saitoh,FALSE
+2022-12-08,Best Score and Music,Metal: Hellsinger ,Two Feathers,FALSE
+2022-12-08,Best Score and Music,Xenoblade Chronicles 3 ,Yasunori Mitsuda,FALSE
+2022-12-08,Best Performance,Christopher Judge as Kratos ,God of War Ragnarök‡,TRUE
+2022-12-08,Best Performance,Ashly Burch as Aloy ,Horizon Forbidden West,FALSE
+2022-12-08,Best Performance,Manon Gage as Marissa Marcel ,Immortality,FALSE
+2022-12-08,Best Performance,Charlotte McBurney as Amicia de Rune ,A Plague Tale: Requiem,FALSE
+2022-12-08,Best Performance,Sunny Suljic as Atreus ,God of War Ragnarök,FALSE
+2022-12-08,Best Ongoing Game,Final Fantasy XIV ,Square Enix‡,TRUE
+2022-12-08,Best Ongoing Game,Apex Legends ,Respawn Entertainment,FALSE
+2022-12-08,Best Ongoing Game,Apex Legends , Electronic Arts,FALSE
+2022-12-08,Best Ongoing Game,Destiny 2: The Witch Queen ,Bungie,FALSE
+2022-12-08,Best Ongoing Game,Fortnite ,Epic Games,FALSE
+2022-12-08,Best Ongoing Game,Genshin Impact ,miHoYo,FALSE
+2022-12-08,Best Mobile Game,Marvel Snap ,Second Dinner,TRUE
+2022-12-08,Best Mobile Game,Marvel Snap , Nuverse‡,TRUE
+2022-12-08,Best Mobile Game,Apex Legends Mobile ,Respawn Entertainment,FALSE
+2022-12-08,Best Mobile Game,Apex Legends Mobile , Electronic Arts,FALSE
+2022-12-08,Best Mobile Game,Diablo Immortal ,NetEase,FALSE
+2022-12-08,Best Mobile Game,Diablo Immortal , Blizzard Entertainment,FALSE
+2022-12-08,Best Mobile Game,Genshin Impact ,miHoYo,FALSE
+2022-12-08,Best Mobile Game,Tower of Fantasy ,Hotta Studio,FALSE
+2022-12-08,Best Mobile Game,Tower of Fantasy , Level Infinite,FALSE
+2022-12-08,Best VR/AR Game,Moss: Book II ,Polyarc‡,TRUE
+2022-12-08,Best VR/AR Game,After the Fall ,Vertigo Games,FALSE
+2022-12-08,Best VR/AR Game,Among Us VR ,Innersloth,FALSE
+2022-12-08,Best VR/AR Game,Bonelab ,Stress Level Zero,FALSE
+2022-12-08,Best VR/AR Game,Red Matter 2 ,Vertical Robot,FALSE
+2022-12-08,Best Action Game,Bayonetta 3 ,PlatinumGames,TRUE
+2022-12-08,Best Action Game,Bayonetta 3 , Nintendo‡,TRUE
+2022-12-08,Best Action Game,Call of Duty: Modern Warfare II ,Infinity Ward,FALSE
+2022-12-08,Best Action Game,Call of Duty: Modern Warfare II , Activision,FALSE
+2022-12-08,Best Action Game,Neon White ,Angel Matrix,FALSE
+2022-12-08,Best Action Game,Neon White , Annapurna Interactive,FALSE
+2022-12-08,Best Action Game,Sifu ,Sloclap,FALSE
+2022-12-08,Best Action Game,Teenage Mutant Ninja Turtles: Shredder's Revenge ,Tribute Games,FALSE
+2022-12-08,Best Action Game,Teenage Mutant Ninja Turtles: Shredder's Revenge , Dotemu,FALSE
+2022-12-08,Best Role Playing Game,Elden Ring ,FromSoftware,TRUE
+2022-12-08,Best Role Playing Game,Elden Ring , Bandai Namco Entertainment‡,TRUE
+2022-12-08,Best Role Playing Game,Live a Live ,Square Enix,FALSE
+2022-12-08,Best Role Playing Game,Live a Live , Nintendo,FALSE
+2022-12-08,Best Role Playing Game,Pokémon Legends: Arceus ,Game Freak,FALSE
+2022-12-08,Best Role Playing Game,Pokémon Legends: Arceus ," The Pokémon Company, Nintendo",FALSE
+2022-12-08,Best Role Playing Game,Triangle Strategy ,Artdink,FALSE
+2022-12-08,Best Role Playing Game,Triangle Strategy , Square Enix,FALSE
+2022-12-08,Best Role Playing Game,Xenoblade Chronicles 3 ,Monolith Soft,FALSE
+2022-12-08,Best Role Playing Game,Xenoblade Chronicles 3 , Nintendo,FALSE
+2022-12-08,Best Family Game,Kirby and the Forgotten Land ,HAL Laboratory,TRUE
+2022-12-08,Best Family Game,Kirby and the Forgotten Land , Nintendo‡,TRUE
+2022-12-08,Best Family Game,Lego Star Wars: The Skywalker Saga ,Traveller's Tales,FALSE
+2022-12-08,Best Family Game,Lego Star Wars: The Skywalker Saga , Warner Bros. Interactive Entertainment,FALSE
+2022-12-08,Best Family Game,Mario + Rabbids Sparks of Hope ,"Ubisoft Milan, Ubisoft Paris",FALSE
+2022-12-08,Best Family Game,Mario + Rabbids Sparks of Hope , Ubisoft,FALSE
+2022-12-08,Best Family Game,Nintendo Switch Sports ,Nintendo EPD,FALSE
+2022-12-08,Best Family Game,Nintendo Switch Sports , Nintendo,FALSE
+2022-12-08,Best Family Game,Splatoon 3 ,Nintendo EPD,FALSE
+2022-12-08,Best Family Game,Splatoon 3 , Nintendo,FALSE
+2022-12-08,Best Sim/Strategy Game,Mario + Rabbids Sparks of Hope ,"Ubisoft Milan, Ubisoft Paris",TRUE
+2022-12-08,Best Sim/Strategy Game,Mario + Rabbids Sparks of Hope , Ubisoft‡,TRUE
+2022-12-08,Best Sim/Strategy Game,Dune: Spice Wars ,Shiro Games,FALSE
+2022-12-08,Best Sim/Strategy Game,Dune: Spice Wars , Funcom,FALSE
+2022-12-08,Best Sim/Strategy Game,Total War: Warhammer III ,Creative Assembly,FALSE
+2022-12-08,Best Sim/Strategy Game,Total War: Warhammer III , Sega,FALSE
+2022-12-08,Best Sim/Strategy Game,Two Point Campus ,Two Point Studios,FALSE
+2022-12-08,Best Sim/Strategy Game,Two Point Campus , Sega,FALSE
+2022-12-08,Best Sim/Strategy Game,Victoria 3 ,Paradox Development Studio,FALSE
+2022-12-08,Best Sim/Strategy Game,Victoria 3 , Paradox Interactive,FALSE
+2022-12-08,Best Debut Indie Game,Stray ,BlueTwelve Studio,TRUE
+2022-12-08,Best Debut Indie Game,Stray , Annapurna Interactive‡,TRUE
+2022-12-08,Best Debut Indie Game,Neon White ,Angel Matrix,FALSE
+2022-12-08,Best Debut Indie Game,Neon White , Annapurna Interactive,FALSE
+2022-12-08,Best Debut Indie Game,Norco ,Geography of Robots,FALSE
+2022-12-08,Best Debut Indie Game,Norco , Raw Fury,FALSE
+2022-12-08,Best Debut Indie Game,Tunic ,Andrew Shouldice,FALSE
+2022-12-08,Best Debut Indie Game,Tunic , Finji,FALSE
+2022-12-08,Best Debut Indie Game,Vampire Survivors ,Luca Galante,FALSE
+2022-12-08,Best Adaptation[g],Arcane (animated series) ,"Fortiche, Riot Games",TRUE
+2022-12-08,Best Adaptation[g],Arcane (animated series) , Netflix; based on League of Legends by Riot Games‡,TRUE
+2022-12-08,Best Adaptation[g],Cyberpunk: Edgerunners (anime series) ,"Studio Trigger, CD Projekt",FALSE
+2022-12-08,Best Adaptation[g],Cyberpunk: Edgerunners (anime series) , Netflix; based on Cyberpunk 2077 by CD Projekt,FALSE
+2022-12-08,Best Adaptation[g],The Cuphead Show! (animated series) ,"Studio MDHR, King Features Syndicate",FALSE
+2022-12-08,Best Adaptation[g],The Cuphead Show! (animated series) , Netflix; based on Cuphead by Studio MDHR,FALSE
+2022-12-08,Best Adaptation[g],Sonic the Hedgehog 2 (film) ,Sega Sammy Group,FALSE
+2022-12-08,Best Adaptation[g],Sonic the Hedgehog 2 (film) , Paramount Pictures; based on Sonic the Hedgehog by Sega,FALSE
+2022-12-08,Best Adaptation[g],Uncharted (film) ,PlayStation Productions,FALSE
+2022-12-08,Best Adaptation[g],Uncharted (film) , Sony Pictures Releasing; based on Uncharted by Sony Interactive Entertainment,FALSE
