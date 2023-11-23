@@ -1,10 +1,10 @@
 ## Datasets
 
-Esports earnings and tournament data collected frpm [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data)
+`esports.csv` data collected from [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data)
 
 - `HistoricalEsportData.csv`
 
-Stock data collected from [Yahoo Finance])(https://finance.yahoo.com/)
+Publisher stock data collected from [Yahoo Finance](https://finance.yahoo.com/)
 
 - `ATVI.csv`     (Activision Blizzard stocks)
 - `BANNAM.T.csv` (Bandai Namco stocks)
@@ -16,8 +16,8 @@ Stock data collected from [Yahoo Finance])(https://finance.yahoo.com/)
 - `TTWO.csv`     (Take-Two stocks)
 - `UBI.PA.csv`   (Ubisoft stocks)
 
-General games data collected from [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year)
+`game_info.csv` collected from [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year)
 
-The Game Awards data collected from [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards)
+`game_awards.csv` [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards)
 
-Game Review data collected from [Metacritic](https://www.metacritic.com/)
+`game_reviews.csv` [OpenCritic](https://opencritic.com/)
