@@ -192,7 +192,8 @@ publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
     #
     mutate(publishers = publisher,
            publishers = str_remove_all(publishers, "[A-Z][A-Z]+\\:\\s?"),
-           publishers = str_remove_all(publishers, '\\(.*\\)')) |> 
+           publishers = str_remove_all(publishers, '\\(.*\\)'),
+           publishers = str_remove_all(publishers, '\\[.*\\]')) |> 
     separate_rows(publishers, sep = "\\\n") |> 
     filter(publishers != '')
   
@@ -438,20 +439,21 @@ get_games_list <- function(link = '/wiki/Category:2022_video_games'){
 #empty dataset that will store all games
 game_info <- data.frame()
 
-game_info <-
-rbind(game_info,
-      get_games_list('/wiki/Category:2013_video_games'),
-      get_games_list('/wiki/Category:2014_video_games'),
-      get_games_list('/wiki/Category:2015_video_games'),
-      get_games_list('/wiki/Category:2016_video_games'),
-      get_games_list('/wiki/Category:2017_video_games'),
-      get_games_list('/wiki/Category:2018_video_games'),
-      get_games_list('/wiki/Category:2019_video_games'),
-      get_games_list('/wiki/Category:2020_video_games'),
-      get_games_list('/wiki/Category:2021_video_games'),
-      get_games_list('/wiki/Category:2022_video_games'),
-      get_games_list('/wiki/Category:2023_video_games')
-      )
+
+#game_info <-
+#rbind(game_info,
+#      get_games_list('/wiki/Category:2013_video_games'),
+#      get_games_list('/wiki/Category:2014_video_games'),
+#      get_games_list('/wiki/Category:2015_video_games'),
+#      get_games_list('/wiki/Category:2016_video_games'),
+#      get_games_list('/wiki/Category:2017_video_games'),
+#      get_games_list('/wiki/Category:2018_video_games'),
+#      get_games_list('/wiki/Category:2019_video_games'),
+#      get_games_list('/wiki/Category:2020_video_games'),
+#      get_games_list('/wiki/Category:2021_video_games'),
+#      get_games_list('/wiki/Category:2022_video_games'),
+#      get_games_list('/wiki/Category:2023_video_games')
+#      )
 
 
 for( year in c(2013:2023)){
@@ -459,7 +461,7 @@ for( year in c(2013:2023)){
                           get_games_list(rlang::englue('/wiki/Category:{year}_video_games')))
 }
 
-write_csv(game_info, 'data\raw\game_info.csv')
+write_csv(game_info, 'data/raw/game_info.csv')
 
 ################################################################################
 
