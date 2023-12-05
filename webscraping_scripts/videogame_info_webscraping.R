@@ -355,20 +355,6 @@ write_csv(game_info, 'data/raw/game_info.csv')
 test_2023 <- get_games_list('/wiki/Category:2023_video_games')
 
 
-get_games_info('/wiki/Karateka_(video_game)') |> 
-  #select(release)
-  release_extractor() #|> 
-  publisher_cleaner('/wiki/Karateka_(video_game)') |> 
-  add_series(link = game) |> 
-  name_cleaner() |> 
-  genre_cleaner()
-
-test_uh2 <-  
-unlist(test_uh |> 
-  distinct(release))
-
-print(test_uh2)
-
 ##############################
 ######    some notes    ######
 ##############################
