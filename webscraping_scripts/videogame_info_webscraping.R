@@ -51,11 +51,6 @@ result <- tryCatch({
       values_from = 'y'
     ) |> 
     janitor::clean_names() |> 
-    #mutate(name = str_replace_all(name, '%22', '"'),
-    #       name = str_replace_all(name, '%3F', '?'),
-    #       name = str_replace_all(name, '%27', "'"),
-    #       name = str_replace_all(name, 'é')) |> 
-    #cleaning up the column names a bit more
     rename(publishers = publisher_s,
            genres = genre_s,
            modes = mode_s) |> 
@@ -94,7 +89,7 @@ release_extractor <- function(df){
   
   df |> 
     mutate(
-      #these two cases should be able to capture all the release dates (revise later)
+      #these four cases capture most the release dates
       release = case_when(  
         str_detect(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}') 
           ~ as.character(dmy(str_extract(release, '\\d\\d?\\s[A-Z]\\D{2,8},?\\s\\d{4}'))),
@@ -110,98 +105,7 @@ release_extractor <- function(df){
 }
 
 
-####################################################
-######    Dealing with multiple publishers    ######
-####################################################
 
-
-#a character vector of all publishers
-publisher_list <-
-  
-  pull((read_html('https://en.wikipedia.org/wiki/List_of_video_game_publishers') |> 
-          html_elements('.wikitable') |>
-          html_elements('tbody') |> 
-          html_table())[[2]] |> 
-         select(Publisher)) |> 
-  tolower()
-
-#NOTE: this process banks on the fact that publishers on the Wikipedia page are 
-# hyper linked and therefore can be extracted into publisher_list
-# this is NOT the case for all games --> must revise this process
-
-#helper function --> finds publishers directly from Wikipedia usually the previously
-# made publisher_list
-is_publisher <- function(x, publisher_list){
-  
-  publisher <- c()
-  for(element in x){
-    element <- tolower(element)
-  if(element %in% publisher_list){
-    publisher <- c(publisher, element)
-  }}
-
-  paste0(publisher, collapse = ",")
-}
-
-publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
-  
-  #finding all the titles for the links in the infobox on the Wikipage, which 
-  # (should) include the publishers
-  #publisher <- unique(
-  #  c(read_html(paste0('https://en.wikipedia.org', link)) |> 
-  #  html_elements('.infobox') |> 
-  #  html_elements('.infobox-data') |> 
-  #  html_elements('a') |> 
-  #  html_attr('title'),
-    
-  #  read_html(paste0('https://en.wikipedia.org', link)) |> 
-  #    html_elements('.infobox') |> 
-  #    html_elements('td') |> 
-  #    html_text()
-  #))
-  
-  publisher <-
-  read_html(paste0('https://en.wikipedia.org', link)) |> 
-    html_element('.infobox') |> 
-    html_elements('tr') |> 
-    html_text2(preserve_nbsp = TRUE)
-  
-  
-  publisher_index <- which(grepl("Publisher\\(s\\)", publisher))
-  
-  publisher <- publisher[publisher_index]
-  
-  publisher <- gsub('\\.mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul\\{line-height:inherit;list-style:none;margin:0;padding:0\\}\\.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li\\{margin-bottom:0\\}\\\n',
-                    '',
-                    publisher)
-  
-  publisher <- gsub('Publisher\\(s\\)\\\t',
-                    '',
-                    publisher)
-  
-  
-  
-  #attempting to try to resolve the missing links problem, these lines of code don't
-  # affect the output at the moment
-  #publisher <- c(publisher, read_html(paste0('https://en.wikipedia.org', link)) |> 
-  #                 html_elements('.infobox') |> 
-  #                 html_elements('.infobox-data') |> 
-  #                 html_text())
-  
-  df |> 
-    #
-    mutate(publishers = publisher,
-           publishers = str_remove_all(publishers, "[A-Z][A-Z]+\\:\\s?"),
-           publishers = str_remove_all(publishers, '\\(.*\\)'),
-           publishers = str_remove_all(publishers, '\\[.*\\]')) |> 
-    separate_rows(publishers, sep = "\\\n") |> 
-    filter(publishers != '')
-  
- # df |> 
-    #
-  #  mutate(publishers = is_publisher(publisher, publisher_list)) |> 
-   # separate_rows(publishers, sep = ",")
-}
 
 ########################################################
 ######    Making the missing series columns NA    ######
@@ -212,46 +116,16 @@ publisher_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
 add_series <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
   
   if(!('series' %in% names(df))){
-    
     df |> 
       add_column(series = NA, .after = 'publishers') |> 
       mutate(series = as.character(series))
   }
-  else{df}
-  
-  ### CHECK IF IT WILL STAY NA IF SERIE(S) ISNT IN THERE
- # series <-
-  #  read_html(paste0('https://en.wikipedia.org', link)) |> 
-  #  html_element('.infobox') |> 
-  #  html_elements('tr') |> 
-  #  html_text2(preserve_nbsp = TRUE)
-  
-  
-#  genre_index <- which(grepl("Genre\\(s\\)", genre))
-  
-#  genre <- genre[genre_index]
-  
-#  genre <- gsub('\\.mw-parser-output.*\\{margin-bottom:0\\}\\\n',
-#                '',
-#                genre)
-  
-  
-  
-#  genre <- gsub('Genre\\(s\\)\\\t',
-#                '',
-#                genre)
-  
-#  df |> 
-    #
-#    mutate(genres = genre,
-#           genres = str_remove_all(genres, "\\[[0-9]*\\]"),
-#           genres = str_remove_all(genres, '\\(.*\\)')) |> 
-#    separate_rows(genres, sep = ",") |> 
-#    separate_rows(genres, sep = '\\\n')
-  
-#}
-  
-  
+  else{
+    df |> 
+      category_cleaner(var = series, col_str = "^Series", link)
+    
+    
+  }
   
 }
 
@@ -263,54 +137,66 @@ add_series <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
 # converts to html-readable text
 # this function converts these characters back and gets rid of the '_' between words
 
+special_chr = list(c('%22', '"'), c('%3F', '?'), c('%27', "'"), c('%C3%A9', 'é'),
+                   c('%2B', '+'), c('%26', '&'), c('%CF%87', 'χ'), c('%C5%8D', 'ō'),
+                   c('%E2%80%93', '–'), c('%E2%80%99', "'"), c('%C5%AB', 'ū'),
+                   c('%C3%A6', 'æ'), c('%E2%99%AF', '♯'), c('%C3%BB', 'û'),
+                   c('%C3%97', '×'), c('%C3%B6', 'ö'), c('%E2%88%92', '−'),
+                   c('_', ' ')
+                   )
+
 name_cleaner <- function(df){
   
+  for(translation in special_chr){
+    
+  df <-
   df |> 
-    mutate(name = str_replace_all(name, '%22', '"'),
-           name = str_replace_all(name, '%3F', '?'),
-           name = str_replace_all(name, '%27', "'"),
-           name = str_replace_all(name, '%C3%A9', 'é'),
-           name = str_replace_all(name, '%2B', '+'),
-           name = str_replace_all(name, '%26', '&'),
-           name = str_replace_all(name, '_', ' ')
-           )
+    mutate(name = str_replace_all(name, translation[1], translation[2]))
+  }
+  
+  df
 }
 
-######################################
-######    Clean those genres    ######
-######################################
+################################################################################
 
-genre_cleaner <- function(df, link = '/wiki/Loop8:_Summer_of_Gods'){
+############################################
+######    General Category Cleaner    ######
+############################################
+
+category_cleaner <- function(df, var = publishers, col_str = "Publisher\\(s\\)", 
+                             link = '/wiki/Loop8:_Summer_of_Gods'){
   
-
-  genre <-
+  
+  category <-
     read_html(paste0('https://en.wikipedia.org', link)) |> 
     html_element('.infobox') |> 
     html_elements('tr') |> 
     html_text2(preserve_nbsp = TRUE)
   
+  #"Publisher\\(s\\)"
+  category_index <- which(grepl(col_str, category))
   
-  genre_index <- which(grepl("Genre\\(s\\)", genre))
+  category <- category[category_index]
   
-  genre <- genre[genre_index]
-  
-  genre <- gsub('\\.mw-parser-output.*\\{margin-bottom:0\\}\\\n',
-                    '',
-                    genre)
+  category <- gsub('\\.mw-parser-output.*\\{.*\\}',
+                '',
+                category)
   
   
   
-  genre <- gsub('Genre\\(s\\)\\\t',
-                    '',
-                    genre)
+  category <- gsub(paste0(col_str, '\\\t'),
+                '',
+                category)
   
   df |> 
-    #
-    mutate(genres = genre,
-           genres = str_remove_all(genres, "\\[[0-9]*\\]"),
-           genres = str_remove_all(genres, '\\(.*\\)')) |> 
-    separate_rows(genres, sep = ",") |> 
-    separate_rows(genres, sep = '\\\n')
+    
+    mutate({{var}} := category,
+           {{var}} := str_remove_all({{var}}, '\\[.*\\]'),
+           {{var}} := str_remove_all({{var}}, '\\(.*\\)')) |> 
+    separate_rows({{var}}, sep = ",") |> 
+    separate_rows({{var}}, sep = '\\\n') |> 
+    filter({{var}} != '') |>
+    mutate({{var}} := trimws({{var}}, 'both'))
   
 }
 
@@ -360,10 +246,11 @@ get_games_list <- function(link = '/wiki/Category:2022_video_games'){
         game_info <-
         get_games_info(game) |> 
           release_extractor() |> 
-          publisher_cleaner(game) |> 
-          add_series() |> 
+          category_cleaner(var = publishers, col_str = "Publisher\\(s\\)", link = game) |> 
+          add_series(link = game) |> 
           name_cleaner() |> 
-          genre_cleaner()
+          category_cleaner(var = genres, col_str = "Genre\\(s\\)", link = game) |> 
+          category_cleaner(var = modes, col_str = "Mode\\(s\\)", link = game)
         
         games_info_df <- rbind(games_info_df, game_info)
       }
@@ -472,7 +359,7 @@ get_games_info('/wiki/Karateka_(video_game)') |>
   #select(release)
   release_extractor() #|> 
   publisher_cleaner('/wiki/Karateka_(video_game)') |> 
-  add_series() |> 
+  add_series(link = game) |> 
   name_cleaner() |> 
   genre_cleaner()
 
