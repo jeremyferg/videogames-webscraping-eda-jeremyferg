@@ -1,0 +1,25 @@
+mode_id,modes
+1,single-player
+2,multi-player
+3,online
+4,single-player and multi-player
+5,raid
+6,arena
+7,quest
+8,vortex
+9,frontier hunter
+10,frontier gate
+11,guild
+12,cooperative
+13,player vs player
+14,historical missions
+15,raids
+16,player versus environment
+17,versus
+18,virtual reality games
+19,speedrun
+20,leaderboards
+21,battle royale
+22,capture the flag
+23,deathmatch
+24,player-vs-player
