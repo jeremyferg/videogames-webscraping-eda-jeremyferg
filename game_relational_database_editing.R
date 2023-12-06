@@ -456,14 +456,64 @@ esports <-
 ### WRITE ALL THE DATA SETS TO CSV ###
 ######################################
 
+#related to game info
 write_csv(game_info, 'game_info.csv')
 write_csv(games, 'games.csv')
 write_csv(publishers, 'publishers.csv')
 write_csv(game_genres, 'game_genres.csv')
 write_csv(game_series, 'game_series.csv')
 write_csv(game_modes, 'game_modes.csv')
+#related to esports
 write_csv(esports, 'esports.csv')
+#related to publisher stocks
 write_csv(publisher_stocks, 'publisher_stocks.csv')
+#related to game awards
 write_csv(award_category, 'award_category.csv')
 write_csv(game_awards, 'game_awards.csv')
-write_csv(game_genres, 'game_genres.csv')
+#related to game reviews
+write_csv(game_reviews, 'game_reviews.csv')
+write_csv(game_reviewers, 'game_reviewers.csv')
+write_csv(game_review_companies, 'game_review_companies.csv')
+
+################################################################################
+
+#############################
+### CREATING THE CODEBOOK ###
+#############################
+
+games_database_codebook <-
+tribble(
+  ~variable, ~meaning,
+  'release_date', 'First release date of a game',
+  'game_id', 'Unique ID number of a game',
+  'game', 'Title of the game',
+  'publisher_id', 'Unique ID number of a publisher',
+  'publishers', 'Name of a publisher',
+  'series_id', 'Unique ID number of a series',
+  'series', 'Name of a series',
+  'genre_id', 'Unique ID number of a genre',
+  'genre', 'Name of a genre',
+  'mode_id', 'Unique ID number of a mode',
+  'mode', 'Name of a mode',
+  'date', 'Date of the observation record',
+  'earnings', 'Total esports earnings of a game for a specified month',
+  'players', 'Number of participating esports players for a game within a specified month',
+  'tournaments', 'Number of esports tournaments for a game the past month',
+  'open', 'Opening daily value of a stock',
+  'high', 'Highest daily value of a stock',
+  'low', 'Lowest daily value of a stock',
+  'close', 'Closing daily value of a stock',
+  'volume', 'Amount of shares traded on a specified date',
+  'adj_close', 'Closing daily value after adjustments for splits and dividend distributions',
+  'category_id', 'Unique ID number of all Game Awards category names',
+  'category', 'Name of a Game Awards category',
+  'winner', 'True if the observation won the specified Game Awards category',
+  'review_company_id', 'Unique ID number of all game review companys/groups',
+  'review_company', 'Name of the game review_company/group',
+  'reviewer_id', 'Unique ID number of all game reviewers',
+  'reviewer', 'Name of the reviewer',
+  'rating', 'Game rating given by a reviewer (out of 100)',
+  'rating_yesterday', 'The average rating of a game up to the date of the observation'
+)
+
+write_csv(games_database_codebook, 'games_database_codebook.csv')
