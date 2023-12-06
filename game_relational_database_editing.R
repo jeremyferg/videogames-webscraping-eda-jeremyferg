@@ -165,6 +165,293 @@ game_info |>
   select(!c(game, publishers, series, genres, modes))
 
 ################################################################################
+
+
+######################################
+### DEALING WITH PUBLISHERS STOCKS ###
+######################################
+
+#helper function to find the conversions of a specified currency conversion
+#NOTE: when specifying the variable currency, the second currency is what you are 
+# converting to (ex: from JPY to USD)
+conversion_finder <- function(currency = 'JPYUSD', from_date = '2013-06-30', to_date = '2023-06-30'){
+  #gets exchanges between the specified dates
+  tq_get(paste0(currency, '=X'), get = 'stock.prices', from = from_date, to = to_date) |> 
+    select(symbol, date, adjusted) |> 
+    rename(exchange = adjusted, conversion = symbol) |> 
+    mutate(conversion = str_remove(conversion, '=X'))
+}
+
+#currency conversions from JPY to USD
+jpy_usd <- conversion_finder()
+#currency conversions from EUR to USD
+eur_usd <- conversion_finder('EURUSD')
+
+#function that converts stocks of publishers originally in JPY
+jpy_usd_converted_stocks <- 
+  function(stock = '9766.T', company_name = 'Konami', 
+           from_date = '2013-06-30', to_date = '2023-06-30'){
+    #getting publisher stocks
+    tq_get(stock, get = 'stock.prices', from = from_date, to = to_date) |> 
+      #this inner_join is where the variable jpy_usd comes into play
+      inner_join(jpy_usd |> 
+                   select(date, exchange), 
+                 join_by(date)) |> 
+      mutate(across(open:adjusted, \(x) x*exchange),
+             symbol = company_name) |> 
+      select(!exchange) |> 
+      rename(publisher = symbol)
+  }
+
+#function that converts stocks of publishers originally in EUD
+eur_usd_converted_stocks <- 
+  function(stock = 'UBI.PA', company_name = 'Ubisoft', 
+           from_date = '2013-06-30', to_date = '2023-06-30'){
+    
+    tq_get(stock, get = 'stock.prices', from = from_date, to = to_date) |>
+      #this inner_join is where the variable eur_usd comes into play
+      inner_join(eur_usd |> select(date, exchange), join_by(date)) |> 
+      mutate(across(open:adjusted, \(x) x*exchange),
+             symbol = company_name) |> 
+      select(!exchange) |> 
+      rename(publisher = symbol)
+  }
+
+#need to use this for Konami, Square Enix, Sega, Bandai Namco, Capcom
+jpy_usd_converted_stocks()
+#need to convert ubisoft
+eur_usd_converted_stocks()
+#NOTE: Nintendo, Take-Two, and EA already use USD
+
+#quick function to get the publisher_stocks
+get_publisher_stocks <- function(){
+  
+  #empty data frame for rbinding stocks together
+  publisher_stocks <- data.frame()
+  
+  #list of Japanese publisher names and their stock names
+  jpy_stocks <- list(c('9684.T', 'Square Enix'), c('7832.T', 'Bandai Namco'),
+                     c('6460.T', 'Sega'), c('9697.T', 'Capcom'), c('9766.T', 'Konami'))
+  #list of American publisher names and their stock names
+  usd_stocks <- list(c('NTDOY', 'Nintendo'), c('EA', 'Electronic Arts'),
+                     c('TTWO', 'Take-Two'))
+  
+  #adding Japanese publisher stocks to publisher_stocks
+  for(publisher in jpy_stocks){
+    publisher_stocks <- rbind(publisher_stocks,
+                              jpy_usd_converted_stocks(publisher[1], publisher[2]))
+  }
+  
+  #adding American publisher stocks to publisher_stocks
+  for(publisher in usd_stocks){
+    
+    publisher_stocks <- rbind(publisher_stocks,
+                              tq_get(publisher[1], get = 'stock.prices', from = '2013-06-30', to = '2023-06-30') |> 
+                                mutate(symbol = publisher[2]) |> 
+                                rename(publisher = symbol))
+  }
+  
+  #since there is only one eurusd publisher (ubisoft), rbinding is simple
+  publisher_stocks <- rbind(publisher_stocks, eur_usd_converted_stocks())
+  
+  #lowering the publisher names for merging purpose 
+  publisher_stocks <- 
+    publisher_stocks |>
+    mutate(publisher = tolower(publisher))
+  
+}
+
+publisher_stocks <- get_publisher_stocks()
+
+################################################################################
+
+################################
+### DEALING WITH GAME AWARDS ###
+################################
+
+#112 or our 556 games are missing from the games index (various reasons)
+# Ok for our study concerns, but we can add these games to the games dg
+# in the future for more precision 
+
+game_awards_raw <- read_csv('data/raw/game_awards_raw.csv')
+
+
+get_game_awards <- function(){
+  
+  #removing unwanted categories, these categories are not nearly as relevant to our
+  # analysis compared to others, so we will drop them
+  removed_categories <- c('Best Student Game', 'Student Game Award',
+                          'Best Adaptation', 'Best Remaster')
+  
+  #cleaning up the category names for simplification purposes
+  category_cleanup <- list(c('Best Action/Adventure', 'Adventure'),
+                           c('Best Game Direction', 'Developer'),
+                           c('Best Indie Game', 'Independent'),
+                           c('Best Mobile Game', 'Handheld'),
+                           c('Best Multiplayer', '(Online)|(Multiplayer Game)'),
+                           c('Best Action Game', 'Shooter'),
+                           c('Best Score/Soundtrack', '(Score)|(Sound)'),
+                           c('Best Sim/Strategy Game', 'Best Strategy'),
+                           c('Best VR/AR Game', 'Best VR Game'),
+                           c('Best Debut Indie Game', '(Debut)|(Fresh)'),
+                           c("Players' Voice", 'Player'),
+                           c('Games for Impact', 'Change')
+  )
+  
+  game_awards <-
+    game_awards_raw |>
+    #a bit of clean up with the game names so we can merge on game
+    mutate(game = str_trim(game, 'both'),
+           game = tolower(game),
+           category = str_remove(category, '\\[.*\\]'),
+           category = str_replace(category, ' / ', '/')) |> 
+    #removing unwanted categories
+    filter(!(category %in% removed_categories)) 
+  
+  #simplifying category names
+  for(some_category in category_cleanup){
+    
+    game_awards <-
+      game_awards |> 
+      mutate(category = if_else(str_detect(category, some_category[2]),
+                                some_category[1],
+                                category))
+  }
+  
+  game_awards <-
+    game_awards |>
+    #merging on the games df with variable game
+    inner_join(games, join_by(game)) |> 
+    select(!c(game)) |> 
+    relocate(game_id, .after = date) |>  
+    #then merging on a merged version of the games df and game_info df to get 
+    # publisher_id. we can't just merge game_awards on publishers because there are 
+    # many instances where the publisher for game awards doesn't match the publisher 
+    # in game_info
+    inner_join(game_info |> inner_join(games, join_by(game_id)),
+               join_by(game_id)) |> 
+    distinct(date, game_id, category, .keep_all = TRUE) |> 
+    select(!c(publisher, release, game, genre_id, series_id, mode_id))
+  
+}
+##########################################
+### DEALING WITH GAME AWARD CATEGORIES ###
+##########################################
+
+#once we've edited the games we want to see in game awards, finding the game award
+# categories is simple
+game_awards <- get_game_awards()
+
+award_category <- 
+  game_awards |> 
+  distinct(category) |> 
+  rowid_to_column('category_id')
+
+#changing the categories column in game_awards to category_id
+game_awards <-
+  game_awards |> 
+  inner_join(award_category, join_by(category)) |> 
+  select(!c(category)) |> 
+  relocate(c(category_id, publisher_id), .before = winner)
+
+
+################################################################################
+
+##################################
+### DEALING WITH GAME REVIEWS  ###
+##################################
+
+game_reviews_raw <- read_csv('data/raw/game_reviews_raw.csv')
+
+#############################
+### GAME_REVIEW_COMPANIES ###
+#############################
+
+#this dataset was (thankfully) pretty clean and ready for the relational database
+# so i had to do very little cleaning-wise
+game_review_companies <- 
+  game_reviews_raw |> 
+  select(review_company) |>
+  mutate(review_company = tolower(review_company)) |> 
+  distinct() |> 
+  rowid_to_column('review_company_id')
+
+######################
+### GAME_REVIEWERS ###
+######################
+
+game_reviewers <-
+  game_reviews_raw |> 
+  #some reviewer observations are NA, so we will just credit the review company
+  mutate(reviewer = if_else(is.na(reviewer), review_company, reviewer),
+         reviewer = tolower(reviewer),
+         review_company = tolower(review_company)) |> 
+  #the combination of review_company and reviewer is what makes the primary key
+  distinct(pick(reviewer, review_company)) |> 
+  arrange(reviewer) |> 
+  inner_join(game_review_companies, join_by(review_company)) |> 
+  rowid_to_column('reviewer_id')
+#keep the review_company names for now for merging purposes later on
+
+
+#There are a whole lotta small-fry games in the raw game_reviews_raw df, I'm only really
+# concerned about notable games for this EDA. Let's look at games that have
+# more than 10 reviews
+
+####################
+### GAME REVIEWS ###
+####################
+
+game_reviews <- 
+  game_reviews_raw |> 
+  mutate(reviewer = if_else(is.na(reviewer), review_company, reviewer),
+         reviewer = tolower(reviewer),
+         review_company = tolower(review_company)) |> 
+  #inner join on both reviewer and review_company
+  inner_join(game_reviewers, join_by(reviewer, review_company)) |> 
+  select(!c(reviewer, review_company)) |> 
+  relocate(c(reviewer_id, review_company_id)) 
+
+#finding the game ids for each reviewed game by merging
+game_reviews <- 
+  game_reviews |> 
+  anti_join(game_reviews |> 
+              count(game) |> 
+              filter(n < 10), join_by(game)) |> 
+  mutate(game = str_replace_all(game, '_', ' '),
+         game = str_trim(game, 'both')) |> 
+  inner_join(games, join_by(game)) |> 
+  select(!c(game)) |> 
+  relocate(game_id)
+
+################################################################################
+
+#################################
+### DEALING WITH ESPORTS_RAW  ###
+#################################
+
+esports_raw <- read_csv('data/raw/esports_raw.csv')
+
+#we lose a lot of games when we merge on games because many of the games in the 
+# esports_raw dataset weren't published after 2013. That's ok, we still get a 
+# decent sample, enough for analysis
+esports <-
+  esports_raw |> 
+  filter(Date >= as_date('2013-06-30') &
+           Date <= as_date('2023-06-30')) |> 
+  janitor::clean_names() |> 
+  mutate(game = str_remove(game, '\\s\\(.*\\)'),
+         game = tolower(game)) |>
+  inner_join(games, join_by(game)) |> 
+  select(!c(game)) |> 
+  relocate(game_id, .after = date)
+
+################################################################################
+
+
+######## END OF ACTUAL CODE #########
+
+
 ################################################################################
 ################################################################################
 ################################################################################
@@ -172,6 +459,10 @@ game_info |>
 ################################################################################
 ################################################################################
 ################################################################################
+################################################################################
+
+######## (SOME OF) MY EDITS AND WHOAS (OH SO MANY WHOAS) ############
+
 
 ##########################
 ### DEALING WITH GAMES ###
@@ -421,146 +712,22 @@ publishers <-
   rowid_to_column('publisher_id')
 
 ################################################################################
-
-
-######################################
-### DEALING WITH PUBLISHERS STOCKS ###
-######################################
-
-#helper function to find the conversions
-conversion_finder <- function(currency = 'JPYUSD', from_date = '2013-06-30', to_date = '2023-06-30'){
-  tq_get(paste0(currency, '=X'), get = 'stock.prices', from = from_date, to = to_date) |> 
-    select(symbol, date, adjusted) |> 
-    rename(exchange = adjusted, conversion = symbol) |> 
-    mutate(conversion = str_remove(conversion, '=X'))
-}
-
-jpy_usd <- conversion_finder()
-eur_usd <- conversion_finder('EURUSD')
-
-#for jpy to usd converted stocks
-jpy_usd_converted_stocks <- 
-  function(stock = '9766.T', company_name = 'Konami', 
-           from_date = '2013-06-30', to_date = '2023-06-30'){
-    
-  tq_get(stock, get = 'stock.prices', from = from_date, to = to_date) |> 
-      inner_join(jpy_usd |> select(date, exchange), join_by(date)) |> 
-      mutate(across(open:adjusted, \(x) x*exchange),
-             symbol = company_name) |> 
-      select(!exchange) |> 
-      rename(publisher = symbol)
-  }
-
-#for eud to usa converted stocks
-eur_usd_converted_stocks <- 
-  function(stock = 'UBI.PA', company_name = 'Ubisoft', 
-           from_date = '2013-06-30', to_date = '2023-06-30'){
-    
-    tq_get(stock, get = 'stock.prices', from = from_date, to = to_date) |> 
-      inner_join(eur_usd |> select(date, exchange), join_by(date)) |> 
-      mutate(across(open:adjusted, \(x) x*exchange),
-             symbol = company_name) |> 
-      select(!exchange) |> 
-      rename(publisher = symbol)
-  }
-
-#need to use this for Konami, Square Enix, Sega, Bandai Namco, Capcom
-jpy_usd_converted_stocks()
-
-#for ubisoft
-eur_usd_converted_stocks()
-
-#Nintendo and EA already use USD
-
-publisher_stocks <- data.frame()
-
-jpy_stocks <- list(c('9684.T', 'Square Enix'), c('7832.T', 'Bandai Namco'),
-                c('6460.T', 'Sega'), c('9697.T', 'Capcom'), c('9766.T', 'Konami'))
-
-for(publisher in jpy_stocks){
-  publisher_stocks <- rbind(publisher_stocks,
-    jpy_usd_converted_stocks(publisher[1], publisher[2]))
-}
-
-publisher_stocks <- rbind(publisher_stocks, eur_usd_converted_stocks())
-
-usd_stocks <- list(c('NTDOY', 'Nintendo'), c('EA', 'Electronic Arts'),
-                   c('TTWO', 'Take-Two'))
-
-for(publisher in usd_stocks){
-  
-  publisher_stocks <- rbind(publisher_stocks,
-  tq_get(publisher[1], get = 'stock.prices', from = '2013-06-30', to = '2023-06-30') |> 
-    mutate(symbol = publisher[2]) |> 
-    rename(publisher = symbol))
-}
-
-publisher_stocks <- 
-publisher_stocks |>
-  mutate(publisher = tolower(publisher))
-
-################################
-### DEALING WITH GAME AWARDS ###
-################################
-
-#112 or our 556 games are missing from the games index (various reasons)
-# probably ok for our study concerns, but we can add these games to the games dg
-# in the future for more percision 
-
-game_awards <- read_csv('data/raw/game_awards.csv')
-
-#removing unwanted categories
-removed_categories <- c('Best Student Game', 'Student Game Award',
-                        'Best Adaptation', 'Best Remaster')
-
-#cleaning up the category names
-category_cleanup <- list(c('Best Action/Adventure', 'Adventure'),
-                         c('Best Game Direction', 'Developer'),
-                         c('Best Indie Game', 'Independent'),
-                         c('Best Mobile Game', 'Handheld'),
-                         c('Best Multiplayer', '(Online)|(Multiplayer Game)'),
-                         c('Best Action Game', 'Shooter'),
-                         c('Best Score/Soundtrack', '(Score)|(Sound)'),
-                         c('Best Sim/Strategy Game', 'Best Strategy'),
-                         c('Best VR/AR Game', 'Best VR Game'),
-                         c('Best Debut Indie Game', '(Debut)|(Fresh)'),
-                         c("Players' Voice", 'Player'),
-                         c('Games for Impact', 'Change')
-)
-
-game_awards_edited <-
-  game_awards |> 
-  mutate(game = str_trim(game, 'both'),
-         game = tolower(game),
-         category = str_remove(category, '\\[.*\\]'),
-         category = str_replace(category, ' / ', '/')) |> 
-  filter(!(category %in% removed_categories)) |> 
-  inner_join(games, join_by(game)) |> 
-  select(!c(game)) |> 
-  relocate(game_id, .after = date)
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
 ################################################################################
 
-### THE LONG AWAITED SOLUTION ###
 
-game_awards |> 
-  mutate(game = str_trim(game, 'both'),
-         game = tolower(game),
-         category = str_remove(category, '\\[.*\\]'),
-         category = str_replace(category, ' / ', '/')) |> 
-  filter(!(category %in% removed_categories)) |> 
-  inner_join(games, join_by(game)) |> 
-  select(!c(game)) |> 
-  relocate(game_id, .after = date) |>  
-  inner_join(game_info |> inner_join(games, join_by(name)),
-             join_by(game_id)) |> 
-  distinct(date, game_id, category, .keep_all = TRUE)
 ################################################################################
 game_info |> 
   inner_join(games, join_by(name))
 
 for(category_change in category_cleanup){
-  game_awards_edited <-
-    game_awards_edited |> 
+  game_awards <-
+    game_awards |> 
     mutate(category = if_else(str_detect(category, category_change[2]),
                               category_change[1],
                               category))
@@ -572,11 +739,11 @@ for(category_change in category_cleanup){
 # the publishers are really just individual people, but other times the game loses 
 # it's publisher after merging with publishers...
 ##solution <- merge games on game_info_raw (which will have publisher ids), then
-# merge game_info_raw on game_awards and keep game_id and publisher_id (so dropping publishers
+# merge game_info_raw on game_awards_raw and keep game_id and publisher_id (so dropping publishers
 # from game awards entirely)
 
-game_awards_edited <-
-game_awards_edited |>
+game_awards <-
+game_awards |>
   separate_rows(publisher, sep = ',') |> 
   separate_rows(publisher, sep = '/') |> 
   mutate(publisher = tolower(publisher),
@@ -599,7 +766,7 @@ game_awards_edited |>
 #these are all the games that got dropped in the merging because they are not in
 # the games df
 uh_oh <-
-  game_awards |> 
+  game_awards_raw |> 
   mutate(game = str_trim(game, 'both'),
          game = tolower(game)) |> 
   filter(!(category %in% removed_categories)) |> 
@@ -619,88 +786,28 @@ games |>
 # categories is simple
 
 award_category <- 
-  game_awards_edited |> 
+  game_awards |> 
   distinct(category) |> 
   rowid_to_column('category_id')
 
 
 ################################################################################
 
-##################################
-### DEALING WITH GAME REVIEWS  ###
-##################################
 
-game_reviews <- read_csv('data/raw/game_reviews.csv')
-
-### game_review_companies ###
-
-game_review_companies <- 
-  game_reviews |> 
-  select(review_company) |>
-  mutate(review_company = tolower(review_company)) |> 
-  distinct() |> 
-  rowid_to_column('review_company_id')
-
-### game_reviewers ###
-
-game_reviewers <-
-game_reviews |> 
-  mutate(reviewer = if_else(is.na(reviewer), review_company, reviewer),
-         reviewer = tolower(reviewer),
-         review_company = tolower(review_company)) |> 
-  distinct(pick(reviewer, review_company)) |> 
-  arrange(reviewer) |> 
-  inner_join(game_review_companies, join_by(review_company)) |> 
-  rowid_to_column('reviewer_id') #|>
-  #keep the review_company names for now for merging purposes
-  #select(!c(review_company))
-
-
-#we have to join on reviewer/review_company combinations to make this work, make
-# sure to reflect this on the relational db design
-
-#There are a whole lotta small-fry games in the raw game_reviews df, I'm only really
-# concerned about notable games for this EDA. For now, let's look at games that have
-# more than 10 reviews
-
-### game reviews edited df ###
-
-game_reviews_edited <- 
-game_reviews |> 
-  mutate(reviewer = if_else(is.na(reviewer), review_company, reviewer),
-         reviewer = tolower(reviewer),
-         review_company = tolower(review_company)) |> 
-  inner_join(game_reviewers, join_by(reviewer, review_company)) |> 
-  select(!c(reviewer, review_company)) |> 
-  relocate(c(reviewer_id, review_company_id)) 
-  #dealing withe the game ids
-game_reviews_edited <- 
-  game_reviews_edited |> 
-  anti_join(game_reviews_edited |> 
-              count(game) |> 
-              filter(n < 10), join_by(game)) |> 
-  mutate(game = str_replace_all(game, '_', ' '),
-         game = str_trim(game, 'both')) |> 
-  inner_join(games, join_by(game)) |> 
-  select(!c(game)) |> 
-  relocate(game_id)
-  
-game_reviews_edited 
-
-#game_reviews_edited |> 
+#game_reviews |> 
 #  mutate(game = str_replace_all(game, '_', ' '),
 #         game = str_trim(game, 'both')) |> 
 #  anti_join(games, join_by(game == name)) |> 
 #  distinct(game) |> 
 #  arrange(game) 
 
-#There are a whole lotta small-fry games in the raw game_reviews df, I'm only really
+#There are a whole lotta small-fry games in the raw game_reviews_raw df, I'm only really
 # concerned about notable games for this EDA. For now, let's look at games that have
 # more than 10 reviews
 
 #all games in the df games with 10+ reviews
-game_reviews_edited |> 
-  anti_join(game_reviews_edited |> 
+game_reviews |> 
+  anti_join(game_reviews |> 
             count(game) |> 
               filter(n < 10), join_by(game)) |> 
   mutate(game = str_replace_all(game, '_', ' '),
@@ -709,8 +816,8 @@ game_reviews_edited |>
   distinct(game)
 
 #all games with 10+ reviews
-game_reviews_edited |> 
-  anti_join(game_reviews_edited |> 
+game_reviews |> 
+  anti_join(game_reviews |> 
               count(game) |> 
               filter(n < 10), join_by(game)) |> 
   distinct(game)
@@ -723,34 +830,8 @@ game_reviewers |>
 
 ################################################################################
 
-#############################
-### DEALING WITH ESPORTS  ###
-#############################
 
-esports <- read_csv('data/raw/esports.csv')
-
-#of course, some games in this list were released before my game releases, so
-# just check if a game in esports doesn't match in games it's because that game
-# is too old and not because I'm missing that game in games
-
-#there are some instances where games are not matched because i removed the paranthesis
-# in games, so just remove them in esports too
-
-## UPDATE: we lose a lot of games when we merge because gamers apparently like to 
-# play very old games. That's ok, we still get a decent sample, enough for analysis
-
-esport_games <-
-esports |> 
-  filter(Date >= as_date('2013-06-30') &
-           Date <= as_date('2023-06-30')) |> 
-  janitor::clean_names() |> 
-  mutate(game = str_remove(game, '\\s\\(.*\\)'),
-         game = tolower(game)) |>
-  inner_join(games, join_by(game)) |> 
-  select(!c(game)) |> 
-  relocate(game_id, .after = date)
-
-esports |> 
+esports_raw |> 
   filter(Date >= as_date('2013-06-30') &
            Date <= as_date('2023-06-30')) |> 
   janitor::clean_names() |> 
@@ -760,7 +841,7 @@ esports |>
   distinct(game) |> 
   print(n = 320)
 
-esports |> 
+esports_raw |> 
   filter(Date >= as_date('2013-06-30') &
            Date <= as_date('2023-06-30')) |> 
   janitor::clean_names() |> 
