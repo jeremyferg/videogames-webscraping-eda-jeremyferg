@@ -261,7 +261,12 @@ get_publisher_stocks <- function(){
   
 }
 
-publisher_stocks <- get_publisher_stocks()
+publisher_stocks <- 
+
+get_publisher_stocks() |> 
+  inner_join(publishers, join_by(publisher == publishers)) |> 
+  select(!c('publisher')) |> 
+  relocate(publisher_id, .after = date)
 
 ################################################################################
 
