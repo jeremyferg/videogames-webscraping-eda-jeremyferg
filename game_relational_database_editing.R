@@ -449,3 +449,21 @@ esports <-
   inner_join(games, join_by(game)) |> 
   select(!c(game)) |> 
   relocate(game_id, .after = date)
+
+################################################################################
+
+######################################
+### WRITE ALL THE DATA SETS TO CSV ###
+######################################
+
+write_csv(game_info, 'game_info.csv')
+write_csv(games, 'games.csv')
+write_csv(publishers, 'publishers.csv')
+write_csv(game_genres, 'game_genres.csv')
+write_csv(game_series, 'game_series.csv')
+write_csv(game_modes, 'game_modes.csv')
+write_csv(esports, 'esports.csv')
+write_csv(publisher_stocks, 'publisher_stocks.csv')
+write_csv(award_category, 'award_category.csv')
+write_csv(game_awards, 'game_awards.csv')
+write_csv(game_genres, 'game_genres.csv')
