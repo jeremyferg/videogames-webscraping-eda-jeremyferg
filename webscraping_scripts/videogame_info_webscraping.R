@@ -348,7 +348,7 @@ for( year in c(2013:2023)){
                           get_games_list(rlang::englue('/wiki/Category:{year}_video_games')))
 }
 
-write_csv(game_info, 'data/raw/game_info.csv')
+write_csv(game_info, 'data/raw/game_info_raw.csv')
 
 ################################################################################
 

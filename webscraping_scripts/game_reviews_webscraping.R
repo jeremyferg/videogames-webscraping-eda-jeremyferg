@@ -229,9 +229,8 @@ for(game in game_links){
                         )
 }
 
-write_csv(ratings_data, 'game_reviews.csv')
+write_csv(ratings_data, 'game_reviews_raw.csv')
 
-read_csv('game_reviews.csv')
 
 ################################################################################
 
@@ -253,3 +252,4 @@ ratings_date_tibble(link = 'https://opencritic.com/game/12090/elden-ring/reviews
   #must arrange by date before using avg_rating_yesterday()
   arrange(date) |> 
   avg_rating_yesterday()
+

@@ -227,7 +227,7 @@ rbind(awards_2014_2015, awards_2016_2022) |>
   #putting date in the front of the tibble
   relocate(date)
 
-write_csv(game_awards, 'game_awards.csv')
+write_csv(game_awards, 'game_awards_raw.csv')
 
 ################################################################################
 
