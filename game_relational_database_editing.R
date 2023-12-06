@@ -421,8 +421,12 @@ game_reviews <-
   mutate(game = str_replace_all(game, '_', ' '),
          game = str_trim(game, 'both')) |> 
   inner_join(games, join_by(game)) |> 
-  select(!c(game)) |> 
-  relocate(game_id)
+  select(!c(game, review_company_id)) |> 
+  relocate(date, game_id)
+
+game_reviewers <-
+game_reviewers |> 
+  select(!c(review_company))
 
 ################################################################################
 
@@ -447,8 +451,6 @@ esports <-
   relocate(game_id, .after = date)
 
 ################################################################################
-
-
 ######## END OF ACTUAL CODE #########
 
 
