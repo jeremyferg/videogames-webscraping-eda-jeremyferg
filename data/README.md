@@ -1,8 +1,8 @@
 ## Datasets
 
-`esports.csv` data collected from [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data)
+`esports_raw.csv` data collected from [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data)
 
-- `HistoricalEsportData.csv`
+- data set under the name `HistoricalEsportData.csv`
 
 Publisher stock data collected from [Yahoo Finance](https://finance.yahoo.com/)
 
