@@ -30,7 +30,7 @@ game_reviews <- read_csv('data/games_database/game_reviews.csv')
 game_review_companies <- read_csv('data/games_database/game_review_companies.csv')
 game_reviewers <- read_csv('data/games_database/game_reviewers.csv')
 
-### key function ###
+### key variable ###
 
 top_publishers <- c('nintendo', 'electronic arts', 'activision blizzard',
                     'square enix', 'sega', 'konami', 'ubisoft', 'take-two',
