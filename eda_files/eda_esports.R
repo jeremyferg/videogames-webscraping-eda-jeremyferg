@@ -72,36 +72,6 @@ esports_sum_table(tournaments) |>
 esports_sum_table(players) |> 
   DT::datatable()
 
-### find the variations of meidan earnings for top publishers per year ###
-
-publishers |> 
-  #this code is fairly similar to the previosu function
-  filter(publishers %in% top_publishers) |> 
-  inner_join(game_info, join_by(publisher_id)) |> 
-  inner_join(esports, join_by(game_id)) |> 
-  distinct(pick(game_id, date), .keep_all = TRUE) |> 
-  mutate(year = year(date)) |> 
-  summarize(earnings_mean = mean(earnings),
-            earnings_median = median(earnings),
-            quantile_25 = quantile(earnings, probs = c(.25)),
-            quantile_75 = quantile(earnings, probs = c(.75)),
-            total_earnings = sum(earnings),
-            #however, we're grouping by publishers and year this time, not just
-            # publishers
-            .by = c(publishers, year),
-            n = n()) |>
-  filter(earnings_median != max(earnings_median),
-         earnings_mean != 0) |> 
-  ggplot(aes(year, earnings_median)) +
-  geom_vline(xintercept = 2013:2023) +
-  geom_point(aes(color = publishers), alpha = .75) +
-  coord_flip() +
-  scale_x_continuous(breaks = c(2013:2023)) +
-  labs(x = 'Year',
-       y = 'Earning Median',
-       color = 'Publishers',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-
 ### function for getting histogram distributions of esports ###
 
 esports_histograms <- function(some_var = tournaments, binwidth = 1, 
@@ -190,6 +160,36 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
                    top = TRUE, filter_less = 15250) + 
   labs(x = 'Earnings',
        y = '',
+       caption = 'Source: RAN.KIRSH - Kaggle')
+
+### find the variations of meidan earnings for top publishers per year ###
+
+publishers |> 
+  #this code is fairly similar to the previosu function
+  filter(publishers %in% top_publishers) |> 
+  inner_join(game_info, join_by(publisher_id)) |> 
+  inner_join(esports, join_by(game_id)) |> 
+  distinct(pick(game_id, date), .keep_all = TRUE) |> 
+  mutate(year = year(date)) |> 
+  summarize(earnings_mean = mean(earnings),
+            earnings_median = median(earnings),
+            quantile_25 = quantile(earnings, probs = c(.25)),
+            quantile_75 = quantile(earnings, probs = c(.75)),
+            total_earnings = sum(earnings),
+            #however, we're grouping by publishers and year this time, not just
+            # publishers
+            .by = c(publishers, year),
+            n = n()) |>
+  filter(earnings_median != max(earnings_median),
+         earnings_mean != 0) |> 
+  ggplot(aes(year, earnings_median)) +
+  geom_vline(xintercept = 2013:2023) +
+  geom_point(aes(color = publishers), alpha = .75) +
+  coord_flip() +
+  scale_x_continuous(breaks = c(2013:2023)) +
+  labs(x = 'Year',
+       y = 'Earning Median',
+       color = 'Publishers',
        caption = 'Source: RAN.KIRSH - Kaggle')
 
 ### finding tournaments v players, grouping by year ###
