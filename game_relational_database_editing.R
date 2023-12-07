@@ -71,6 +71,9 @@ game_info |>
   mutate(series = if_else(series == 'DarkstalkersStreet Fighter',
                           'Darkstalkers,Street Fighter',
                           series),
+         series = if_else(series == 'Warhammer 40' |series == '000',
+                          'Warhammer 40000',
+                          series),
          #only drops a handful of observations
          series = tolower(series)) |>
   separate_rows(sep = ',') 
