@@ -13,7 +13,7 @@ format:
     embed-resources: true
     
 execute:
-  echo: false
+  echo: true
   warning: false
 
 from: markdown+emoji 
@@ -61,7 +61,7 @@ game_reviewers <- read_csv('data/games_database/game_reviewers.csv')
 
 
 ###list of publishers that will be key for analysis
-publisher_list <- c('nintendo', 'electronic arts', 'activision blizzard',
+top_publishers <- c('nintendo', 'electronic arts', 'activision blizzard',
                     'square enix', 'sega', 'konami', 'ubisoft', 'take-two',
                     'bandai namco', 'capcom')
 
@@ -81,7 +81,7 @@ publisher_list <- c('nintendo', 'electronic arts', 'activision blizzard',
 #############################
 
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_info, join_by(publisher_id)) |> 
   distinct(pick(publisher_id, game_id), .keep_all = TRUE) |> 
   mutate(publishers = factor(publishers)|> fct_infreq() |> fct_rev()) |> 
@@ -108,7 +108,7 @@ get_game_info_distr <- function(some_var = game_series, var_id = series_id,
     
     bar <-
     publishers |> 
-      filter(publishers %in% publisher_list) |> 
+      filter(publishers %in% top_publishers) |> 
       inner_join(game_info, join_by(publisher_id)) |>
       inner_join({{some_var}}, join_by({{var_id}})) |> 
       distinct(pick(publisher_id, game_id, {{var_id}}), .keep_all = TRUE) |> 
@@ -195,7 +195,7 @@ get_game_info_distr(some_var = game_genres, var_id = genre_id,
 #| fig-cap: Boxplot distribution of days since a game released, group by game modes
 
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_info, join_by(publisher_id)) |>
   inner_join(game_modes, join_by(mode_id)) |> 
   distinct(pick(publisher_id, game_id, mode_id), .keep_all = TRUE) |> 
@@ -238,7 +238,7 @@ The `echo: false` option disables the printing of code (only output is displayed
 esports_sum_table <- function(some_var){
 
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_info, join_by(publisher_id)) |> 
   inner_join(esports, join_by(game_id)) |> 
   distinct(pick(game_id, date), .keep_all = TRUE) |> 
@@ -286,7 +286,7 @@ esports_sum_table(players)
 #| fig-cap: Median esports earnings per yer by top publishers 
 
     publishers |> 
-    filter(publishers %in% publisher_list) |> 
+    filter(publishers %in% top_publishers) |> 
     inner_join(game_info, join_by(publisher_id)) |> 
     inner_join(esports, join_by(game_id)) |> 
     distinct(pick(game_id, date), .keep_all = TRUE) |> 
@@ -302,7 +302,7 @@ esports_sum_table(players)
            earnings_mean != 0) |> 
     ggplot(aes(year, earnings_median)) +
     geom_vline(xintercept = 2013:2023) +
-    geom_point(aes(color = publishers), alpha = .5) +
+    geom_point(aes(color = publishers), alpha = .75) +
     coord_flip() +
     scale_x_continuous(breaks = c(2013:2023)) +
     labs(x = 'Year',
@@ -317,13 +317,13 @@ esports_sum_table(players)
 
  esports_histograms <- function(some_var = tournaments, binwidth = 1, 
                                 xlim = c(0,20), 
-                                top_publishers = TRUE, filter_less = NA){
+                                top = TRUE, filter_less = NA){
   
-  if(top_publishers == TRUE){ 
+  if(top == TRUE){ 
     
   histogram <-
     publishers |> 
-    filter(publishers %in% publisher_list) |> 
+    filter(publishers %in% top_publishers) |> 
     inner_join(game_info, join_by(publisher_id)) |> 
     inner_join(esports, join_by(game_id)) |> 
     distinct(pick(game_id, date), .keep_all = TRUE) |> 
@@ -361,7 +361,7 @@ esports_sum_table(players)
 #| fig-cap: Distribution of tournaments 
 
 esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top_publishers= FALSE, filter_less = NA) + 
+                                top = FALSE, filter_less = NA) + 
   labs(x = 'Tournaments',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
@@ -372,7 +372,7 @@ esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20),
 #| fig-cap: Distribution of tournaments of top publishers
 
 esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top_publishers= TRUE, filter_less = NA) + 
+                                top = TRUE, filter_less = NA) + 
   labs(x = 'Tournaments',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
@@ -383,7 +383,7 @@ esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20),
 #| fig-cap: Distribution of players
 
 esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top_publishers= FALSE, filter_less = NA) + 
+                                top = FALSE, filter_less = NA) + 
   labs(x = 'Players',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle') 
@@ -394,7 +394,7 @@ esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200),
 #| fig-cap: Distribution of players of top publishers
 
 esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top_publishers= TRUE, filter_less = NA) + 
+                                top = TRUE, filter_less = NA) + 
   labs(x = 'Players',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
@@ -405,7 +405,7 @@ esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200),
 #| fig-cap: Distribution of earnings 
 
 esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000), 
-                                top_publishers= FALSE, filter_less = 15250) +
+                                top = FALSE, filter_less = 15250) +
   labs(x = 'Earnings',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
@@ -416,7 +416,7 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
 #| fig-cap: Distribution of earnings of top publishers
 
 esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000), 
-                                top_publishers= TRUE, filter_less = 15250) + 
+                                top = TRUE, filter_less = 15250) + 
   labs(x = 'Earnings',
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
@@ -468,7 +468,7 @@ esports |>
 
 ```{r}
 #| label: fig-adjusted-v-tournaments
-#| fig-cap: Scatterplot of earnings against adjusted_close values, grouped by top publishers
+#| fig-cap: Scatterplot of tournaments against adjusted_close values, grouped by top publishers
     
     esports |> 
       inner_join(games, join_by(game_id)) |> 
@@ -484,7 +484,7 @@ esports |>
       geom_smooth(method = lm, se = FALSE) +
   labs(x = 'Adjusted',
        y = 'Tournaments',
-       caption = 'Source: RAN.RIRSH - Kaggle') +
+       caption = 'Source: RAN.RIRSH - Kaggle, Yahoo! Finance') +
   guides(color = FALSE)
 
 ```
@@ -503,7 +503,7 @@ esports |>
 
 #top publishers with the most winners
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_awards, join_by(publisher_id)) |> 
   filter(winner == TRUE) |> 
   mutate(publishers = factor(publishers)|> fct_infreq() |> fct_rev()) |> 
@@ -523,7 +523,7 @@ publishers |>
 #| fig-cap: Table of Game Awards wins by top publishers 
 
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_awards, join_by(publisher_id)) |> 
   inner_join(award_category, join_by(category_id)) |>
   inner_join(games, join_by(game_id)) |> 
@@ -539,7 +539,7 @@ publishers |>
 #| fig-cap: Number of Game Awards nominations by top publishers 
 
   publishers |> 
-    filter(publishers %in% publisher_list) |> 
+    filter(publishers %in% top_publishers) |> 
     inner_join(game_awards, join_by(publisher_id)) |> 
     mutate(publishers = factor(publishers)|> fct_infreq() |> fct_rev()) |> 
     summarise(n = n(), .by = publishers) |> 
@@ -566,7 +566,7 @@ publishers |>
   distinct(pick(game, category_id, date), .keep_all = TRUE) |> 
   select(c(date, game, publishers, category)) |> 
   mutate(category = factor(category)|> fct_infreq() |> fct_rev(),
-         top_publishers = factor(if_else(publishers %in% publisher_list,
+         top_publishers = factor(if_else(publishers %in% top_publishers,
                             publishers,
                             'other'))) |> 
   summarise(n = n(), .by = c(category, top_publishers)) |> 
@@ -590,7 +590,7 @@ publishers |>
 #| fig-cap: Correlation of Game Awards nominations and correlations based on adjusted close stock value
 
 publishers |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   inner_join(game_awards, join_by(publisher_id)) |> 
   inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
   summarise(
@@ -657,7 +657,7 @@ game_reviews |>
   inner_join(games, join_by(game_id)) |> 
   inner_join(game_reviews, join_by(game_id)) |> 
   distinct(pick(reviewer_id, game_id), .keep_all = TRUE) |>
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   
   ggplot(aes(rating)) +
   geom_histogram(fill = 'blue4', 
@@ -680,7 +680,7 @@ publishers |>
   inner_join(games, join_by(game_id)) |> 
   inner_join(game_reviews, join_by(game_id)) |> 
   distinct(pick(reviewer_id, game_id), .keep_all = TRUE) |> 
-  filter(publishers %in% publisher_list, !is.na(rating)) |> 
+  filter(publishers %in% top_publishers, !is.na(rating)) |> 
   summarise(
     rating_mean = mean(rating),
     rating_median = median(rating),
@@ -704,7 +704,7 @@ publishers |>
   
   distinct(pick(reviewer_id, game_id), .keep_all = TRUE) |> 
   mutate(review_company = fct_lump(factor(review_company), 10)) |> 
-  filter(publishers %in% publisher_list, review_company != 'Other') |> 
+  filter(publishers %in% top_publishers, review_company != 'Other') |> 
   
   ggplot(aes(publishers, fill = review_company)) +
   scale_fill_hue(l=40, c=30) +
@@ -712,8 +712,8 @@ publishers |>
   coord_flip() +
   labs(x = '',
        y = 'Publishers',
-       caption = 'Source: OpenCritic') +
-  guides(fill = FALSE)
+       fill = 'Review Company',
+       caption = 'Source: OpenCritic')
 
 ```
 
@@ -729,7 +729,7 @@ games |>
   inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
   
   distinct(pick(date, publisher_id), .keep_all = TRUE) |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   ggplot(aes(rating, adjusted)) +
   geom_point(alpha = .25) +
   geom_smooth(method = lm, se = FALSE) +
@@ -750,7 +750,7 @@ games |>
   inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
   
   distinct(pick(date, publisher_id), .keep_all = TRUE) |> 
-  filter(publishers %in% publisher_list) |> 
+  filter(publishers %in% top_publishers) |> 
   ggplot(aes(rating, adjusted)) +
   geom_point(alpha = .25) +
   geom_smooth(method = lm, se = FALSE) +
