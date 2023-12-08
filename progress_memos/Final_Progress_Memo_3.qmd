@@ -19,17 +19,114 @@ execute:
 from: markdown+emoji 
 ---
 
-## Quarto
+::: {.callout-tip icon="false"}
+## Github Repo Link
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+<https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git>
+:::
 
-## Running Code
+## Introduction
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+This analysis provides a foundation for understanding how various decisions and actions associated with the video game industry affect the financial stocks of this industry's publishers. The video game industry is interesting when exploring finances because the success of a game publisher relies heavily on the financial impact of one-time events. For example, a video game company may spend years developing the next iteration of a game franchise instead of rapidly publishing new games. Their goal in the more systematic approach is to produce a product that will sustain the company until the next project is publicly released. From the unique structure of this industry, one may be interested in understanding how these events heavily impact the industry's stocks. In theory, a one-time event of this magnitude should substantially influence the activity of stock exchanges and the value of the company's stock. Likewise, understanding the components of this data is essential to a curious researcher.
+
+To my knowledge, there is no public data set that captures video game companies as they relate to their financial stocks. So, to contribute to potential research in this industry, my project seeks to create a relational database with video game industry-related data. I collected data through a combination of web scraping and pre-cleaned data sets. General game information was collected through game overview pages on [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year), The Game Awards results were scraped from results pages on [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards), and game reviews were taken from [OpenCritic](https://opencritic.com/) (a database of game reviews in a similar style to other websites like IMDB). The remainder of the report will consist of an overview of the web scraping process, a discussion of the final scraped data set, and a brief exploratory data analysis highlighting data-related questions that a researcher or industry leader would investigate further.
+
+## Web scraping Overview
+
+This section expands on the process and challenges faced when web scraping data. First, I highlight game information web scraping, followed by The Game Awards and game reviews scraping. These files are found under the `webscraping_scripts` folder of my GitHub repository.
+
+### Game Information
+
+There are few public data sets with general information about games, but all lack updated data. Therefore, I decided to scrape data through the [Wikipedia pages of video games](https://en.wikipedia.org/wiki/Category:Video_games_by_year). Wikipedia has pages dedicated to listing the names of video games released per year. Each game listed on this page is linked to another Wikipedia page specifically for that game. Assuming that every video game listed on Wikipedia had a unique information table, I started my web scraping by extracting information about games through Wikipedia's infoboxes. Using [Mario Party Superstars](https://en.wikipedia.org/wiki/Mario_Party_Superstars) as a game example, we can see that the general overview infobox of the game has game information categories such as publishers, release dates, and genres. Starting with 2013 videogames, the functions in `videogame_info_wenscraping` extract the necessary information from each game's page, binding games together onto one data frame.
+
+The main challenge of web scraping game information is the consistency of infoboxes across each game. Specifically, there were two main issues that many infoboxes had: missing data and irregular data. Missing data refers to completely missing categories from infoboxes. A common example of missing data was the series category. If a game was not associated with a game series, the row `series` was not in the infobox table. A simple solution to this concern is setting `series` equal to NA if the variable is not in the infobox.
+
+Irregular data entails that, while the data is not missing from the infobox, the category is formatted in a way that makes web scraping directly from the table difficult. For example, most infoboxes used text to record a game's publisher. However, many games used hyperlinks to record a publisher on the infobox, such as [Elden Ring](https://en.wikipedia.org/wiki/Elden_Ring). Using a regular `rvest` function such as `html_table()` did not accurately parse out the required information for web scraping.
+
+### The Game Awards
+
+[The Game Awards](https://thegameawards.com/) is the video game industry's most notable awards event. This is an event where publishers earn awards on recent releases, showcase trailers for future releases, and present lifetime awards to members of the industry. Given the popularity of the event, we may predict that winning or being nominated for an award casually affects the stock of that associated publisher. Similar to game information, there does not appear to be a public, up-to-date data set regarding the yearly results of The Game Awards. Therefore, I scraped result information from the [Wikipedia pages of yearly Game Awards results](https://en.wikipedia.org/wiki/The_Game_Awards). Each page, [like the 2016 page](https://en.wikipedia.org/wiki/The_Game_Awards_2016), has a Wikipedia info-table listing the name of an award category and the results of that category.
+
+The main challenge of web scraping these awards is the initial formatting of the results tables. Referring back to the 2016 awards, there are no specified column names for simplistic table extracting, and, when initially scraped, all nominees are stringed together onto one value.
+
+### Game Reviews
+
+Like a traditional journalist or political activist, a video game reviewer has the potential to influence the trajectory of a game company's work. A leader in the video game industry may be interested in a statistical summary of review scores and the financial effects these ratings have on their company. So, game reviews are web-scraped for this analysis. [OpenCritic](https://opencritic.com/), a database for video game reviews, is used to extract game reviews from all available games from 2013 to 2023. Each game, such as [Persona 5 Royal](https://opencritic.com/game/8785/persona-5-royal/reviews), has a list of reviewers, the company they write for, and their rating of the game. Given this information is stored in rows, we can loop an extraction of each reviewer's information for each video game.
+
+The main concern for this web scraping is data accuracy. For example, there are reviewers on Persona 5 Royal's OpenCritic website who rated the games out of five stars. In a review row, five stars are presented as five literal images of stars. While a reader can understand the rating of these games, I am not aware of a current web scraping tool that would effectively translate these images to a numeric form. Therefore, reviews with images in their scores were dropped during the web scraping process. With this action in mind, a researcher may be concerned that removing a specific group from the data set may cause biased results from a theoretical game review variable. Therefore, a researcher should verify the randomness of this data for further studies.
+
+## Data Overview and Quality
+
+Due to the large amount of data sets I collected for this project, I decided to structure these data sets through a relational database design. A visual representation of this design is located under the `games_database` folder within the `data` folder. This method of structuralization provides a simple yet efficient format for connecting datasets with others. This section will expand on this design alongside providing an overview of each dataset within the design.
+
+### Relational Database Design Structure
+
+### Relating to General Video Game Information
+
+#### `games`
+
+The `games` data set uniquely identifies the name of each game originally found in the raw version of `game_info`. The variable `games` has a type character and `game_id` has a type integer. `game_id` is the primary key. There are (4046) unique games in this data set.
+
+To avoid redundancy, the next five data sets (until and including `publishers`) will have the same origin: `game_info`, the same character-integer variable types, and an id for a primary key.
+
+#### `game_series` 
+
+`game_series` has 665 unique observations. This data set was generally clean when extracting its information.
+
+#### `game_genres`
+`
+`game_genres` has 190  unique observations. There are many instances within `game_genres` where two genres could reasonably be associated with one. The `game_genres` section of my R script shows that I started this process manually. While I believe these genres have been simplified enough for sufficient analysis as it relates to this project, further research should reduce the number of unique observations.
+
+#### `game_modes`
+
+`game_modes` has 24 unique observations. Again, the same situation as with `game_modes` occurs in which observations could  be merged. However, this data set has much fewer observations than `game_genre`, making manual simplification more plausible.
+
+#### `publishers`
+
+`publishers` has 1691 unique observations. The same issues found in the last two variables apply here. In addition, many `publishers` observations are subsidiaries to the parent  company the analysis is interested in. For example, 2K, the group known for the NBA 2K series, is a subsidiary of Take-Two. In this analysis, we want to associate 2K only with Take-Two. To help with the accuracy of the analysis, I replaced the subsidiaries of influential publishers with their parent company. 
+
+#### `game_info`
+
+`game_info` combines the `game_id`, `series_id`, `genres_id`, `modes_id`, and `publisher_id` to create one compound primary key. `game_info` has a one-to-many relationship with each of these parent data sets. release_date ( a date type) is also included in this dataset. This variable indicates the first official day of release for a video game. In total, the data set has 9419 unique observations.
+
+### Relating to The Game Awards
+
+#### `award_category`
+
+The `award_category` data set uniquely identifies the name of each category from The Game Awards. To condense the number of observable categories, some awards (like "Best Student Game") were dropped from the data because these categories did not relate to a video game publisher. Other categories (like  "Best Online Experience") were merged to other values for simplicity. The variable `category` has type character, and `category_id` has type int. `game_id` is the primary key of this data set. There are 24 unique categories in this data set.
+
+#### `game_awards`
+
+The `game_awards` data set provides information about the nominations and results for each game at The Game Awards from 2013 to 2022. The data set has 826 unique observations. Having a type date, the variable `date` uniquely observations the day of The Game Awards for a given year. `game_id`, `category_id`, and `publisher_id` are brought into the data set as foreign keys. `award_category` has a one-to-many relationship with `game_awards`. `games` and `publishers` logically has a zero-or-one-to-many relationship with `game_awards`. Having a type logical, the `winner` variable is set to TRUE if a given game won the award category. The combination of `date`, `game_id`, and `category_id`, is the compound primary key of this data set.
+
+### Relating to Game Reviews
+
+#### `game_review_companies`
+
+The `game_review_companies` data set uniquely identifies the name of the video game review company from OpenCritic reviews. The variable `review_company` has type chr and `review_company_id` has type int. `review_company_id` is the primary key. There are 494 unique companies in this data set.
+
+#### `game_reviewers`
+
+The `game_reviewers` data set uniquely identifies the names of the reviewers from OpenCritic reviews. The variable `reviewer` has type character, and `reviewer_id` has type integer. `reviewer_id` is the primary key. `game_reviewers` merges with `game_review_companies` through a one-to-many relationship. There are 9386 unique reviewers in this data set.
+
+#### game_reviews
+
+The `game_reviews` data set has a record of each review of a game on OpenCritic from 2013 to 2023. The data set has 62,662 unique observations. Having a type date, the variable `date` records the day the given review was published. `game_id` and `reviewer_id` are brought into the data set as foreign keys. `game_reviewers` has a one-to-many relationship with `game_reviews`. `games` has a zero-or-one-to-many relationship with `game_reviews`. Having a type double, the `rating` variable is the score a reviewer gives a game out of 100. The `rating_yesterday` variable (type double)finds the average score of a game on the previous date of a given review observation. If there were no reviews before the date of a given review, `rating_yesterday` is set to NA.
+
+### Esports Data Set
+
+The `esports` data set records information about esports tournaments each month given some game. This data set was created by [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data) The `esports` data set records information about esports tournaments each month given some game. This data set was created by [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data). When filtering for the 10-year period, the data set has 2718 unique observations. Having a type date, the variable `date` records the month of the esports observation. `game_id` is brought into the data set a foreign key. `games` has a zero-or-one-to-many relationship with `esports`. `earnings` records the monthly accumulative earnings from esports competitions given a game. `players` (type dbl) records the number of competitors participating in an esports-related event for a given game. `tournaments` (type dbl) records the number of tournaments held in a given month/year for a game. The combination of `date` and `game_id` is the compound primary key of this data set.
+
+### Publisher Stocks Data Set
+The `publisher_stocks` data set records stock data from [Yahoo! Finance](https://finance.yahoo.com/) about the nine publishing companies specified for this analysis. These publishers include Nintendo, Electronic Arts, Sega, Capcom, Konami, Ubisoft, Square Enix, Take-Two, and Bandai Namco. These publishers can be varied by a researcher.However, my background knowledge of these publishers' success facilitated the decision to use them for this analysis. I refer to this group of publishers as the "top publishers" moving forward^[Activision Blizzard is also part of the top publishers. Recently, this company was bought by Microsoft. So, while their stocks on Yahoo! Finance no longer exist, the company is relevant to this historical data] The data set has 20,659 unique observations. Having a type date, the variable `date` has 20 unique observations that record the date of the stock’s records. `publisher_id` is brought into the data set as foreign keys. `publishers` has a zero-or-one-to-many relationship with `publisher_stocks`. The remaining variables, all of type dbl, simply summarize the fluctuations of the stock on a given day. Worth noting is `volume`, which records the number of shares traded in a stock. Also, `adjusted` records the closing stock value after adjustments for all applicable splits and dividend distributions. The combination of `date` and `publisher_id` is the compound primary key of this data set.
+
+## Explorations
+
+Given the amount of time placed into collecting data, only a brief exploration of the dataset is conducted. This exploration is structured to highlight the information within each of the major data sets (`game_info`, `game_awards`, `esports`, and `game_reviews`), relating these observations to `publisher_stocks` when appropriate.
+
 
 ```{r}
 #| label: packages
-#| echo: false
 
 ###########################
 ### NECESSARY LIBRARIES ###
@@ -87,8 +184,9 @@ top_publishers <- c('nintendo', 'electronic arts', 'activision blizzard',
 
 ```
 
-### GAME INFO
+### EDA - Video Game Information 
 
+We start our analysis by characterizing the information in `game_info` as it relates to the top publishers. First, we can examine the distribution of games by each of these top publishers. @fig-games-by-publisher indicates that Nintendo is credited with publishing the most games over these ten years, followed by Bandai Namco and Square Enix. Nintendo’s dominance in publishing should not be unexpected by researchers. Of the ten publishers listed, Nintendo is the only company that also produces its game consoles such as the Nintendo Switch. Since the company also produces a console, we should expect Nintendo to be the primary supplier of games for this console through their various top-selling game series such as Super Mario and The Legend of Zelda. 
 
 ```{r}
 #| label: fig-games-by-publisher
@@ -115,7 +213,6 @@ publishers |>
        caption = 'Source: Wikipedia')
 
 ```
-
 
 ```{r}
 #| label: get_game_info_distr
@@ -157,6 +254,8 @@ get_game_info_distr <- function(some_var = game_series, var_id = series_id,
 
 ```
 
+To gain a stronger understanding of the array of series found in the game information data set, we analyze the distribution of game series. @fig-series-distr specifies the top 15 most frequent game series in the data set. As we can see from the column “Other” having 1569 observations there are much smaller video game series attributed in the game series data set. However, Pokémon is the most frequent series, with 52 observations.
+
 ```{r}
 #| label: fig-series-distr
 #| fig-cap: Distribution of series 
@@ -170,6 +269,7 @@ get_game_info_distr(some_var = game_series, var_id = series_id,
 
 ```
 
+Looking a little further, we can identify the distribution of game series for the top publishers. @fig-series-top-publishers shows a fairly similar trend between this graph and @fig-series-distr. With other publishers out of consideration, series such as Call of Duty (published by Activision Blizzard) and Just Dance (published by Ubisoft) climb higher on the rankings. Final Fantasy, a series published by Square Enix game, surprisingly overtakes Pokémon in this distribution. This phenomenon can be attributed to the fact that Nintendo, which is the company receiving credit for the Pokémon series, historically has not always published the series’ games. 
 
 ```{r}
 #| label: fig-series-top-publishers
@@ -184,6 +284,8 @@ get_game_info_distr(some_var = game_series, var_id = series_id,
 
 ```
 
+We can follow the same structure of analysis for the genres data set. First looking at the frequency of game genres in general, @fig-genres-distr shows that action-adventure and role-playing games are the most common genres of game to create. This observation should not come as a surprise to a researcher, as these two genres are fairly broad compared to genres lower on this distribution. With the assumption that games with no specific genre tend to cluster to these top two genres, we should expect to see a large proportion of games here.
+
 ```{r}
 #| label: fig-genres-distr
 #| fig-cap: Distribution of genres 
@@ -197,6 +299,8 @@ get_game_info_distr(some_var = game_genres, var_id = genre_id,
 
 ```
 
+A researcher may be curious about the genre distribution of the top publishers, as this distribution may reveal which genres commonly show great success in the industry. Furthermore, this distribution may reveal which genres these publishers hold a strong share in compared to other publishers. @fig-genres-top-publishers finds that role-playing and action-adventure games have switched for the number 1 and number 2 positions. Sports make a noticeable jump in the frequency rankings. Electronic Arts and Take-Two, known for the Madden and NBA 2K series respectively, contribute to 64 of the 106 games. Nevertheless, the order of genres in this distribution is generally the same when compared with @fig-genres-distr.
+
 ```{r}
 #| label: fig-genres-top-publishers
 #| fig-cap: Distribution of genres by top-publishers
@@ -209,6 +313,7 @@ get_game_info_distr(some_var = game_genres, var_id = genre_id,
        caption = 'Source: Wikipedia')
 ```
 
+Finally, a researcher may be interested in understanding how different categories of video games have evolved over the past 10 years. For example, it could be the case that the majority of games that have “simulation” for their genre were published in 2013, overestimating the popularity of the genre from a modern-day perspective. Thus we may want to examine the distribution of a game category based on a specified period. A simple version of this analysis is done through a violin plot distribution of games on @fig-days-since-released-modes, grouped by game modes and whether or not the game was released after 2017. For simplicity, we only focus on a small subset of modes and periods, but increasing this subset would likely find a more complex understanding. If we believe that there was an apparent era of dominance by one mode of video games, we should expect the violin plot densities to vary significantly between the two year-based groups. This graph finds that the distributions of game modes are nearly identical across the year groups, indicating that for this level of complexity, we see no strong preference for game modes between periods.
 
 ```{r}
 #| label: fig-days-since-released-modes
@@ -242,9 +347,9 @@ publishers |>
   
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
 
-### ESPORT
+
+### EDA - Esports
 
 ```{r}
 #| label: esports_sum_table function
@@ -276,7 +381,6 @@ publishers |>
 
 ```
 
-
 ```{r}
 #| label: fig-sum-table-earning
 #| fig-cap: Summary table of earnings statistics 
@@ -300,7 +404,6 @@ esports_sum_table(tournaments)
 esports_sum_table(players)
 
 ```
-
 
 ```{r}
 #| label: esports_histograms function 
@@ -347,50 +450,6 @@ esports_sum_table(players)
 ```
 
 ```{r}
-#| label: fig-tournament-distribution
-#| fig-cap: Distribution of tournaments 
-
-esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top = FALSE, filter_less = NA) + 
-  labs(x = 'Tournaments',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-```{r}
-#| label: fig-tournament-distribtion-top-publisher
-#| fig-cap: Distribution of tournaments of top publishers
-
-esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top = TRUE, filter_less = NA) + 
-  labs(x = 'Tournaments',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-```{r}
-#| label: fig-players-distribtion
-#| fig-cap: Distribution of players
-
-esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top = FALSE, filter_less = NA) + 
-  labs(x = 'Players',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle') 
-```
-
-```{r}
-#| label: fig-players-distribtion-top-publisher
-#| fig-cap: Distribution of players of top publishers
-
-esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top = TRUE, filter_less = NA) + 
-  labs(x = 'Players',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-```{r}
 #| label: fig-earnings-distribtion
 #| fig-cap: Distribution of earnings 
 
@@ -417,47 +476,33 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
 #| fig-cap: Median esports earnings per yer by top publishers 
 
     publishers |> 
-    filter(publishers %in% top_publishers) |> 
-    inner_join(game_info, join_by(publisher_id)) |> 
-    inner_join(esports, join_by(game_id)) |> 
-    distinct(pick(game_id, date), .keep_all = TRUE) |> 
-    mutate(year = year(date)) |> 
-    summarize(earnings_mean = mean(earnings),
-              earnings_median = median(earnings),
-              quantile_25 = quantile(earnings, probs = c(.25)),
-              quantile_75 = quantile(earnings, probs = c(.75)),
-              total_earnings = sum(earnings),
-              .by = c(publishers, year),
-              n = n()) |>
-    filter(earnings_median != max(earnings_median),
-           earnings_mean != 0) |> 
-    ggplot(aes(year, earnings_median)) +
-    geom_vline(xintercept = 2013:2023) +
-    geom_point(aes(color = publishers), alpha = .75) +
-    coord_flip() +
-    scale_x_continuous(breaks = c(2013:2023)) +
-    labs(x = 'Year',
-         y = 'Earning Median',
-         color = 'Publishers',
-         caption = 'Source: RAN.KIRSH - Kaggle')
+  #this code is fairly similar to the previous function
+  filter(publishers %in% top_publishers) |> 
+  inner_join(game_info, join_by(publisher_id)) |> 
+  inner_join(esports, join_by(game_id)) |> 
+  distinct(pick(game_id, date), .keep_all = TRUE) |> 
+  mutate(year = year(date)) |> 
+  summarize(earnings_mean = mean(earnings),
+            earnings_median = median(earnings),
+            quantile_25 = quantile(earnings, probs = c(.25)),
+            quantile_75 = quantile(earnings, probs = c(.75)),
+            total_earnings = sum(earnings),
+            #however, we're grouping by publishers and year this time, not just
+            # publishers
+            .by = c(publishers, year),
+            n = n()) |>
+  filter(earnings_median != max(earnings_median),
+         earnings_mean != 0) |> 
+  ggplot(aes(year, earnings_median, color = publishers)) +
+  geom_line() +
+  geom_point(alpha = .75) +
+  scale_x_continuous(breaks = c(2013:2023)) +
+  theme(axis.text.x = element_text(angle=45)) +
+  labs(x = 'Year',
+       y = 'Earning Median',
+       color = 'Publishers',
+       caption = 'Source: RAN.KIRSH - Kaggle, Yahoo! Finance')
 ```
-
-```{r}
-#| label: fig-tournaments-v-players
-#| fig-cap: Scatterplot of tournaments against players, grouped by year
-
- esports |> 
-      mutate(date = factor(year(date))) |> 
-      ggplot(aes(players, tournaments)) +
-      geom_point(alpha = .25) +
-      geom_smooth(se = FALSE) + 
-      facet_wrap(vars(date)) +
-  labs(x = 'Players',
-       y = 'Tournaments',
-       caption = 'Source: RAN.RIRSH - Kaggle')
-
-```
-
 
 ```{r}
 #| label: fig-adjusted-v-earnings
@@ -482,8 +527,6 @@ esports |>
   guides(color = FALSE)
 
 ```
-
-
 
 ```{r}
 #| label: fig-adjusted-v-tournaments
@@ -531,27 +574,11 @@ publishers |>
   geom_bar(fill = 'blue4', stat = 'identity') +
   coord_flip() +
   geom_text(aes(label = signif(n)), nudge_y = 1) +
-  labs(x = 'Number of Game Awards Wins',
-       y = 'Publishers',
+  labs(y = 'Number of Game Awards Wins',
+       x = 'Publishers',
        caption = 'Source: Wikipedia')
 
 ```
-
-```{r}
-#| label: fig-winner-top-publishers-table
-#| fig-cap: Table of Game Awards wins by top publishers 
-
-publishers |> 
-  filter(publishers %in% top_publishers) |> 
-  inner_join(game_awards, join_by(publisher_id)) |> 
-  inner_join(award_category, join_by(category_id)) |>
-  inner_join(games, join_by(game_id)) |> 
-  filter(winner == TRUE) |> 
-  select(c(date, category, publishers, game)) |> 
-  DT::datatable()
-
-```
-
 
 ```{r}
 #| label: fig-nominations-top-publishers
@@ -566,15 +593,15 @@ publishers |>
     geom_bar(fill = 'blue4', stat = 'identity') +
     coord_flip() +
     geom_text(aes(label = signif(n)), nudge_y = 3) +
-  labs(x = 'Number of Game Awards Nominations',
-       y = 'Publishers',
+  labs(y = 'Number of Game Awards Nominations',
+       x = 'Publishers',
        caption = 'Source: Wikipedia')
   
 ```
 
 ```{r}
 #| label: fig-win-top-publishers-v-other
-#| fig-cap: Number of Game Awards winsby top publishers relative to other publishers
+#| fig-cap: Number of Game Awards wins by top publishers relative to other publishers
 
 publishers |> 
   inner_join(game_info, join_by(publisher_id)) |> 
@@ -596,32 +623,11 @@ publishers |>
   geom_bar(stat = 'identity', color = 'white') +
   scale_y_continuous(breaks = c(1:9)) +
   coord_flip() +
-  labs(x = 'Game Awards Wins',
-       y = 'Category',
+  labs(y = 'Game Awards Wins',
+       x = 'Category',
        caption = 'Source: Wikipedia',
        fill = 'Top Category')
 
-```
-
-
-```{r}
-#| label: fig-adjusted-nominations-corr
-#| fig-cap: Correlation of Game Awards nominations and correlations based on adjusted close stock value
-
-publishers |> 
-  filter(publishers %in% top_publishers) |> 
-  inner_join(game_awards, join_by(publisher_id)) |> 
-  inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
-  summarise(
-    mean_adjust = round(mean(adjusted), 2),
-    .by = publishers, 
-    nominations = n()) |> 
-  mutate(correlation = cor(mean_adjust, nominations)) |> 
-  DT::datatable()
-
-
-
-################################################################################
 ```
 
 ### GAME REVIEWS
@@ -665,11 +671,12 @@ game_reviews |>
     rating_iqr = IQR(rating)
   ) |> 
   knitr::kable() 
+
 ```
 
 ```{r}
 #| label: fig-rating-distr-top-publisher
-#| fig-cap: Distribution of top-publisher game ratings by reviewers 
+#| fig-cap : Distribution of top-publisher game ratings by reviewers 
 
  publishers |> 
   inner_join(game_info, join_by(publisher_id)) |> 
@@ -692,7 +699,7 @@ game_reviews |>
 
 ```{r}
 #| label: fig-rating-sample-summary-for-top-publishers
-#| fig-cap: Summary of the rating distribution for games published by top publishers
+#| fig-cap : Summary of the rating distribution for games published by top publishers
 
 publishers |> 
   inner_join(game_info, join_by(publisher_id)) |> 
@@ -709,37 +716,9 @@ publishers |>
   knitr::kable()
 ```
 
-
-```{r}
-#| label: game-review-company-reviews-group-by-publisher
-#| fig-cap: Number of reviews the game review companies with the most reviews have based on how many they have written about the top publishers
-
-publishers |> 
-  inner_join(game_info, join_by(publisher_id)) |> 
-  inner_join(games, join_by(game_id)) |> 
-  inner_join(game_reviews, join_by(game_id)) |> 
-  inner_join(game_reviewers, join_by(reviewer_id)) |> 
-  inner_join(game_review_companies, join_by(review_company_id)) |> 
-  
-  distinct(pick(reviewer_id, game_id), .keep_all = TRUE) |> 
-  mutate(review_company = fct_lump(factor(review_company), 10)) |> 
-  filter(publishers %in% top_publishers, review_company != 'Other') |> 
-  
-  ggplot(aes(publishers, fill = review_company)) +
-  scale_fill_hue(l=40, c=30) +
-  geom_bar(color = 'white') +
-  coord_flip() +
-  labs(x = '',
-       y = 'Publishers',
-       fill = 'Review Company',
-       caption = 'Source: OpenCritic')
-
-```
-
-
 ```{r}
 #| label: ratings-v-adjusted
-#| fig-cap: Scatterplot of ratings against the adjusted close value of stocks
+#| fig-cap : Scatterplot of ratings against the adjusted close value of stocks
 
 games |> 
   inner_join(game_reviews, join_by(game_id)) |> 
@@ -754,9 +733,8 @@ games |>
   geom_smooth(method = lm, se = FALSE) +
   labs(x = 'Rating',
        y = 'Adjusted',
-       caption = 'Sources: OpenCritic, Yahoo! Financne')
+       caption = 'Sources: OpenCritic, Yahoo! Finance')
 ```
-
 
 ```{r}
 #| label: ratings-v-adjusted-groupby-top-publishers
@@ -776,7 +754,71 @@ games |>
   facet_wrap(vars(publishers)) +
    labs(x = 'Rating',
        y = 'Adjusted',
-       caption = 'Sources: OpenCritic, Yahoo! Financne')
+       caption = 'Sources: OpenCritic, Yahoo! Finance')
 
 ```
 
+APPENDIX - EXTRA EXPLORATIONS
+
+esports
+
+```{r}
+#| label: fig-tournament-distribution
+#| fig-cap: Distribution of tournaments 
+
+esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
+                                top = FALSE, filter_less = NA) + 
+  labs(x = 'Tournaments',
+       y = '',
+       caption = 'Source: RAN.KIRSH - Kaggle')
+```
+
+```{r}
+#| label: fig-tournament-distribtion-top-publisher
+#| fig-cap: Distribution of tournaments of top publishers
+
+esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
+                                top = TRUE, filter_less = NA) + 
+  labs(x = 'Tournaments',
+       y = '',
+       caption = 'Source: RAN.KIRSH - Kaggle')
+```
+
+```{r}
+#| label: fig-players-distribtion
+#| fig-cap: Distribution of players
+
+esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
+                                top = FALSE, filter_less = NA) + 
+  labs(x = 'Players',
+       y = '',
+       caption = 'Source: RAN.KIRSH - Kaggle') 
+```
+
+```{r}
+#| label: fig-players-distribtion-top-publisher
+#| fig-cap: Distribution of players of top publishers
+
+esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
+                                top = TRUE, filter_less = NA) + 
+  labs(x = 'Players',
+       y = '',
+       caption = 'Source: RAN.KIRSH - Kaggle')
+```
+
+game awards
+
+```{r}
+#| label: fig-winner-top-publishers-table
+#| fig-cap: Table of Game Awards wins by top publishers 
+
+publishers |> 
+  filter(publishers %in% top_publishers) |> 
+  inner_join(game_awards, join_by(publisher_id)) |> 
+  inner_join(award_category, join_by(category_id)) |>
+  inner_join(games, join_by(game_id)) |> 
+  filter(winner == TRUE) |> 
+  select(c(date, category, publishers, game)) |> 
+  DT::datatable()
+
+```
