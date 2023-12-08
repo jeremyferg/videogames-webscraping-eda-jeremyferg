@@ -1,3 +1,6 @@
+################################################################################
+################################################################################
+################################################################################
 
 ############################################
 ############################################
@@ -236,16 +239,9 @@ write_csv(game_awards, 'game_awards_raw.csv')
 #####################
 
 ## the way adding the row developer of the year during this process will only 
-##  work for years 2014 and 2015 (this category was dropped after)
-##  current solution: add a variable in the function that specifies what the
-##  name of the category should be
+##  work for years 2014 and 2015 (this category was dropped after)'
 
-## '‡' indicates winners. There are no winners for 2023, so will either need to
-##  find another way to detect the string, or drop the year entirely
-
-## that '‡' is still at the end of winning publishers in the dataset, make sure
-## to get rid of that when you get the chance
-
-## a lot of the game categories in the dataset could be merged into one category
-## will have to pick and choose how i do this
+################################################################################
+################################################################################
+################################################################################
   

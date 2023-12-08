@@ -1,3 +1,6 @@
+################################################################################
+################################################################################
+################################################################################
 
 #####################################
 #####################################
@@ -173,7 +176,6 @@ category_cleaner <- function(df, var = publishers, col_str = "Publisher\\(s\\)",
     html_elements('tr') |> 
     html_text2(preserve_nbsp = TRUE)
   
-  #"Publisher\\(s\\)"
   category_index <- which(grepl(col_str, category))
   
   category <- category[category_index]
@@ -335,20 +337,6 @@ for( year in c(2013:2023)){
 write_csv(game_info, 'data/raw/game_info_raw.csv')
 
 ################################################################################
-
-
-
-##############################
-######    some notes    ######
-##############################
-
-# ideally, we can make genre_s and mode_s of type factor, watch for variations
-# with this variable
-
-# there are going to be different writings for release, make sure there are no NAs
-# for starters and then try to convert the variables into type date
-
-# a lot of publishers aren't publishing because they are either not in the publisher
-# list of they are not linked as my publisher function suggests. Try scraping for both
-# links and text and then using is_publisher() on both of them
+################################################################################
+################################################################################
   
