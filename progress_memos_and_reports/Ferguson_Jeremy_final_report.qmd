@@ -29,7 +29,7 @@ from: markdown+emoji
 
 This analysis provides a foundation for understanding how various decisions and actions associated with the video game industry affect the financial stocks of this industry's publishers. The video game industry is interesting when exploring finances because the success of a game publisher relies heavily on the financial impact of one-time events. For example, a video game company may spend years developing the next iteration of a game franchise instead of rapidly publishing new games. Their goal in the more systematic approach is to produce a product that will sustain the company until the next project is publicly released. From the unique structure of this industry, one may be interested in understanding how these events heavily impact the industry's stocks. In theory, a one-time event of this magnitude should substantially influence the activity of stock exchanges and the value of the company's stock. Likewise, understanding the components of this data is essential to a curious researcher.
 
-To my knowledge, there is no public data set that captures video game companies as they relate to their financial stocks. So, to contribute to potential research in this industry, my project seeks to create a relational database with video game industry-related data. I collected data through a combination of web scraping and pre-cleaned data sets. General game information was collected through game overview pages on [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year), The Game Awards results were scraped from results pages on [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards), and game reviews were taken from [OpenCritic](https://opencritic.com/) (a database of game reviews in a similar style to other websites like IMDB). The remainder of the report will consist of an overview of the web scraping process, a discussion of the final scraped data set, and a brief exploratory data analysis highlighting data-related questions that a researcher or industry leader would investigate further.
+To my knowledge, there is no public data set that captures video game companies as they relate to their financial stocks. So, to contribute to potential research in this industry, my project seeks to create a relational database with video game industry-related data from 2013 to 2023. I collected data through a combination of web scraping and pre-cleaned data sets. General game information was collected through game overview pages on [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year), The Game Awards results were scraped from results pages on [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards), and game reviews were taken from [OpenCritic](https://opencritic.com/) (a database of game reviews in a similar style to other websites like IMDB). The remainder of the report will consist of an overview of the web scraping process, a discussion of the final scraped data set, and a brief exploratory data analysis highlighting data-related questions that a researcher or industry leader would investigate further.
 
 ## Web scraping Overview
 
@@ -51,7 +51,7 @@ The main challenge of web scraping these awards is the initial formatting of the
 
 ### Game Reviews
 
-Like a traditional journalist or political activist, a video game reviewer has the potential to influence the trajectory of a game company's work. A leader in the video game industry may be interested in a statistical summary of review scores and the financial effects these ratings have on their company. So, game reviews are web-scraped for this analysis. [OpenCritic](https://opencritic.com/), a database for video game reviews, is used to extract game reviews from all available games from 2013 to 2023. Each game, such as [Persona 5 Royal](https://opencritic.com/game/8785/persona-5-royal/reviews), has a list of reviewers, the company they write for, and their rating of the game. Given this information is stored in rows, we can loop an extraction of each reviewer's information for each video game.
+Like a traditional journalist or political activist, a video game reviewer has the potential to influence the trajectory of a game company's work. A leader in the video game industry may be interested in a statistical summary of review scores and the financial effects these ratings have on their company. So, game reviews are web-scraped for this analysis. OpenCritic, a database for video game reviews, is used to extract game reviews from all available games from 2013 to 2023. Each game, such as [Persona 5 Royal](https://opencritic.com/game/8785/persona-5-royal/reviews), has a list of reviewers, the company they write for, and their rating of the game. Given this information is stored in rows, we can loop an extraction of each reviewer's information for each video game.
 
 The main concern for this web scraping is data accuracy. For example, there are reviewers on Persona 5 Royal's OpenCritic website who rated the games out of five stars. In a review row, five stars are presented as five literal images of stars. While a reader can understand the rating of these games, I am not aware of a current web scraping tool that would effectively translate these images to a numeric form. Therefore, reviews with images in their scores were dropped during the web scraping process. With this action in mind, a researcher may be concerned that removing a specific group from the data set may cause biased results from a theoretical game review variable. Therefore, a researcher should verify the randomness of this data for further studies.
 
@@ -64,7 +64,7 @@ Due to the large amount of data sets I collected for this project, I decided to 
 
 #### `games`
 
-The `games` data set uniquely identifies the name of each game originally found in the raw version of `game_info`. The variable `games` has a type character and `game_id` has a type integer. `game_id` is the primary key. There are (4046) unique games in this data set.
+The `games` data set uniquely identifies the name of each game originally found in the raw version of `game_info`. The variable `games` has a type character and `game_id` has a type integer. `game_id` is the primary key. There are 4046 unique games in this data set.
 
 To avoid redundancy, the next five data sets (until and including `publishers`) will have the same origin: `game_info`, the same character-integer variable types, and an id for a primary key.
 
@@ -73,7 +73,7 @@ To avoid redundancy, the next five data sets (until and including `publishers`) 
 `game_series` has 665 unique observations. This data set was generally clean when extracting its information.
 
 #### `game_genres`
-`
+
 `game_genres` has 190  unique observations. There are many instances within `game_genres` where two genres could reasonably be associated with one. The `game_genres` section of my R script shows that I started this process manually. While I believe these genres have been simplified enough for sufficient analysis as it relates to this project, further research should reduce the number of unique observations.
 
 #### `game_modes`
@@ -86,7 +86,7 @@ To avoid redundancy, the next five data sets (until and including `publishers`) 
 
 #### `game_info`
 
-`game_info` combines the `game_id`, `series_id`, `genres_id`, `modes_id`, and `publisher_id` to create one compound primary key. `game_info` has a one-to-many relationship with each of these parent data sets. release_date ( a date type) is also included in this dataset. This variable indicates the first official day of release for a video game. In total, the data set has 9419 unique observations.
+`game_info` combines the `game_id`, `series_id`, `genres_id`, `modes_id`, and `publisher_id` to create one compound primary key. `game_info` has a one-to-many relationship with each of these parent data sets. release_date, a date type, is also included in this data set. This variable indicates the first official day of release for a video game. In total, the data set has 9419 unique observations.
 
 ### Relating to The Game Awards
 
@@ -114,7 +114,7 @@ The `game_reviews` data set has a record of each review of a game on OpenCritic 
 
 ### Esports Data Set
 
-The `esports` data set records information about esports tournaments each month given some game. This data set was created by [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data) The `esports` data set records information about esports tournaments each month given some game. This data set was created by [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data). When filtering for the 10-year period, the data set has 2718 unique observations. Having a type date, the variable `date` records the month of the esports observation. `game_id` is brought into the data set a foreign key. `games` has a zero-or-one-to-many relationship with `esports`. `earnings` records the monthly accumulative earnings from esports competitions given a game. `players` (type dbl) records the number of competitors participating in an esports-related event for a given game. `tournaments` (type dbl) records the number of tournaments held in a given month/year for a game. The combination of `date` and `game_id` is the compound primary key of this data set.
+The `esports` data set records information about esports tournaments each month given some game. This data set was created by [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data). When filtering for the 10-year period, the data set has 2718 unique observations. Having a type date, the variable `date` records the month of the esports observation. `game_id` is brought into the data set a foreign key. `games` has a zero-or-one-to-many relationship with `esports`. `earnings` records the monthly accumulative earnings from esports competitions given a game. `players` (type dbl) records the number of competitors participating in an esports-related event for a given game. `tournaments` (type dbl) records the number of tournaments held in a given month/year for a game. The combination of `date` and `game_id` is the compound primary key of this data set.
 
 ### Publisher Stocks Data Set
 The `publisher_stocks` data set records stock data from [Yahoo! Finance](https://finance.yahoo.com/) about the nine publishing companies specified for this analysis. These publishers include Nintendo, Electronic Arts, Sega, Capcom, Konami, Ubisoft, Square Enix, Take-Two, and Bandai Namco. These publishers can be varied by a researcher.However, my background knowledge of these publishers' success facilitated the decision to use them for this analysis. I refer to this group of publishers as the "top publishers" moving forward^[Activision Blizzard is also part of the top publishers. Recently, this company was bought by Microsoft. So, while their stocks on Yahoo! Finance no longer exist, the company is relevant to this historical data] The data set has 20,659 unique observations. Having a type date, the variable `date` has 20 unique observations that record the date of the stock’s records. `publisher_id` is brought into the data set as foreign keys. `publishers` has a zero-or-one-to-many relationship with `publisher_stocks`. The remaining variables, all of type dbl, simply summarize the fluctuations of the stock on a given day. Worth noting is `volume`, which records the number of shares traded in a stock. Also, `adjusted` records the closing stock value after adjustments for all applicable splits and dividend distributions. The combination of `date` and `publisher_id` is the compound primary key of this data set.
@@ -524,7 +524,7 @@ Lastly, we can examine a scatter plot of the earnings of tournaments against the
 
 ```{r}
 #| label: fig-adjusted-v-earnings
-#| fig-cap: Scatterplot of earnings against adjusted_close values, grouped by top publishers
+#| fig-cap: Scatterplot of earnings against adjusted closing stock values, grouped by top publishers
 
 esports |> 
       inner_join(games, join_by(game_id)) |> 
@@ -550,7 +550,7 @@ esports |>
 
 ```{r}
 #| label: fig-adjusted-v-tournaments
-#| fig-cap: Scatterplot of tournaments against adjusted_close values, grouped by top publishers
+#| fig-cap: Scatterplot of tournaments against adjusted closing stock values, grouped by top publishers
     
     esports |> 
       inner_join(games, join_by(game_id)) |> 
