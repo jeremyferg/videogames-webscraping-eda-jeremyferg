@@ -1,23 +1,5 @@
-## Datasets
+## EDA Files
 
-`esports_raw.csv` data collected from [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data)
+These R-scripts provide the code used to create the various graphics and tables created in the final report. The final report's exploratory analysis is broken up to highlight each of the major data sets: `game_info`, `game_reviews`, ` game_awards`, and `esports`. Therefore the EDA scripts were separated based to reflect the EDA. Scripts are numbered according to their appearance on the report. Each R scrap provides concise detail regarding the functionality of the code.
 
-- data set under the name `HistoricalEsportData.csv`
 
-Publisher stock data collected from [Yahoo Finance](https://finance.yahoo.com/)
-
-- `ATVI.csv`     (Activision Blizzard stocks)
-- `BANNAM.T.csv` (Bandai Namco stocks)
-- `CAPCOM.T.csv` (Capcom stocks)
-- `EA.csv`       (EA stocks)
-- `KONA.T.csv`   (Konami stocks)
-- `NTDOY.csv`    (Nintendo stocks)
-- `SQENIX.T.csv` (Square Enix stocks)
-- `TTWO.csv`     (Take-Two stocks)
-- `UBI.PA.csv`   (Ubisoft stocks)
-
-`game_info.csv` collected from [Wikipedia](https://en.wikipedia.org/wiki/Category:Video_games_by_year)
-
-`game_awards.csv` [Wikipedia](https://en.wikipedia.org/wiki/The_Game_Awards)
-
-`game_reviews.csv` [OpenCritic](https://opencritic.com/)
