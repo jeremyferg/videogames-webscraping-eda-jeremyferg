@@ -1,3 +1,7 @@
+################################################################################
+################################################################################
+################################################################################
+
 
 ##########################################
 ##########################################
@@ -5,16 +9,19 @@
 ##########################################
 ##########################################
 
+################################################################################
+
+##################
+### LIBRARIES  ###
+##################
+
 library(tidyverse)
 library(rvest)
 library(tidyquant)
 library(quantmod)
+
 game_info_raw <- read_csv('data/raw/game_info_raw.csv')
 
-#some release dates (50 games in total) weren't able to be corretly parsed because 
-# they did not match the parsing in release_extractor().
-#Im ok with dropping these games, as without a specific date, I can't accurate determine
-# the game's short-term effect on stocks
 ################################################################################
 
 ##############################
@@ -34,27 +41,38 @@ game_info_raw |>
 ### DEALING WITH GAMES ###
 ##########################
   
+#general clean up of the game names, also changing this variable name to 'game'
   mutate(name = str_remove(name, '\\(.*\\)'),
          name = str_trim(name, 'both'),
          name = tolower(name)) |> 
   rename(game = name)
 
-#############################################
-### DEALING WITH PUBLISHERS (what a pain) ###
-#############################################
+###############################
+### DEALING WITH PUBLISHERS ###
+################################
 
 game_info <-
   game_info |> 
+  #there were many instances where a publisher had a string such as [WW]: or [JP]:
+  # which indicates which publisher published the game in that industry. This detail
+  # is not important to me in this analysis
   mutate(publishers = str_remove_all(publishers, '[A-Z]+\\:\\s'),
+         #some publisher values also had the console name within its string, remove these
          publishers = str_remove_all(publishers, '(PS3?4?5?,?)|(Switch,?)|(Nintendo Switch,?)|
                                     |(Xbox One,?)|(Xbox 360,?)|(PlayStation Vita,?)|
                                     |(PlayStation 3?4?5?,?)|(Xbox Series X/S,?)|(3DS,?)'),
          publishers = str_trim(publishers, 'both')) |> 
   filter(publishers != '')  |> 
+  #many values in publishers were near identical to other values. For example, 
+  # there was an observation of both EA and Electronic Arts in the data. We want
+  # to associate these groups with one company
+  # due to limited time, i was able to only mutate publishers that i intended 
+  # to analyze in the eda, but this list could be simplified further
   mutate(publishers = case_when(str_detect(publishers, 'EA ') ~ 'Electronic Arts',
                                 str_detect(publishers, 'Bandai') ~ 'Bandai Namco',
                                 str_detect(publishers, 'Capcom') ~ 'Capcom',
                                 str_detect(publishers, 'Konami') ~ 'Konami',
+                                #these companies are the core subsidaries of take-two
                                 str_detect(publishers, '(2K)|(Rockstar Games)|(Zynga)|(Private Division)') ~ 'Take-Two',
                                 str_detect(publishers, 'Sega') ~ 'Sega',
                                 str_detect(publishers, 'Square.Enix') ~ 'Square Enix',
@@ -68,13 +86,13 @@ game_info <-
 
 game_info <-
 game_info |> 
+  #small mutations important for the eda
   mutate(series = if_else(series == 'DarkstalkersStreet Fighter',
                           'Darkstalkers,Street Fighter',
                           series),
          series = if_else(series == 'Warhammer 40' |series == '000',
                           'Warhammer 40000',
                           series),
-         #only drops a handful of observations
          series = tolower(series)) |>
   separate_rows(sep = ',') 
 
@@ -85,6 +103,7 @@ game_info |>
 game_info <-
 game_info |> 
   mutate(modes = tolower(modes),
+         #we want to simply the number of distinct modes values we have in the dataset 
          modes = case_when(str_detect(modes, 'co') ~ 'cooperative',
                            str_detect(modes, '(single.*multi)|(multi.*single)|(both)') ~ 'single-player and multi-player',
                            str_detect(modes, '(online)|(mmo)') ~ 'online',
@@ -96,6 +115,11 @@ game_info |>
 ### DEALING WITH GAME GENRES ###
 ################################
 
+#NOTE: Order matters when mutating with string detects
+# oftentimes, we are trying to mutate genres to a more common form. I chose to 
+# mutate genres to specificity. For example, there is a genre called 'Stealth RPG', 
+# I made sure that name was changed to 'stealth' instead of 'rpg', because stealth
+# games are the lesser common genre
 game_info <-
 game_info |> 
 mutate(genres = tolower(genres),
@@ -132,6 +156,8 @@ mutate(genres = tolower(genres),
 ### FINAL VERSION OF GAME_INFO ###
 ##################################
 
+#after cleaning game_info, we create the additional data sets to create the unique 
+#ideas of each of these variables
 games <-
 game_info |> 
   distinct(game) |> 
@@ -158,6 +184,7 @@ game_info |>
   distinct(modes) |> 
   rowid_to_column('mode_id')
 
+#replacing the literal names of variables with their IDs
 game_info <-
 game_info |> 
   inner_join(games, join_by(game)) |> 
@@ -277,8 +304,8 @@ get_publisher_stocks() |>
 ### DEALING WITH GAME AWARDS ###
 ################################
 
-#112 or our 556 games are missing from the games index (various reasons)
-# Ok for our study concerns, but we can add these games to the games dg
+#112 of our 556 games are missing from the games index (various reasons)
+# Ok for our study concerns, but we can add these games to the games db
 # in the future for more precision 
 
 game_awards_raw <- read_csv('data/raw/game_awards_raw.csv')
@@ -402,7 +429,7 @@ game_reviewers <-
 #keep the review_company names for now for merging purposes later on
 
 
-#There are a whole lotta small-fry games in the raw game_reviews_raw df, I'm only really
+#There are a lot of smaller games in the raw game_reviews_raw df, I'm only really
 # concerned about notable games for this EDA. Let's look at games that have
 # more than 10 reviews
 
@@ -432,6 +459,7 @@ game_reviews <-
   select(!c(game, review_company_id)) |> 
   relocate(date, game_id)
 
+#now get rid of review companies from game_reviewers
 game_reviewers <-
 game_reviewers |> 
   select(!c(review_company))
@@ -512,7 +540,7 @@ tribble(
   'low', 'Lowest daily value of a stock',
   'close', 'Closing daily value of a stock',
   'volume', 'Amount of shares traded on a specified date',
-  'adj_close', 'Closing daily value after adjustments for splits and dividend distributions',
+  'adjusted', 'Closing daily value after adjustments for splits and dividend distributions',
   'category_id', 'Unique ID number of all Game Awards category names',
   'category', 'Name of a Game Awards category',
   'winner', 'True if the observation won the specified Game Awards category',
@@ -525,3 +553,7 @@ tribble(
 )
 
 write_csv(games_database_codebook, 'games_database_codebook.csv')
+
+################################################################################
+################################################################################
+################################################################################
