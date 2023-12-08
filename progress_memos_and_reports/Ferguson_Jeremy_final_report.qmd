@@ -1,11 +1,11 @@
 ---
-title: "Progress Memo 3"
+title: "Video Game Web Scraping and Exploratory Analysis"
 subtitle: |
   | Final Project 
   | Data Science 1 with R (STAT 301-1)
 author: "Jeremy Ferguson"
 date: today
- 
+
 format:
   html:
     toc: true
@@ -41,13 +41,13 @@ There are few public data sets with general information about games, but all lac
 
 The main challenge of web scraping game information is the consistency of infoboxes across each game. Specifically, there were two main issues that many infoboxes had: missing data and irregular data. Missing data refers to completely missing categories from infoboxes. A common example of missing data was the series category. If a game was not associated with a game series, the row `series` was not in the infobox table. A simple solution to this concern is setting `series` equal to NA if the variable is not in the infobox.
 
-Irregular data entails that, while the data is not missing from the infobox, the category is formatted in a way that makes web scraping directly from the table difficult. For example, most infoboxes used text to record a game's publisher. However, many games used hyperlinks to record a publisher on the infobox, such as [Elden Ring](https://en.wikipedia.org/wiki/Elden_Ring). Using a regular `rvest` function such as `html_table()` did not accurately parse out the required information for web scraping.
+Irregular data entails that, while the data is not missing from the infobox, the category is formatted in a way that makes web scraping directly from the table difficult. For example, most infoboxes used text to record a game's publisher. However, many games used hyperlinks to record a publisher on the infobox, such as [Elden Ring](https://en.wikipedia.org/wiki/Elden_Ring). Using a regular `rvest` function such as `html_table()` did not accurately parse out the required information for web scraping. More information about extracting concerns can be found on the `videogame_info_wenscraping` R script. This script and all other web scraping scripts have extensive comments that guide the reader through each aspect of the process.
 
 ### The Game Awards
 
 [The Game Awards](https://thegameawards.com/) is the video game industry's most notable awards event. This is an event where publishers earn awards on recent releases, showcase trailers for future releases, and present lifetime awards to members of the industry. Given the popularity of the event, we may predict that winning or being nominated for an award casually affects the stock of that associated publisher. Similar to game information, there does not appear to be a public, up-to-date data set regarding the yearly results of The Game Awards. Therefore, I scraped result information from the [Wikipedia pages of yearly Game Awards results](https://en.wikipedia.org/wiki/The_Game_Awards). Each page, [like the 2016 page](https://en.wikipedia.org/wiki/The_Game_Awards_2016), has a Wikipedia info-table listing the name of an award category and the results of that category.
 
-The main challenge of web scraping these awards is the initial formatting of the results tables. Referring back to the 2016 awards, there are no specified column names for simplistic table extracting, and, when initially scraped, all nominees are stringed together onto one value.
+The main challenge of web scraping these awards is the initial formatting of the results tables. Referring back to the 2016 awards, there are no specified column names for simplistic table extracting, and, when initially scraped, all nominees are stringed together onto one value.  Again, further information about the exact process of extracting this data can be found directly on the `game_awards_webscraping` R script.
 
 ### Game Reviews
 
@@ -57,9 +57,8 @@ The main concern for this web scraping is data accuracy. For example, there are 
 
 ## Data Overview and Quality
 
-Due to the large amount of data sets I collected for this project, I decided to structure these data sets through a relational database design. A visual representation of this design is located under the `games_database` folder within the `data` folder. This method of structuralization provides a simple yet efficient format for connecting datasets with others. This section will expand on this design alongside providing an overview of each dataset within the design.
+Due to the large amount of data sets I collected for this project, I decided to structure these data sets through a relational database design. My goal while structuring this design was to create a system that is simple to navigate, avoids redundant variable observations, and could be populated with new observations/data sets for a future research project. A visual representation of this design is located under the `games_database` folder within the `data` folder. This method of structuring provides a efficient format for connecting data sets with others. For a technical analysis of the approaches used to populate the database, please refer to the `game_relational_database_editing` R script also found in the `games_database` folder. This section will expand on this design alongside providing an overview of each data set within the design.
 
-### Relational Database Design Structure
 
 ### Relating to General Video Game Information
 
@@ -794,4 +793,7 @@ games |>
 
 ## Conclusion
 
+This project provides a valuable resource to those in the video game industry as an excellent data source for database analysis and a useful assortment of research ideas related to the wrangled data. Not only do researchers now have access to an extensive collection of publishers’ business actions and their relation to stocks, but this database also has the potential to be easily updated with additional observations or expanded with additional data sets. Although the data exploration of this project was simplistic, I believe I was able to introduce insightful questions or curiosity related to the data that ignited further exploration. These questions give me confidence that the database can effectively combine data sets to create meaningful observations.
+
+For future research, I suggest expanding on the research topics and questions discussed during the exploration process. Depending on the needs of a company or the curiosity of a researcher, certain topics hold strong value to a company’s outcomes. For example, if a publisher seeks to understand the quantitative importance of strong game reviews, further exploring the video game reviews data set and its relation to publishers’ stocks is essential. I also encourage researchers to modify the database to their own uniqueness. For example, a researcher could expand, remove, or modify the publisher stocks collected in the database by modifying the chosen stock names in the `game_relational_database_editing` R script. These actions would further allow researchers or those in the videogame industry to tailor their investigation to their company’s current needs. 
 

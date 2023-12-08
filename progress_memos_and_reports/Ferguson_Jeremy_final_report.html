@@ -9,7 +9,7 @@
 <meta name="author" content="Jeremy Ferguson">
 <meta name="dcterms.date" content="2023-12-08">
 
-<title>Progress Memo 3</title>
+<title>Video Game Web Scraping and Exploratory Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -5511,7 +5511,6 @@ color: #333;
   </ul></li>
   <li><a href="#data-overview-and-quality" id="toc-data-overview-and-quality" class="nav-link" data-scroll-target="#data-overview-and-quality">Data Overview and Quality</a>
   <ul class="collapse">
-  <li><a href="#relational-database-design-structure" id="toc-relational-database-design-structure" class="nav-link" data-scroll-target="#relational-database-design-structure">Relational Database Design Structure</a></li>
   <li><a href="#relating-to-general-video-game-information" id="toc-relating-to-general-video-game-information" class="nav-link" data-scroll-target="#relating-to-general-video-game-information">Relating to General Video Game Information</a></li>
   <li><a href="#relating-to-the-game-awards" id="toc-relating-to-the-game-awards" class="nav-link" data-scroll-target="#relating-to-the-game-awards">Relating to The Game Awards</a></li>
   <li><a href="#relating-to-game-reviews" id="toc-relating-to-game-reviews" class="nav-link" data-scroll-target="#relating-to-game-reviews">Relating to Game Reviews</a></li>
@@ -5533,7 +5532,7 @@ color: #333;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Progress Memo 3</h1>
+<h1 class="title">Video Game Web Scraping and Exploratory Analysis</h1>
 <p class="subtitle lead"></p><div class="line-block">Final Project<br>
 Data Science 1 with R (STAT 301-1)</div><p></p>
 </div>
@@ -5589,12 +5588,12 @@ Github Repo Link
 <h3 class="anchored" data-anchor-id="game-information">Game Information</h3>
 <p>There are few public data sets with general information about games, but all lack updated data. Therefore, I decided to scrape data through the <a href="https://en.wikipedia.org/wiki/Category:Video_games_by_year">Wikipedia pages of video games</a>. Wikipedia has pages dedicated to listing the names of video games released per year. Each game listed on this page is linked to another Wikipedia page specifically for that game. Assuming that every video game listed on Wikipedia had a unique information table, I started my web scraping by extracting information about games through Wikipedia’s infoboxes. Using <a href="https://en.wikipedia.org/wiki/Mario_Party_Superstars">Mario Party Superstars</a> as a game example, we can see that the general overview infobox of the game has game information categories such as publishers, release dates, and genres. Starting with 2013 videogames, the functions in <code>videogame_info_wenscraping</code> extract the necessary information from each game’s page, binding games together onto one data frame.</p>
 <p>The main challenge of web scraping game information is the consistency of infoboxes across each game. Specifically, there were two main issues that many infoboxes had: missing data and irregular data. Missing data refers to completely missing categories from infoboxes. A common example of missing data was the series category. If a game was not associated with a game series, the row <code>series</code> was not in the infobox table. A simple solution to this concern is setting <code>series</code> equal to NA if the variable is not in the infobox.</p>
-<p>Irregular data entails that, while the data is not missing from the infobox, the category is formatted in a way that makes web scraping directly from the table difficult. For example, most infoboxes used text to record a game’s publisher. However, many games used hyperlinks to record a publisher on the infobox, such as <a href="https://en.wikipedia.org/wiki/Elden_Ring">Elden Ring</a>. Using a regular <code>rvest</code> function such as <code>html_table()</code> did not accurately parse out the required information for web scraping.</p>
+<p>Irregular data entails that, while the data is not missing from the infobox, the category is formatted in a way that makes web scraping directly from the table difficult. For example, most infoboxes used text to record a game’s publisher. However, many games used hyperlinks to record a publisher on the infobox, such as <a href="https://en.wikipedia.org/wiki/Elden_Ring">Elden Ring</a>. Using a regular <code>rvest</code> function such as <code>html_table()</code> did not accurately parse out the required information for web scraping. More information about extracting concerns can be found on the <code>videogame_info_wenscraping</code> R script. This script and all other web scraping scripts have extensive comments that guide the reader through each aspect of the process.</p>
 </section>
 <section id="the-game-awards" class="level3">
 <h3 class="anchored" data-anchor-id="the-game-awards">The Game Awards</h3>
 <p><a href="https://thegameawards.com/">The Game Awards</a> is the video game industry’s most notable awards event. This is an event where publishers earn awards on recent releases, showcase trailers for future releases, and present lifetime awards to members of the industry. Given the popularity of the event, we may predict that winning or being nominated for an award casually affects the stock of that associated publisher. Similar to game information, there does not appear to be a public, up-to-date data set regarding the yearly results of The Game Awards. Therefore, I scraped result information from the <a href="https://en.wikipedia.org/wiki/The_Game_Awards">Wikipedia pages of yearly Game Awards results</a>. Each page, <a href="https://en.wikipedia.org/wiki/The_Game_Awards_2016">like the 2016 page</a>, has a Wikipedia info-table listing the name of an award category and the results of that category.</p>
-<p>The main challenge of web scraping these awards is the initial formatting of the results tables. Referring back to the 2016 awards, there are no specified column names for simplistic table extracting, and, when initially scraped, all nominees are stringed together onto one value.</p>
+<p>The main challenge of web scraping these awards is the initial formatting of the results tables. Referring back to the 2016 awards, there are no specified column names for simplistic table extracting, and, when initially scraped, all nominees are stringed together onto one value. Again, further information about the exact process of extracting this data can be found directly on the <code>game_awards_webscraping</code> R script.</p>
 </section>
 <section id="game-reviews" class="level3">
 <h3 class="anchored" data-anchor-id="game-reviews">Game Reviews</h3>
@@ -5604,10 +5603,7 @@ Github Repo Link
 </section>
 <section id="data-overview-and-quality" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview-and-quality">Data Overview and Quality</h2>
-<p>Due to the large amount of data sets I collected for this project, I decided to structure these data sets through a relational database design. A visual representation of this design is located under the <code>games_database</code> folder within the <code>data</code> folder. This method of structuralization provides a simple yet efficient format for connecting datasets with others. This section will expand on this design alongside providing an overview of each dataset within the design.</p>
-<section id="relational-database-design-structure" class="level3">
-<h3 class="anchored" data-anchor-id="relational-database-design-structure">Relational Database Design Structure</h3>
-</section>
+<p>Due to the large amount of data sets I collected for this project, I decided to structure these data sets through a relational database design. My goal while structuring this design was to create a system that is simple to navigate, avoids redundant variable observations, and could be populated with new observations/data sets for a future research project. A visual representation of this design is located under the <code>games_database</code> folder within the <code>data</code> folder. This method of structuring provides a efficient format for connecting data sets with others. For a technical analysis of the approaches used to populate the database, please refer to the <code>game_relational_database_editing</code> R script also found in the <code>games_database</code> folder. This section will expand on this design alongside providing an overview of each data set within the design.</p>
 <section id="relating-to-general-video-game-information" class="level3">
 <h3 class="anchored" data-anchor-id="relating-to-general-video-game-information">Relating to General Video Game Information</h3>
 <section id="games" class="level4">
@@ -5779,8 +5775,8 @@ Table 1: Summary table of earnings statistics
 </figcaption>
 <div aria-describedby="tbl-sum-table-earning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-38c8fbc92cbdcbd22e86" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-38c8fbc92cbdcbd22e86">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[284115.77,18060.8,18598.53,34309.82,208632.51,72549.81,294170.69,705.11,18786.79,54940.38],[24670.7,230,1743.625,2631.37,5000,1218.0675,26212.28,153.335,4000,830],[200000,1287.5,8500,13750,50000,26270.165,124066.94,260,10000,15000],[287500,22175,22955.075,41400,269994.4,110000,345750,453.645,30539.025,58318.33],[7387010.05,2709120.27,3180349.32,4357347.03,45273254.14,1305896.56,160617197.23,27499.32,206654.67,2362436.55],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-38a46d7c7bfcb6ea666f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-38a46d7c7bfcb6ea666f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[284115.77,18060.8,18598.53,34309.82,208632.51,72549.81,294170.69,705.11,18786.79,54940.38],[24670.7,230,1743.625,2631.37,5000,1218.0675,26212.28,153.335,4000,830],[200000,1287.5,8500,13750,50000,26270.165,124066.94,260,10000,15000],[287500,22175,22955.075,41400,269994.4,110000,345750,453.645,30539.025,58318.33],[7387010.05,2709120.27,3180349.32,4357347.03,45273254.14,1305896.56,160617197.23,27499.32,206654.67,2362436.55],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </figure>
@@ -5795,8 +5791,8 @@ Table 2: Summary table of tournament statistics
 </figcaption>
 <div aria-describedby="tbl-sum-table-tournaments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b07101e404c08e4ef0da" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b07101e404c08e4ef0da">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[2.27,12.48,4.18,9.83,7.86,2.22,9.119999999999999,1.15,2.64,3.67],[1,1,2,4,1,1,3,1,1.5,1],[1,3,3,10,5,1.5,7,1,3,2],[2.75,11,5,14,10,3,12,1,3,5.5],[59,1872,714,1248,1706,40,4980,45,29,158],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-67ef4453d6fb45045d53" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-67ef4453d6fb45045d53">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[2.27,12.48,4.18,9.83,7.86,2.22,9.119999999999999,1.15,2.64,3.67],[1,1,2,4,1,1,3,1,1.5,1],[1,3,3,10,5,1.5,7,1,3,2],[2.75,11,5,14,10,3,12,1,3,5.5],[59,1872,714,1248,1706,40,4980,45,29,158],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </figure>
@@ -5811,8 +5807,8 @@ Table 3: Summary table of players statistics
 </figcaption>
 <div aria-describedby="tbl-sum-table-players-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-32eb7ee3a80ac8715473" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-32eb7ee3a80ac8715473">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[30.08,50.08,15.87,57.58,63.71,9.779999999999999,93.87,4.44,23,19.16],[15.25,3,8,30,11,3,29,3,12.5,7],[33.5,10,12,49,24,5,63,3,15,13],[41.5,60.5,20.5,81.5,89,15,123.75,6,33,27.5],[782,7512,2713,7313,13826,176,51255,173,253,824],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b0b6c2f63a908b69bf4e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b0b6c2f63a908b69bf4e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["take-two","nintendo","bandai namco","ubisoft","electronic arts","konami","activision blizzard","sega","square enix","capcom"],[30.08,50.08,15.87,57.58,63.71,9.779999999999999,93.87,4.44,23,19.16],[15.25,3,8,30,11,3,29,3,12.5,7],[33.5,10,12,49,24,5,63,3,15,13],[41.5,60.5,20.5,81.5,89,15,123.75,6,33,27.5],[782,7512,2713,7313,13826,176,51255,173,253,824],[26,150,171,127,217,18,546,39,11,43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>publishers<\/th>\n      <th>mean<\/th>\n      <th>quantile_25<\/th>\n      <th>median<\/th>\n      <th>quantile_75<\/th>\n      <th>total<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </figure>
@@ -6070,6 +6066,8 @@ Figure 18: Scatterplot of ratings against the adjusted close value of stocks, g
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This project provides a valuable resource to those in the video game industry as an excellent data source for database analysis and a useful assortment of research ideas related to the wrangled data. Not only do researchers now have access to an extensive collection of publishers’ business actions and their relation to stocks, but this database also has the potential to be easily updated with additional observations or expanded with additional data sets. Although the data exploration of this project was simplistic, I believe I was able to introduce insightful questions or curiosity related to the data that ignited further exploration. These questions give me confidence that the database can effectively combine data sets to create meaningful observations.</p>
+<p>For future research, I suggest expanding on the research topics and questions discussed during the exploration process. Depending on the needs of a company or the curiosity of a researcher, certain topics hold strong value to a company’s outcomes. For example, if a publisher seeks to understand the quantitative importance of strong game reviews, further exploring the video game reviews data set and its relation to publishers’ stocks is essential. I also encourage researchers to modify the database to their own uniqueness. For example, a researcher could expand, remove, or modify the publisher stocks collected in the database by modifying the chosen stock names in the <code>game_relational_database_editing</code> R script. These actions would further allow researchers or those in the videogame industry to tailor their investigation to their company’s current needs.</p>
 </section>
 
 
