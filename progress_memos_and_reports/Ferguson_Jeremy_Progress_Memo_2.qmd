@@ -601,7 +601,7 @@ While I can make one large time series data frame, this data frame would be incr
 #| label: relational-db-design
 #| echo: false
 
-img <- image_read('C:/stat-301-1/final-project-1-jeremyferg/data/games_relational_database_design.png')
+img <- image_read('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/games_relational_database_design.png')
 
 img
 ```

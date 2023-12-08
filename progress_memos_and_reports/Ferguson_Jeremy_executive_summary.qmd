@@ -1,0 +1,149 @@
+---
+title: "Video Game Web Scraping and Exploratory Analysis - Executive Summary"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Jeremy Ferguson"
+date: today
+
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+::: {.callout-tip icon="false"}
+## Github Repo Link
+
+<https://github.com/stat301-1-2023-fall/final-project-1-jeremyferg.git>
+:::
+
+```{r}
+#| label: packages
+
+###########################
+### NECESSARY LIBRARIES ###
+###########################
+
+library(tidyverse)
+
+##########################
+### LOADING IN DB DATA ###
+##########################
+
+game_awards <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_awards.csv')
+
+award_category <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/award_category.csv')
+
+esports <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/esports.csv')
+
+game_info <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_info.csv')
+
+games <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/games.csv')
+
+game_genres <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_genres.csv')
+
+game_modes <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_modes.csv')
+
+game_series <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_series.csv')
+
+publishers <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/publishers.csv')
+
+publisher_stocks <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/publisher_stocks.csv')
+
+game_reviews <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_reviews.csv')
+
+game_review_companies <- read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_review_companies.csv')
+
+game_reviewers <- 
+  read_csv('C:/stat-301-1/final-project-1-jeremyferg/data/games_database/game_reviewers.csv')
+
+
+###list of publishers that will be key for analysis
+top_publishers <- c('nintendo', 'electronic arts', 'activision blizzard',
+                    'square enix', 'sega', 'konami', 'ubisoft', 'take-two',
+                    'bandai namco', 'capcom')
+
+```
+
+## Abstract
+
+This analysis provides a foundation for understanding how various decisions and actions associated with the video game industry affect the financial stocks of this industry’s publishers. Specifically, we seek to ask how activity in esports, success at [The Game Awards](https://thegameawards.com/), and reviewer enthusiasm varied publishers’ stocks from 2013 to 2023. Srock data is captured from [Yahoo! Finance](https://finance.yahoo.com/). The analysis focuses on leading publisher companies, but these methods can be attributed to a company of any stature. 
+
+## Data Collection
+
+To my knowledge, there is no public data set that captures video game companies as they relate to their financial stocks. So, to contribute to potential research in this industry, my project seeks to create a relational database with video game industry-related data. I collect data through a combination of web scraping and pre-cleaned data sets. General game information, The Game Awards results, and game reviews from [OpenCritic](https://opencritic.com/) are all web scraped. Esports data is taken from [RAN.KIRSH on Kaggle](https://www.kaggle.com/datasets/rankirsh/esports-earnings/data).
+
+## Data Exploration
+
+Since wrangling data was the main purpose of this project, exploration of the data simply introduces potential future studies through simple analysis. A noteworthy finding through initial exploration is the correlation between adjusted closing stocks and monthly esports earnings. Data is group by publishers. @fig-adjusted-v-earnings shows no clear trend across all publishers. However, we can theorize that publishers seeing a positive correlation between earnings and stocks would see increases in the value of their companies if they continued to invest in esports revenue for their games. The opposite can be said for publishers who see a negative correlation between the two variables. Empirically validating these correlations would assist publishers in maximizing how they engage with esports and their fan base.
+
+```{r}
+#| label: fig-adjusted-v-earnings
+#| fig-cap: Scatterplot of earnings against the adjusted close values, grouped by top publishers
+
+esports |> 
+      inner_join(games, join_by(game_id)) |> 
+      inner_join(game_info, join_by(game_id)) |> 
+      inner_join(publishers, join_by(publisher_id)) |> 
+      inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
+      distinct(date, publisher_id, .keep_all = TRUE) |> 
+      select(!c(game_id, game, release,genre_id, series_id, mode_id)) |>
+      filter(earnings < 50000) |>
+      
+      ggplot(aes(adjusted, earnings)) +
+      geom_point(aes(color = publishers, ), alpha = .3) +
+      facet_wrap(vars(publishers)) +
+      geom_smooth(method = lm, se = FALSE) +
+  labs(x = 'Adjusted',
+       y = 'Earnings',
+       caption = 'Source: RAN.RIRSH - Kaggle, Yahoo! Finance') +
+  guides(color = FALSE) 
+
+```
+
+Another potential study sparks from the correlation between adjusted closing stocks and game ratings by reviewers on OpenCritic, grouped by publisher. We can theorize that as ratings rise, adjusted closing stocks would increase. Instead, @fig-ratings-v-adjusted-groupby-top-publishers shows negligible effects on stocks. This finding could be attributed to generality of the reviewer sample. One may theorize a publishing company examining reviewers who are historically well-received by consumers. With this data sample, we should see a stronger negative or positive correlation on in graphic, assuming that these reviewers’ scores greatly influence the behavior of consumers. This experiment would make an informative study for publishers looking to understand the quantitative importance of strong game reviews.
+
+```{r}
+#| label: fig-ratings-v-adjusted-groupby-top-publishers
+#| fig-cap: Scatterplot of the adjusted close value of stocks against ratings, grouped by top publishers
+
+games |> 
+  inner_join(game_reviews, join_by(game_id)) |> 
+  inner_join(game_info, join_by(game_id)) |> 
+  inner_join(publishers, join_by(publisher_id)) |> 
+  inner_join(publisher_stocks, join_by(publisher_id, date)) |> 
+  
+  distinct(pick(date, publisher_id), .keep_all = TRUE) |> 
+  filter(publishers %in% top_publishers) |> 
+  ggplot(aes(rating, adjusted)) +
+  geom_point(alpha = .25) +
+  geom_smooth(method = lm, se = FALSE) +
+  facet_wrap(vars(publishers)) +
+   labs(x = 'Rating',
+       y = 'Adjusted',
+       caption = 'Sources: OpenCritic, Yahoo! Finance')
+
+```
+
+## Future Research
+
+This project provides a valuable resource to those in the video game industry as an excellent data source for database analysis and a useful assortment of research ideas related to the wrangled data. For more information about the database, the web scraping process, or the full report, please visit the GitHub repository linked above.
