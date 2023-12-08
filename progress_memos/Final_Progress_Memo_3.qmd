@@ -109,7 +109,7 @@ The `game_review_companies` data set uniquely identifies the name of the video g
 
 The `game_reviewers` data set uniquely identifies the names of the reviewers from OpenCritic reviews. The variable `reviewer` has type character, and `reviewer_id` has type integer. `reviewer_id` is the primary key. `game_reviewers` merges with `game_review_companies` through a one-to-many relationship. There are 9386 unique reviewers in this data set.
 
-#### game_reviews
+#### `game_reviews`
 
 The `game_reviews` data set has a record of each review of a game on OpenCritic from 2013 to 2023. The data set has 62,662 unique observations. Having a type date, the variable `date` records the day the given review was published. `game_id` and `reviewer_id` are brought into the data set as foreign keys. `game_reviewers` has a one-to-many relationship with `game_reviews`. `games` has a zero-or-one-to-many relationship with `game_reviews`. Having a type double, the `rating` variable is the score a reviewer gives a game out of 100. The `rating_yesterday` variable (type double)finds the average score of a game on the previous date of a given review observation. If there were no reviews before the date of a given review, `rating_yesterday` is set to NA.
 
@@ -351,6 +351,8 @@ publishers |>
 
 ### EDA - Esports
 
+We start our analysis by exploring statistical tables of the `earnings`, `tournaments`, and `players` variables within the data set `esports`. These statistics are grouped by top publishers. Through this analysis, we hope to start to build a general understanding of the distribution of these numeric variables from a quantitative perspective. 
+
 ```{r}
 #| label: esports_sum_table function
 
@@ -381,29 +383,36 @@ publishers |>
 
 ```
 
+@tbl-sum-table-earning shows a summary table of earnings at esports events. Sorting by mean, descending, Activision Blizzard gives its players the highest earnings, with a total average of 294,170.69 dollars earned per month for playing Activision Blizzard-related esports games. This number is a testament to Activision Blizzard’s collection of popular competitive-based games, including Overwatch, Diablo, and Call of Duty. Similarly, at the second highest mean, Take-Two Games publishes NBA 2K, which has a competitive league of its own. Companies like Nintendo and Sega have little average revenue for players. While Sega’s placing is not surprising due to its lack of competitive games, Nintendo being low on the list is rather interesting; the industry has various competitive games such as the Super Smash Bros. series and Mario Kart series that, in theory, should generate enough revenue to garner higher earnings numbers. 
+
 ```{r}
-#| label: fig-sum-table-earning
-#| fig-cap: Summary table of earnings statistics 
+#| label: tbl-sum-table-earning
+#| tbl-cap: Summary table of earnings statistics 
 
 esports_sum_table(earnings)
 
 ```
 
+@tbl-sum-table-tournaments presents more irony concerning Nintendo’s low average earnings. Again, sorting the table by average monthly tournaments, decreasing, Figure 8 shows that Nintendo has the highest average monthly tournaments. Given the company’s low average earnings, we may expect the average monthly tournaments to have a similar ranking. One plausible reason for this interesting observation is that those who play Nintendo-published games competitively are willing to compete at lower earnings rates. Maybe these individuals play competitively as a hobby, whereas those who play Activision Blizzard or Take-Two games competitively do so on a full-time salary. 
+
 ```{r}
-#| label: fig-sum-table-tournaments
-#| fig-cap: Summary table of tournament statistics 
+#| label: tbl-sum-table-tournaments
+#| tbl-cap: Summary table of tournament statistics 
 
 esports_sum_table(tournaments)
 
 ```
 
+Finishing the tables, @tbl-sum-table-players presents a statistical summary of players by the top publishers. Concerning means, Activision Blizzard has an average of approximately 94 players competing in esports games a month. Electronic Arts (64) and Ubisoft (58) follow. These rankings can be attributed to the number of players the game being played needs. Activision Blizzard’s games most likely need large teams to play a complete game. While competitive games made by Sega (average of approximately 4 players) likely need one or two players to play competitively.
+
 ```{r}
-#| label: fig-sum-table-players
-#| fig-cap: Summary table of players statistics 
+#| label: tbl-sum-table-players
+#| tbl-cap: Summary table of players statistics 
 
 esports_sum_table(players)
 
 ```
+
 
 ```{r}
 #| label: esports_histograms function 
@@ -449,6 +458,8 @@ esports_sum_table(players)
   
 ```
 
+@fig-earnings-distribtion observes the histogram distribution of monthly earnings of all games. Data is binned at every 250 dollars. It is clear to see that the observations are right-skewed; a vast majority of observations fall within monthly earnings of 1,500 dollars or lower, peaking in the first histogram bin. An interesting observation is the apparent increase in the number of earnings in the 10,000 range. There are also similar jumps near the 5,000 range and 15,000 range. This observation can be attributed to games having a specific cut-off for possible competitive earnings. Numbers such as 5,000 and 10,000 are common and plausible numbers for this cut-off.
+
 ```{r}
 #| label: fig-earnings-distribtion
 #| fig-cap: Distribution of earnings 
@@ -460,6 +471,8 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
        caption = 'Source: RAN.KIRSH - Kaggle')
 ```
 
+We may theorize that the top publishers in the video game industry may be able to provide higher earnings in esports events. Therefore, we should expect the distribution of earnings of top publishers to be less right-skewed compared to the general histogram distribution. From an initial visual standpoint, @fig-earnings-distribtion-top-publisher shows a similar distribution compared to @fig-earnings-distribtion. This similarity may indicate that there is no correlation between the success of an entire company and the esports earnings for their games. Instead, earnings from esports may be entirely dependent on the individual success of the game. 
+
 ```{r}
 #| label: fig-earnings-distribtion-top-publisher
 #| fig-cap: Distribution of earnings of top publishers
@@ -470,6 +483,8 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
        y = '',
        caption = 'Source: RAN.KIRSH - Kaggle')
 ```
+
+Furthering the analysis concerning earnings, we may want to examine each of the top publisher’s median earnings per year. This information may help us to understand the growth of a company’s esports involvement over the past ten years. To accomplish this inquiry, @fig-median-earning-per-yer-by-top-publisher plots median earnings against years, grouped by the top publishers. Note on the y-axis that 0e+00 is equal to 0, 1e+05 equals 100000, 2e+05 equals 200000, and so on. From 2013 to 2023, Take-Two saw the highest change in median earnings, followed by Electronic Arts. There are multiple groups, such as Activision Blizzard and Konami, who have seen peaks in their median earnings in past years and have since regressed in their median earnings. This observation can be attributed to games losing their popularity over time. If we keep the assumption that the performance and success of a game dictates the earnings a publisher provides for esports events, we can conclude that publishers like Take-Two publish games with growing fan bases, while publishers like Konami have seen the opposite effect in recent years.
 
 ```{r}
 #| label: fig-median-earning-per-yer-by-top-publisher
@@ -504,6 +519,10 @@ esports_histograms(some_var = earnings, binwidth = 250, xlim = c(0,15000),
        caption = 'Source: RAN.KIRSH - Kaggle, Yahoo! Finance')
 ```
 
+Lastly, we can examine a scatter plot of the earnings of tournaments against the adjusted closing value of a top publisher’s stock. The goal of this analysis is to determine whether there is some type of correlation between earnings/tournaments and these stocks. We group each of these scatter plots by top publisher. 
+
+@fig-adjusted-v-earnings shows monthly earnings against daily adjusted closing stocks for each top publisher. The slope of the curves shows no clear trend across all publishers. However, we can theorize that publishers seeing a positive correlation between earnings and stocks would see increases in the value of their companies if they continued to invest in esports revenue for their games. The opposite can be said for publishers who see a negative correlation between the two variables.
+
 ```{r}
 #| label: fig-adjusted-v-earnings
 #| fig-cap: Scatterplot of earnings against adjusted_close values, grouped by top publishers
@@ -523,10 +542,12 @@ esports |>
       geom_smooth(method = lm, se = FALSE) +
   labs(x = 'Adjusted',
        y = 'Earnings',
-       caption = 'Source: RAN.RIRSH - Kaggle') +
-  guides(color = FALSE)
+       caption = 'Source: RAN.RIRSH - Kaggle, Yahoo! Finance') +
+  guides(color = FALSE) 
 
 ```
+
+@fig-adjusted-v-tournaments creates this same graphical representation, replacing earnings for tournaments. The results of this scatter plot show relatively no correlations across all subgroups. There is a concern that publishers such as Sega and Square Enix do not have enough large variations in their adjusted closing stocks for strong analysis. It could be the case that if we had predictive information about these publishers’ stocks, we may observe either a positive or negative correlation between the two variables. Nevertheless, Figure 14 currently implies that increasing the number of tournaments a publisher’s game participates in does not affect the company’s adjusted closing stocks.
 
 ```{r}
 #| label: fig-adjusted-v-tournaments
@@ -551,7 +572,9 @@ esports |>
 
 ```
 
-### GAME AWARDS
+### EDA - The Game Awards
+
+The analysis focused on The Game Awards data set starts by characterizing the frequency with which the top publishers win an award at The Game Awards. @fig-winners-top-publishers shows that, from The Game Awards inaugural ceremony in 2014 to its latest event in 2022, Nintendo has won the most awards out of the other top publishers. Similar to the publisher’s leading number of games in `game_info`, Nintendo's leading number of nomination wins is representative of their various critically-acclaimed games and series. Furthermore, the high number of wins demonstrates the publisher’s consistency over the past nine years. 
 
 ```{r}
 #| label: fig-winners-top-publishers
@@ -580,6 +603,9 @@ publishers |>
 
 ```
 
+A researcher may be curious about the frequency publisher gets nominated for awards as well. One may theorize that a company could have just as many nominations as Nintendo but is consistently beaten by its competitor. @fig-nominations-top-publishers represents the frequency of the number of nominations a publisher receives from The Game Awards. In this graph, Nintendo is still the leading publisher with 71 nominations. A publisher such as Electronic Arts, which has 45 nominations but only 6 wins, better fits the proposed theory. Nevertheless, the rankings of the publishers across both graphs are similar.
+
+
 ```{r}
 #| label: fig-nominations-top-publishers
 #| fig-cap: Number of Game Awards nominations by top publishers 
@@ -598,6 +624,8 @@ publishers |>
        caption = 'Source: Wikipedia')
   
 ```
+
+After characterizing the top publishers relative to The Game Awards wins and nominations, a researcher may be interested in understanding how these companies compare to other companies at The Game Awards. Specifically, @fig-win-top-publishers-v-other represents the distribution of wins by publisher of each category from The Game Awards. If a company is not one of the top publishers, that group is placed into the “Other” category. From this setup, a researcher may seek to identify a category that the top publishers continuously dominate. The most notable discrepancies come from Best Family Game and Best Multiplayer. Nintendo has historically dominated Best Family Game, capturing 6 of their 20 awards in this category. Considering Nintendo’s focus on creating family-friendly games, it is not surprising that most of their wins come from this category. Best Multiplayer is dominated by Electronic Arts, Nintendo, and Activision Blizzard, with those publishers claiming 6 of the 7 awards in that category. Again, we can attribute this dominance to these companies’ focus on creating high-quality multiplayer games.
 
 ```{r}
 #| label: fig-win-top-publishers-v-other
