@@ -182,11 +182,11 @@ publishers |>
             n = n()) |>
   filter(earnings_median != max(earnings_median),
          earnings_mean != 0) |> 
-  ggplot(aes(year, earnings_median)) +
-  geom_vline(xintercept = 2013:2023) +
-  geom_point(aes(color = publishers), alpha = .75) +
-  coord_flip() +
+  ggplot(aes(year, earnings_median, color = publishers)) +
+  geom_line() +
+  geom_point(alpha = .75) +
   scale_x_continuous(breaks = c(2013:2023)) +
+  theme(axis.text.x = element_text(angle=45)) +
   labs(x = 'Year',
        y = 'Earning Median',
        color = 'Publishers',
