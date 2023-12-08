@@ -658,7 +658,9 @@ publishers |>
 
 ```
 
-### GAME REVIEWS
+### EDA - Game Reviews
+
+First, we can explore the distribution of game ratings by reviewers through @fig-rating-distr. This histogram is binned by every 5 points. The distribution of ratings follows a fairly normal distribution, with a peak of around 80. It is clear that certain bins, specifically bins including numbers of base 10 (60, 70, 80, etc.), have higher frequencies than other bins. This pattern can be attributed to how the data was collected. Many observations originally were rated out of 5 or out of 10. Scores rated 4 out of 5 in the original review were changed to 80 out of 100. This mutation partially explains why there is a high frequency of ratings within this 80 bin. @tbl-rating-sample-summary shows the statistical summary of this histogram’s distribution. The mean and median are generally similar, with little difference between the standard deviation and IQR as well.
 
 ```{r}
 #| label: fig-rating-distr
@@ -687,8 +689,8 @@ game_reviews |>
 ```
 
 ```{r}
-#| label: fig-rating-sample-summary
-#| fig-cap: Summary of the rating distribution
+#| label: tbl-rating-sample-summary
+#| tbl-cap: Summary of the rating distribution
 
 game_reviews |> 
   filter(!is.na(rating)) |> 
@@ -701,6 +703,8 @@ game_reviews |>
   knitr::kable() 
 
 ```
+
+One may predict that because top publishers generally create higher-quality games compared to other publishers, the ratings of these games will also be higher. @fig-rating-distr-top-publisher, which gives the distribution of reviewer’s ratings by the top publishers, shows a near-identical distribution compared to @fig-rating-distr. Furthermore, @tbl-rating-sample-summary-for-top-publishers also shows an identical median distribution and a mean distribution that is two points higher than @tbl-rating-sample-summary. These observations create the initial implication that video game reviewers score games based on the game’s quality, disregarding  the publisher’s past success.
 
 ```{r}
 #| label: fig-rating-distr-top-publisher
@@ -726,8 +730,8 @@ game_reviews |>
 ```
 
 ```{r}
-#| label: fig-rating-sample-summary-for-top-publishers
-#| fig-cap : Summary of the rating distribution for games published by top publishers
+#| label: tbl-rating-sample-summary-for-top-publishers
+#| tbl-cap : Summary of the rating distribution for games published by top publishers
 
 publishers |> 
   inner_join(game_info, join_by(publisher_id)) |> 
@@ -744,8 +748,10 @@ publishers |>
   knitr::kable()
 ```
 
+Researchers may be curious about a game rating’s relationship to a publisher’s stocks. Specifically, a researcher may be interested in understanding how increasing the average game rating of a publisher’s game affects the value of their adjusted closing stocks. @fig-ratings-v-adjusted starts this analysis by plotting the adjusted closing stocks of each of the top publishers against the ratings of their games. On an aggregate level, the scatter plot finds a negative correlation between these two variables: increasing the rating of a game decreases a publisher’s stock. From a logical perspective, this correlation is places concern on the legitimacy of this correlation. We can further examine this correlation by subgrouping ratings by publishers. @fig-ratings-v-adjusted-groupby-top-publishers shows that most publishers do not show a correlation between adjusted closing stocks and game ratings. If there is a correlation, the magnitude of this relationship is negligible. Therefore, a researcher should be hesitant to correlate ratings with these adjusted closing stocks.
+
 ```{r}
-#| label: ratings-v-adjusted
+#| label: fig-ratings-v-adjusted
 #| fig-cap : Scatterplot of ratings against the adjusted close value of stocks
 
 games |> 
@@ -765,7 +771,7 @@ games |>
 ```
 
 ```{r}
-#| label: ratings-v-adjusted-groupby-top-publishers
+#| label: fig-ratings-v-adjusted-groupby-top-publishers
 #| fig-cap: Scatterplot of ratings against the adjusted close value of stocks, grouped by top publishers
 
 games |> 
@@ -786,67 +792,6 @@ games |>
 
 ```
 
-APPENDIX - EXTRA EXPLORATIONS
+## Conclusion
 
-esports
 
-```{r}
-#| label: fig-tournament-distribution
-#| fig-cap: Distribution of tournaments 
-
-esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top = FALSE, filter_less = NA) + 
-  labs(x = 'Tournaments',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-```{r}
-#| label: fig-tournament-distribtion-top-publisher
-#| fig-cap: Distribution of tournaments of top publishers
-
-esports_histograms(some_var = tournaments, binwidth = 1, xlim = c(0,20), 
-                                top = TRUE, filter_less = NA) + 
-  labs(x = 'Tournaments',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-```{r}
-#| label: fig-players-distribtion
-#| fig-cap: Distribution of players
-
-esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top = FALSE, filter_less = NA) + 
-  labs(x = 'Players',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle') 
-```
-
-```{r}
-#| label: fig-players-distribtion-top-publisher
-#| fig-cap: Distribution of players of top publishers
-
-esports_histograms(some_var = players, binwidth = 5, xlim = c(0,200), 
-                                top = TRUE, filter_less = NA) + 
-  labs(x = 'Players',
-       y = '',
-       caption = 'Source: RAN.KIRSH - Kaggle')
-```
-
-game awards
-
-```{r}
-#| label: fig-winner-top-publishers-table
-#| fig-cap: Table of Game Awards wins by top publishers 
-
-publishers |> 
-  filter(publishers %in% top_publishers) |> 
-  inner_join(game_awards, join_by(publisher_id)) |> 
-  inner_join(award_category, join_by(category_id)) |>
-  inner_join(games, join_by(game_id)) |> 
-  filter(winner == TRUE) |> 
-  select(c(date, category, publishers, game)) |> 
-  DT::datatable()
-
-```
