@@ -182,9 +182,7 @@ publishers |>
   
   #median earnings by year, group by publisher
   publishers |> 
-    filter(publishers %in% c('nintendo', 'electronic arts', 'activision blizzard',
-                             'square enix', 'sega', 'konami', 'ubisoft', 'take-two',
-                             'bandai namco', 'capcom')) |> 
+    filter(publishers %in% publisher_list) |> 
     inner_join(game_info, join_by(publisher_id)) |> 
     inner_join(esports, join_by(game_id)) |> 
     distinct(pick(game_id, date), .keep_all = TRUE) |> 
@@ -200,8 +198,13 @@ publishers |>
            earnings_mean != 0) |> 
     ggplot(aes(year, earnings_median)) +
     geom_vline(xintercept = 2013:2023) +
-    geom_point(aes(color = publishers)) +
-    coord_flip() 
+    geom_point(aes(color = publishers), alpha = .5) +
+    coord_flip() +
+    scale_x_continuous(breaks = c(2013:2023)) +
+    labs(x = 'Year',
+         y = 'Earning Median',
+         color = 'Publishers',
+         caption = 'Source: RAN.KIRSH')
   
     #facet_wrap(~publishers, scales = 'free')
   
@@ -556,4 +559,21 @@ games |>
   geom_smooth(method = lm, se = FALSE) +
   facet_wrap(vars(publishers))
   
+################################################################################
+################################################################################
+################################################################################
+
+games |> 
+  inner_join(game_info, join_by(game_id)) |> 
+  inner_join(publishers, join_by(publisher_id)) |> 
+  filter(publishers == 'nintendo') |> 
+  distinct(game)
+
+games |> 
+  inner_join(game_info, join_by(game_id)) |> 
+  inner_join(publishers, join_by(publisher_id)) |> 
+  inner_join(game_genres, join_by(genre_id)) |> 
+  distinct(game_id, .keep_all = TRUE) |> 
+  filter(genres == 'sports') |> 
+  summarise(.by = publishers, n = n())
   
