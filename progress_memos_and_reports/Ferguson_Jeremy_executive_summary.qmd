@@ -146,4 +146,4 @@ games |>
 
 ## Future Research
 
-This project provides a valuable resource to those in the video game industry as an excellent data source for database analysis and a useful assortment of research ideas related to the wrangled data. For more information about the database, the web scraping process, or the full report, please visit the GitHub repository linked above.
+This project provides a valuable resource to those in the video game industry as an excellent data source for database analysis and a useful assortment of research ideas related to the wrangled data. For future research, I suggest expanding on the research topics and questions discussed during the exploration process. I also encourage researchers to modify the database to their own uniqueness. For more information about the database, the web scraping process, or the full report, please visit the GitHub repository linked above.

@@ -121,7 +121,7 @@ The `publisher_stocks` data set records stock data from [Yahoo! Finance](https:/
 
 ## Explorations
 
-Given the amount of time placed into collecting data, only a brief exploration of the dataset is conducted. This exploration is structured to highlight the information within each of the major data sets (`game_info`, `game_awards`, `esports`, and `game_reviews`), relating these observations to `publisher_stocks` when appropriate.
+Given the amount of time placed into collecting data, only a brief exploration of the data set is conducted. This exploration is structured to highlight the information within each of the major data sets (`game_info`, `game_awards`, `esports`, and `game_reviews`), relating these observations to `publisher_stocks` when appropriate.
 
 
 ```{r}
